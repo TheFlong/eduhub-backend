@@ -37,7 +37,7 @@ function getProjectsTags(req,res){
     knex
         .select('tagid', 'name').from('Tag')
         .join('ProjectHasTag', 'idtag', 'tagid')
-        .where('idproject', req.body.projectid)
+        .where('idproject', req.params.projectid)
         .then(function(Project){
             res.send(Project)
         })     

@@ -102,7 +102,7 @@ function getMembers(req, res){
     knex
         .select().from('User')
         .join('UserHasProject', 'iduser', 'userid')
-        .where('idproject', req.body.projectid)
+        .where('idproject', req.params.projectid)
         .then(function(Project){
         res.send(Project)
     })

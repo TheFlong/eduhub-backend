@@ -35,7 +35,7 @@ function getProjectsResources(req,res){
     knex
         .select('resourceid', 'name').from('Resource')
             .join('ProjectHasResource', 'idresource', 'resourceid')
-            .where('idproject', req.body.projectid)
+            .where('idproject', req.params.projectid)
         .then(function(Tag){
             res.send(Tag)
         })

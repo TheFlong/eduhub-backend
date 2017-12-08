@@ -81,7 +81,7 @@ function getMyProject(req, res){
     knex
     .select().from('Project')
         .join('UserHasProject', 'idproject', 'projectid')
-        .where('iduser', req.body.userid)
+        .where('iduser', req.params.userid)
     .then(function(Project){
         res.send(Project)
     })     
