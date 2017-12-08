@@ -47,8 +47,9 @@ app.put('/user', userctrl.changeOne);
 app.delete('/user',userctrl.deleteOne);
 
 //projectctrl Routes
-app.get('/project/:projectid', projectctrl.getMembers);
-app.get('/project', projectctrl.getAll)
+app.get('/project/members/:projectid', projectctrl.getMembers);
+app.get('/project', projectctrl.getAll);
+app.get('/project', projectctrl.getOne);
 
 app.post('/project', projectctrl.newProject)
 app.post('/image', projectctrl.addImage)
