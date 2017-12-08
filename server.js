@@ -42,7 +42,6 @@ app.use('/imagectrl', imagectrl);
 app.get('/user', userctrl.getAll);
 app.get('/user/:email', userctrl.getOne);
 app.get('/project/:iduser', userctrl.getMyProject);
-
 app.post('/user', userctrl.addOne);
 app.put('/user', userctrl.changeOne);
 app.delete('/user',userctrl.deleteOne);

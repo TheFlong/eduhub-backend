@@ -5,7 +5,8 @@ module.exports = {
     newProject,
     addImage,
     getAll,
-    getMembers
+    getMembers,
+    getOne
     //addDocument
 
 };
@@ -29,7 +30,7 @@ function newProject(req,res){
             .insert({
                 iduser: req.body.author,
                 idproject: response[0],
-                
+
             })
         })
         .then(t.commit)
@@ -40,7 +41,7 @@ function newProject(req,res){
                 res.send(UserHasProject);
             })
         })
-      
+
     });
 }
 
@@ -63,8 +64,8 @@ function addImage(req, res){
                 idproject: response[0],
                 name: req.body.name,
                 imagepath: req.body.imagepath,
-                
-                
+
+
             })
         })
         .then(t.commit)
@@ -75,7 +76,7 @@ function addImage(req, res){
                 res.send(Image);
             })
         })
-      
+
     });
 }
 
@@ -84,7 +85,7 @@ function addDocument(req, res){
         name: rey.body.name,
         documentpath: req.body.imagepath,
         idproject: req.body.idproject,
-    }) 
+    })
     .then(function() {
         knex.select().from('Document')
         .then(function(document) {
@@ -104,7 +105,13 @@ function getMembers(req, res){
         .where('idproject', req.body.projectid)
         .then(function(Project){
         res.send(Project)
-    })     
+    })
+}
+
+function getOne(req, res) {
+    knex.select().from('Project').where('projectid', req.params.projectid).then(function(Project){
+        res.send(Project)
+    })
 }
 
 /*  knex('users')
@@ -112,14 +119,10 @@ function getMembers(req, res){
 .select('users.id', 'contacts.phone')
 
 
-/*function getOne(req, res) {
-    knex.select().from('Project').where('projectid', req.params.projectid).then(function(Project){
-        res.send(Project)
-    })
-}
+/*
 function addOne(req,res){
     knex('Project').insert({
-    }) 
+    })
     .then(function() {
         knex.select().from('User')
         .then(function(User) {
@@ -161,4 +164,3 @@ function deleteOne(req, res){
 
 }
  */
-
