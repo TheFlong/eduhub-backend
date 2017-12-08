@@ -56,9 +56,9 @@ exports.up = function(knex, Promise) {
         })
       .createTable('UserHasProject', function(table){
           table.increments('userhasprojectid').primary();
-          table.integer('iduser').unsigned().references('userid').inTable('User');
+          table.integer('iduser').unsigned().references('userid').inTable('User').onDelete('CASCADE');
           table.integer('idproject').unsigned().references('projectid').inTable('Project');
-          table.integer('iduerrole').unsigned().references('userroleid').inTable('UserRole').onDelete('CASCADE');
+          table.integer('iduerrole').unsigned().references('userroleid').inTable('UserRole');
         })
       .createTable('Tag', function(table){
           table.increments('tagid').primary();
