@@ -44,7 +44,7 @@ exports.up = function(knex, Promise) {
           table.string('text', 2000);
           table.integer('karma');
           table.string('projecttype');
-          table.integer('author').unsigned().references('userid').inTable('User');
+          table.integer('author');
           table.integer('writeRightsId').unsigned().references('id').inTable('WriteRights');
           table.integer('Project_projectid').unsigned().references('projectid').inTable('Project');
           table.timestamp('created_at').defaultTo(knex.fn.now());
@@ -58,7 +58,7 @@ exports.up = function(knex, Promise) {
           table.increments('userhasprojectid').primary();
           table.integer('iduser').unsigned().references('userid').inTable('User');
           table.integer('idproject').unsigned().references('projectid').inTable('Project');
-          table.integer('iduerrole').unsigned().references('userroleid').inTable('UserRole');
+          table.integer('iduerrole').unsigned().references('userroleid').inTable('UserRole').onDelete('CASCADE');
         })
       .createTable('Tag', function(table){
           table.increments('tagid').primary();
