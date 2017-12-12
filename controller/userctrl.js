@@ -59,6 +59,18 @@ function addOne(req,res){
     })
 }
 function changeOne(req, res){
+    var startup_image = req.files.foo;
+    var fileName = filename(req.body.fileName);
+        
+    
+    // Use the mv() method to place the file somewhere on your server
+    startup_image.mv('images/' + fileName + '.png' , function(err) {
+      if(err){
+        console.log(err);
+      }else{
+     console.log("uploaded");
+   }
+    });
     knex('User').where('email', req.body.email)
         .update({
             name: req.body.name,
@@ -72,7 +84,8 @@ function changeOne(req, res){
             function: req.body.function,
             subject1: req.body.subject1,
             subject2: req.body.subject2,
-            subject3: req.body.subject3
+            subject3: req.body.subject3,
+            profilpic: 'images/' + fileName + '.png'
 
         })
         .then(() => {
