@@ -8,7 +8,8 @@ module.exports = {
     addOne,
     changeOne,
     deleteOne,
-    getMyProject
+    getMyProject,
+    changePicture
 
 };
 
@@ -59,18 +60,6 @@ function addOne(req,res){
     })
 }
 function changeOne(req, res){
-    var startup_image = req.files.foo;
-    var fileName = filename(req.body.fileName);
-        
-    
-    // Use the mv() method to place the file somewhere on your server
-    startup_image.mv('images/' + fileName + '.png' , function(err) {
-      if(err){
-        console.log(err);
-      }else{
-     console.log("uploaded");
-   }
-    });
     knex('User').where('email', req.body.email)
         .update({
             name: req.body.name,
@@ -84,8 +73,7 @@ function changeOne(req, res){
             function: req.body.function,
             subject1: req.body.subject1,
             subject2: req.body.subject2,
-            subject3: req.body.subject3,
-            profilpic: 'images/' + fileName + '.png'
+            subject3: req.body.subject3
 
         })
         .then(() => {
@@ -94,6 +82,24 @@ function changeOne(req, res){
                 .then(User => res.send(User));
         })
 }
+
+function changePicture(req, res){
+    var filepath = getfilepath(req.body.userid);
+    var startup_image = req.files.foo;
+    //var fileName = filename(req.body.fileName);
+        
+    
+    // Use the mv() method to place the file somewhere on your server
+    startup_image.mv(filepath , function(err) {
+      if(err){
+        console.log(err);
+      }else{
+     console.log("uploaded");
+    }
+    });
+
+}
+
 function deleteOne(req, res){
     knex('User').where('email', req.body.email)
         .del()
@@ -119,4 +125,12 @@ function filename(a){
 
     return a + '-' + Date.now()
 
+}
+
+function getfilepath(a){
+    
+    knex('User').select('profilpic').where('userid',a)
+    .then(function(response){
+        return JSON.stringify(response[0])
+    })
 }
