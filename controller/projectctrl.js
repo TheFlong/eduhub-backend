@@ -16,6 +16,19 @@ module.exports = {
 
 
 function newProject(req,res){
+    var startup_image = req.files.foo;
+    var fileName = filename(req.body.fileName);
+        
+    
+    // Use the mv() method to place the file somewhere on your server
+    startup_image.mv('images/' + fileName + '.png' , function(err) {
+      if(err){
+        console.log(err);
+      }else{
+     console.log("uploaded");
+        }
+    });
+
     return knex.transaction(function(t){
         return knex('Project')
         .transacting(t)

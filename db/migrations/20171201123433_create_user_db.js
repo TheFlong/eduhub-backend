@@ -45,6 +45,7 @@ exports.up = function(knex, Promise) {
           table.integer('karma');
           table.string('projecttype');
           table.integer('author');
+          table.string('imagepath');
           table.integer('writeRightsId').unsigned().references('id').inTable('WriteRights');
           table.integer('Project_projectid').unsigned().references('projectid').inTable('Project');
           table.timestamp('created_at').defaultTo(knex.fn.now());
