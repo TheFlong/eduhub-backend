@@ -23,43 +23,39 @@ exports.up = function(knex, Promise) {
             table.integer('number');
             table.integer('postcode');
             //Funktion und Fächer in der Schule
-            table.integer('schoolid').unsigned().references('schoolid').inTable('School');
+            table.integer('schoolid')
             table.string('function');
             table.string('subject1');
             table.string('subject2');
             table.string('subject3');
+            table.string('interests1');
+            table.string('interests2');
+            table.string('interests3');
             table.string('profilpic');
             table.integer('karma');
             table.timestamp('created_at').defaultTo(knex.fn.now());
             table.timestamp('updated_at').defaultTo(knex.fn.now());
          })
-      .createTable('WriteRights', function(table){
-          table.increments('id').primary();
-          table.string('rights');
-
-         })
       .createTable('Project', function(table){
           table.increments('projectid').primary();
           table.string('name');
-          table.string('text', 2000);
+          table.string('text', 4000);
           table.integer('karma');
           table.string('projecttype');
           table.integer('author');
+          table.string('activity');
+          table.string('statement', 4000);
           table.string('imagepath');
-          table.integer('writeRightsId').unsigned().references('id').inTable('WriteRights');
+          table.integer('writeRights');
           table.integer('Project_projectid').unsigned().references('projectid').inTable('Project');
           table.timestamp('created_at').defaultTo(knex.fn.now());
           table.timestamp('updated_at').defaultTo(knex.fn.now());
         })
-      .createTable('UserRole', function(table){
-          table.increments('userroleid').primary();
-          table.string('name');
-        })
       .createTable('UserHasProject', function(table){
           table.increments('userhasprojectid').primary();
           table.integer('iduser').unsigned().references('userid').inTable('User').onDelete('CASCADE');
-          table.integer('idproject').unsigned().references('projectid').inTable('Project');
-          table.integer('iduerrole').unsigned().references('userroleid').inTable('UserRole');
+          table.integer('idproject').unsigned().references('projectid').inTable('Project').onDelete('CASCADE');
+          table.string('userrole');
         })
       .createTable('Tag', function(table){
           table.increments('tagid').primary();
