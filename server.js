@@ -58,8 +58,8 @@ app.get('/project/:projectid', projectctrl.getOne);
 app.get('/project/getReactions/:projectid',  projectctrl.getReactions);
 
 app.post('/project/newProject', projectctrl.newProject); //req.body.name, req.body.text, req.body.author
-app.post('/project/addComment', projectctrl.addComment);
-app.post('/project/addImage', projectctrl.addImage);
+app.post('/project/addComment', projectctrl.addComment); //req.body.Project_projectid(aktuelle Projektid),req.body.name(Titel für Reaktion),req.body.text(KommentarText),req.body.author(Nutzer id)
+app.post('/project/addImage', projectctrl.addImage);//req.body.Project_projectid(aktuelle Projektid),req.body.name(Titel für Reaktion),req.body.text(Beschreibung),req.body.author(Nutzer id),req.body.fileName,req.files.foo
 
 
 //app.post('/image', projectctrl.addImage)
