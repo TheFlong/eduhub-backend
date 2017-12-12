@@ -87,8 +87,8 @@ function changePicture(req, res){
     var filepath = getfilepath(req.body.userid);
     var startup_image = req.files.foo;
     //var fileName = filename(req.body.fileName);
-        
-    
+
+
     // Use the mv() method to place the file somewhere on your server
     startup_image.mv(filepath , function(err) {
       if(err){
@@ -126,14 +126,11 @@ function filename(a){
     return a + '-' + Date.now()
 
 }
-<<<<<<< HEAD
-=======
 
 function getfilepath(a){
-    
+
     knex('User').select('profilpic').where('userid',a)
     .then(function(response){
         return JSON.stringify(response[0])
     })
 }
->>>>>>> 0c01597dcfb4e7933a7898a925745120c5488a0a
