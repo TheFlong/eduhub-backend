@@ -25,8 +25,8 @@ function getOne(req, res) {
 function addOne(req,res){
     var startup_image = req.files.foo;
     var fileName = filename(req.body.fileName);
-        
-    
+
+
     // Use the mv() method to place the file somewhere on your server
     startup_image.mv('images/' + fileName + '.png' , function(err) {
       if(err){
@@ -51,8 +51,8 @@ function addOne(req,res){
         subject3: req.body.subject3,
         profilpic: 'images/' + fileName + '.png'
     })
-    .then(function() {
-        knex.select().from('User')
+    .then(function(response) {
+        knex.select().from('User').where('userid', response[0])
         .then(function(User) {
             res.send(User);
         })
@@ -99,7 +99,7 @@ function getMyProject(req, res){
         .where('iduser', req.params.userid)
     .then(function(Project){
         res.send(Project)
-    })     
+    })
 }
 
 function filename(a){
