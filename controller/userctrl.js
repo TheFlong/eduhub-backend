@@ -1,5 +1,6 @@
 var knex = require('../db/knex')
 
+
 module.exports = {
 
     getAll,
@@ -22,6 +23,18 @@ function getOne(req, res) {
     })
 }
 function addOne(req,res){
+    var startup_image = req.files.foo;
+    var fileName = req.body.fileName;
+    
+    // Use the mv() method to place the file somewhere on your server
+    startup_image.mv('images/' + fileName + '.png' , function(err) {
+      if(err){
+        console.log(err);
+      }else{
+     console.log("uploaded");
+   }
+    });
+
     knex('User').insert({
         name: req.body.name,
         surname: req.body.surname,
@@ -34,7 +47,8 @@ function addOne(req,res){
         function: req.body.function,
         subject1: req.body.subject1,
         subject2: req.body.subject2,
-        subject3: req.body.subject3
+        subject3: req.body.subject3,
+        profilpic: 'images/' + fileName + '.png'
     })
     .then(function() {
         knex.select().from('User')
