@@ -24,7 +24,8 @@ function getOne(req, res) {
 }
 function addOne(req,res){
     var startup_image = req.files.foo;
-    var fileName = req.body.fileName;
+    var fileName = filename(req.body.fileName);
+        
     
     // Use the mv() method to place the file somewhere on your server
     startup_image.mv('images/' + fileName + '.png' , function(err) {
@@ -101,3 +102,8 @@ function getMyProject(req, res){
     })     
 }
 
+function filename(a){
+
+    return a + '-' + Date.now()
+
+}

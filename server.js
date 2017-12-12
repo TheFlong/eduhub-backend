@@ -55,8 +55,12 @@ app.delete('/user',userctrl.deleteOne);
 app.get('/project/members/:projectid', projectctrl.getMembers);
 app.get('/project', projectctrl.getAll);
 app.get('/project/:projectid', projectctrl.getOne);
+app.get('/project/getReactions/:projectid',  projectctrl.getReactions);
 
-app.post('/project/newProject', projectctrl.newProject) //req.body.name, req.body.text, req.body.author
+app.post('/project/newProject', projectctrl.newProject); //req.body.name, req.body.text, req.body.author
+app.post('/project/addComment', projectctrl.addComment);
+app.post('/project/addImage', projectctrl.addImage);
+
 
 //app.post('/image', projectctrl.addImage)
 

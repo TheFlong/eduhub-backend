@@ -6,7 +6,9 @@ module.exports = {
     addImage,
     getAll,
     getMembers,
-    getOne
+    getOne,
+    addComment,
+    getReactions
     //addDocument
 
 };
@@ -46,11 +48,26 @@ function newProject(req,res){
 }
 
 function addImage(req, res){
+    var startup_image = req.files.foo;
+    var fileName = filename(req.body.fileName);
+        
+    
+    // Use the mv() method to place the file somewhere on your server
+    startup_image.mv('images/' + fileName + '.png' , function(err) {
+      if(err){
+        console.log(err);
+      }else{
+     console.log("uploaded");
+   }
+    });
+
+
+
     return knex.transaction(function(t){
         return knex('Project')
         .transacting(t)
         .insert({
-            Project_projectid: req.body.projectid,
+            Project_projectid: req.body.Project_projectid,
             name: req.body.name,
             text: req.body.text,
             karma: 0,
@@ -62,8 +79,8 @@ function addImage(req, res){
             .transacting(t)
             .insert({
                 idproject: response[0],
-                name: req.body.name,
-                imagepath: req.body.imagepath,
+                name: fileName,
+                imagepath: 'images/' + fileName + '.png'
 
 
             })
@@ -94,6 +111,39 @@ function addDocument(req, res){
     })
 }
 
+function addComment(req, res){
+    return knex.transaction(function(t){
+        return knex('Project')
+        .transacting(t)
+        .insert({
+            name: req.body.name,
+            text: req.body.text,
+            karma: 0,
+            projecttype: "newComment",
+            author: req.body.author,
+            Project_projectid: req.body.Project_projectid
+        })
+        .then(function(response){
+            return knex('UserHasProject')
+            .transacting(t)
+            .insert({
+                iduser: req.body.author,
+                idproject: response[0],
+
+            })
+        })
+        .then(t.commit)
+        .catch(t.rollback)
+        .then(function() {
+            knex.select().from('Project')
+            .then(function(Project) {
+                res.send(Project);
+            })
+        })
+
+    });
+
+}
 function getAll(req, res) {
     knex.select().from('Project').then( Project => res.send(Project) );
 }
@@ -114,6 +164,28 @@ function getOne(req, res) {
     })
 }
 
+
+
+
+function getReactions(req,res){
+    knex
+    .select().from('Project')
+    .where('Project_projectid', req.params.projectid)
+    .orderBy('created_at', 'desc')
+    .then(function(Project){
+    res.send(Project)
+    })
+}
+
+
+
+
+
+function filename(a){
+    
+        return a + '-' + Date.now()
+    
+    }
 /*  knex('users')
 .join('contacts', 'users.id', 'contacts.user_id')
 .select('users.id', 'contacts.phone')
