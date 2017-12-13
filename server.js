@@ -46,9 +46,17 @@ app.get('/user/:email', userctrl.getOne);
 app.get('/user/getmyproject/:userid', userctrl.getMyProject);
 
 app.post('/user', userctrl.addOne);
-
+/* //req.files.foo, req.body.fileName, req.body.forename, req.body.surname, req.body.email, 
+req.body.street, req.body.city, req.body.number, req.body.postcode, req.body.schoolid,
+req.body.function, subject1: req.body.subject1, subject2: req.body.subject2, subject3: req.body.subject3  */
 
 app.put('/user', userctrl.changeOne);
+/* req.body.forename, req.body.surname, req.body.email, 
+req.body.street, req.body.city, req.body.number, req.body.postcode, req.body.schoolid,
+req.body.function, subject1: req.body.subject1, subject2: req.body.subject2, subject3: req.body.subject3 */
+
+
+
 
 // funktioniert noch nicht !!!!/////////////////////////////////
 app.delete('/user',userctrl.deleteOne);
@@ -62,9 +70,15 @@ app.get('/project', projectctrl.getAll);
 app.get('/project/:projectid', projectctrl.getOne);
 app.get('/project/getReactions/:projectid',  projectctrl.getReactions);
 
-app.post('/project/newProject', projectctrl.newProject); //req.body.name, req.body.text, req.body.author, req.files.foo, req.body.fileName
-app.post('/project/addComment', projectctrl.addComment); //req.body.Project_projectid(aktuelle Projektid),req.body.name(Titel für Reaktion),req.body.text(KommentarText),req.body.author(Nutzer id)
-app.post('/project/addImage', projectctrl.addImage);//req.body.Project_projectid(aktuelle Projektid),req.body.name(Titel für Reaktion),req.body.text(Beschreibung),req.body.author(Nutzer id),req.body.fileName,req.files.foo
+app.post('/project/newProject', projectctrl.newProject); 
+/* //req.body.project_name, req.body.project_text, req.body.project_author, req.files.foo, req.body.fileName */
+
+app.post('/project/addComment', projectctrl.addComment); 
+//req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(KommentarText),req.body.project_author(Nutzer id)
+
+app.post('/project/addImage', projectctrl.addImage);
+/* //req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(Beschreibung),
+req.body.project_author(Nutzer id),req.body.fileName,req.files.foo */
 
 
 //app.post('/image', projectctrl.addImage)
@@ -72,12 +86,14 @@ app.post('/project/addImage', projectctrl.addImage);//req.body.Project_projectid
 //tagctrl Routes
 app.get('/tag/:projectid', tagctrl.getProjectsTags)
 
-app.post('/tag', tagctrl.addOne)   //req.body.projectid, req.body.name
+app.post('/tag', tagctrl.addOne)   
+//req.body.pht_idproject, req.body.tag_name
 
 //resourcectrl Routes
 app.get('/resource', resourcectrl.getProjectsResources)
 
-app.post('/resource', resourcectrl.addOne) //req.body.projectid, req.body.name
+app.post('/resource', resourcectrl.addOne) 
+//req.body.phr_idproject, req.body.resource_name
 
 
 

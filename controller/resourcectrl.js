@@ -17,7 +17,7 @@ function addOne(req, res){
             return knex('ProjectHasResource')
             .transacting(t)
             .insert({
-                phr_idproject: req.body.projectid,
+                phr_idproject: req.body.phr_idproject,
                 phr_idresource: response[0]
             })
         })

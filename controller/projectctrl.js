@@ -50,7 +50,7 @@ function newProject(req,res){
             .insert({
                 uhp_iduser: req.body.project_author,
                 uhp_idproject: response[0],
-                uhp_userrole: "author"
+                uhp_userrole: "member"
 
             })
         })
