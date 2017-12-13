@@ -5,14 +5,14 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('Tag').insert([
-        {tagid: 1, name: 'Schule'},
-        {tagid: 2, name: 'Stern'},
-        {tagid: 3, name: 'Keks'},
-        {tagid: 4, name: 'Welt'},
-        {tagid: 5, name: 'Ente'},
-        {tagid: 6, name: 'Kanu'},
-        {tagid: 7, name: 'Kevin'},
-        {tagid: 8, name: 'Git'},
+        {tagid: 1, tag_name: 'Schule'},
+        {tagid: 2, tag_name: 'Stern'},
+        {tagid: 3, tag_name: 'Keks'},
+        {tagid: 4, tag_name: 'Welt'},
+        {tagid: 5, tag_name: 'Ente'},
+        {tagid: 6, tag_name: 'Kanu'},
+        {tagid: 7, tag_name: 'Kevin'},
+        {tagid: 8, tag_name: 'Git'},
         
       ]);
     });

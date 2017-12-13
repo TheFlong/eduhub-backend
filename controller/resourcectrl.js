@@ -11,14 +11,14 @@ function addOne(req, res){
         return knex('Resource')
         .transacting(t)
         .insert({
-            name: req.body.name,
+            resource_name: req.body.resource_name,
         })
         .then(function(response){
             return knex('ProjectHasResource')
             .transacting(t)
             .insert({
-                idproject: req.body.projectid,
-                idresource: response[0]
+                phr_idproject: req.body.phr_idproject,
+                phr_idresource: response[0]
             })
         })
         .then(t.commit)
@@ -33,11 +33,11 @@ function addOne(req, res){
 }
 function getProjectsResources(req,res){
     knex
-        .select('resourceid', 'name').from('Resource')
-            .join('ProjectHasResource', 'idresource', 'resourceid')
-            .where('idproject', req.params.projectid)
-        .then(function(Tag){
-            res.send(Tag)
+        .select('resourceid', 'resource_name').from('Resource')
+            .join('ProjectHasResource', 'phr_idresource', 'resourceid')
+            .where('phr_idproject', req.params.projectid)
+        .then(function(Resource){
+            res.send(Resource)
         })
 
 }

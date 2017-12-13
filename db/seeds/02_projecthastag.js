@@ -5,19 +5,19 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('ProjectHasTag').insert([
-        {projecthastagid: 1, idtag: '1', idproject: '1'},
-        {projecthastagid: 2, idtag: '2', idproject: '1'},
-        {projecthastagid: 3, idtag: '3', idproject: '1'},
-        {projecthastagid: 4, idtag: '4', idproject: '1'},
-        {projecthastagid: 5, idtag: '5', idproject: '1'},
-        {projecthastagid: 6, idtag: '6', idproject: '2'},
-        {projecthastagid: 7, idtag: '7', idproject: '2'},
-        {projecthastagid: 8, idtag: '8', idproject: '2'},
-        {projecthastagid: 9, idtag: '4', idproject: '2'},
-        {projecthastagid: 10, idtag: '5', idproject: '3'},
-        {projecthastagid: 11, idtag: '6', idproject: '3'},
-        {projecthastagid: 12, idtag: '7', idproject: '3'},
-        {projecthastagid: 13, idtag: '8', idproject: '4'},
+        {projecthastagid: 1, pht_idtag: '1', pht_idproject: '1'},
+        {projecthastagid: 2, pht_idtag: '2', pht_idproject: '1'},
+        {projecthastagid: 3, pht_idtag: '3', pht_idproject: '1'},
+        {projecthastagid: 4, pht_idtag: '4', pht_idproject: '1'},
+        {projecthastagid: 5, pht_idtag: '5', pht_idproject: '1'},
+        {projecthastagid: 6, pht_idtag: '6', pht_idproject: '2'},
+        {projecthastagid: 7, pht_idtag: '7', pht_idproject: '2'},
+        {projecthastagid: 8, pht_idtag: '8', pht_idproject: '2'},
+        {projecthastagid: 9, pht_idtag: '4', pht_idproject: '2'},
+        {projecthastagid: 10, pht_idtag: '5', pht_idproject: '3'},
+        {projecthastagid: 11, pht_idtag: '6', pht_idproject: '3'},
+        {projecthastagid: 12, pht_idtag: '7', pht_idproject: '3'},
+        {projecthastagid: 13, pht_idtag: '8', pht_idproject: '4'},
 
       ]);
     });

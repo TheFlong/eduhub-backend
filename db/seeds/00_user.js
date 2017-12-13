@@ -7,7 +7,7 @@ exports.seed = function(knex, Promise) {
       return knex('User').insert([
         {
           userid: 1,
-          name: "Maria",
+          forename: "Maria",
           surname: "Müller",
           email: "maria@mueller.net",
 
@@ -32,7 +32,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           userid: 2,
-          name: "Senta",
+          forename: "Senta",
           surname: "Kramer",
           email: "senta@kramer.net",
 
@@ -57,7 +57,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           userid: 3,
-          name: "Stefan",
+          forename: "Stefan",
           surname: "Schmidt",
           email: "stefan@schmidt.net",
 
@@ -82,7 +82,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           userid: 4,
-          name: "Karen",
+          forename: "Karen",
           surname: "Becker",
           email: "karen@becker.net",
 
@@ -107,7 +107,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           userid: 5,
-          name: "Saskia",
+          forename: "Saskia",
           surname: "Gerdes",
           email: "saskia@gerdes.net",
 
@@ -132,7 +132,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           userid: 6,
-          name: "Walter",
+          forename: "Walter",
           surname: "Wight",
           email: "walter@wight.net",
 
@@ -157,7 +157,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           userid: 7,
-          name: "Adam",
+          forename: "Adam",
           surname: "Natalie",
           email: "adam@natalie.net",
 
@@ -182,7 +182,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           userid: 8,
-          name: "Bernd",
+          forename: "Bernd",
           surname: "Schneider",
           email: "bernd@schneider.net",
 
@@ -207,7 +207,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           userid: 9,
-          name: "Kim",
+          forename: "Kim",
           surname: "Zentung",
           email: "kim@zentung.net",
 
@@ -232,7 +232,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           userid: 10,
-          name: "Abba",
+          forename: "Abba",
           surname: "Guambo",
           email: "abba@mguambo.net",
 
