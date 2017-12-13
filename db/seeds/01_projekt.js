@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise) {
           karma: 150,
           projecttype: "newProject",
           author: 1,
-          imagepath: "/images/Chrysatheum.jpg"
+          imagepath: "/images/Chrysanthemum.jpg"
 
           
         },

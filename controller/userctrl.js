@@ -5,11 +5,16 @@ module.exports = {
 
     getAll,
     getOne,
-    addOne,
-    changeOne,
-    deleteOne,
     getMyProject,
-    changePicture
+    
+    addOne,
+    
+    changeOne,
+    changePicture,
+    
+    deleteOne
+    
+    
 
 };
 
