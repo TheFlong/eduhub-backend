@@ -187,7 +187,8 @@ function getOne(req, res) {
 function getReactions(req,res){
     knex.select('*')
         .from('Project')
-        .where('Project_projectid', req.params.projectid)/* .orderBy('created_at', 'desc') */
+        .where('Project_projectid', req.params.projectid)
+        .orderBy('created_at', 'desc')
         .leftJoin('Image', 'projectid', 'idproject')
         
         .then(function(Project){

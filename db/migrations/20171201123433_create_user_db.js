@@ -81,8 +81,7 @@ exports.up = function(knex, Promise) {
           table.string('imagepath', 500);
           table.boolean('deleted').notNullable().defaultTo(false);
           table.integer('idproject').unsigned().references('projectid').inTable('Project');
-          table.timestamp('created_at').defaultTo(knex.fn.now());
-          table.timestamp('updated_at').defaultTo(knex.fn.now());
+          
         })
       .createTable('Document', function(table){
           table.increments('documentid').primary();
@@ -90,8 +89,7 @@ exports.up = function(knex, Promise) {
           table.string('documentpath', 500);
           table.boolean('deleted').notNullable().defaultTo(false);
           table.integer('idproject').unsigned().references('projectid').inTable('Project');
-          table.timestamp('created_at').defaultTo(knex.fn.now());
-          table.timestamp('updated_at').defaultTo(knex.fn.now());
+         
         })
 
   };
