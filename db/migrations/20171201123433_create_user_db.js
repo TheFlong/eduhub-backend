@@ -17,6 +17,7 @@ exports.up = function(knex, Promise) {
             table.string('email');
             table.string('forename');
             table.string('surname');
+            table.string('user_description',1000).defaultTo("Hier könnte etwas über dich stehen.")
           //Adresse
             table.string('street');
             table.string('city');

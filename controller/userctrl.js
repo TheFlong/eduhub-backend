@@ -83,7 +83,8 @@ function addOne(req,res){
         subject2: req.body.subject2,
         subject3: req.body.subject3,
         profilpic: 'images/' + fileName + '.png',
-        user_karma: 0
+        user_karma: 0,
+        user_description: req.body.user_description
     })
     .then(function(response) {
         knex.select().from('User').where('userid', response[0])
@@ -106,7 +107,8 @@ function changeOne(req, res){
             function: req.body.function,
             subject1: req.body.subject1,
             subject2: req.body.subject2,
-            subject3: req.body.subject3
+            subject3: req.body.subject3,
+            user_description: req.body.user_description
 
         })
         .then(() => {
