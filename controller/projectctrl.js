@@ -79,7 +79,8 @@ function newProject(req,res){
             project_karma: 0,
             project_projecttype: "newProject",
             project_author: req.body.project_author,
-            project_imagepath: 'images/' + fileName + '.png'
+            project_imagepath: 'images/' + fileName + '.png',
+            project_membercount: 1
         })
         .then(function(response){
             return knex('UserHasProject')

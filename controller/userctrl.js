@@ -160,6 +160,6 @@ function getfilepath(a){
 
     knex('User').select('profilpic').where('userid',a)
     .then(function(response){
-        return String(response)
+        return response.toString;
     })
 }
