@@ -6,7 +6,8 @@ module.exports = {
     getAll,
     getOne,
     getMyProject,
-    
+    getMyFavProjects,
+
     addOne,
     
     changeOne,
@@ -28,6 +29,27 @@ function getOne(req, res) {
         res.send(User)
     })
 }
+
+function getMyProject(req, res){
+    knex
+        .select().from('Project')
+        .join('UserHasProject', 'uhp_idproject', 'projectid')
+        .where('iduser', req.params.userid)
+        .where(function(){
+            this.where('uhp_userrole',"member")
+                .orWhere('uhp_userrole', "author")
+        })
+    .then(function(Project){
+        res.send(Project)
+    })
+}
+
+function getMyFavProjects(req,res){
+
+
+
+}
+
 function addOne(req,res){
     var startup_image = req.files.foo;
     var fileName = filename(req.body.fileName);
@@ -90,27 +112,6 @@ function changeOne(req, res){
 }
 
 
-
-function deleteOne(req, res){
-    knex('User').where('email', req.body.email)
-        .del()
-        .then(() => {
-            knex.select()
-            .from('User')
-            .then(User => res.send(User));
-        })
-
-}
-
-function getMyProject(req, res){
-    knex
-    .select().from('Project')
-        .join('UserHasProject', 'uhp_idproject', 'projectid')
-        .where('iduser', req.params.userid)
-    .then(function(Project){
-        res.send(Project)
-    })
-}
 function changePicture(req, res){
     var filepath = getfilepath(req.body.userid);
     var startup_image = req.files.foo;
@@ -127,6 +128,21 @@ function changePicture(req, res){
     });
 
 }
+
+
+function deleteOne(req, res){
+    knex('User').where('email', req.body.email)
+        .del()
+        .then(() => {
+            knex.select()
+            .from('User')
+            .then(User => res.send(User));
+        })
+
+}
+
+
+
 function filename(a){
 
     return a + '-' + Date.now()
