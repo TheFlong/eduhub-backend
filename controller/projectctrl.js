@@ -5,6 +5,7 @@ module.exports = {
     
     getAll,
     getOne,
+    getLandingPage,
     
     getMembers,
    
@@ -16,6 +17,29 @@ module.exports = {
     //addDocument
 
 };
+function getAll(req, res) {
+    knex.select().from('Project').then( Project => res.send(Project) );
+}
+
+function getMembers(req, res){
+    knex
+        .select().from('User')
+        .join('UserHasProject', 'uhp_iduser', 'userid')
+        .where('uhp_idproject', req.params.projectid)
+        .then(function(Project){
+        res.send(Project)
+    })
+}
+
+function getOne(req, res) {
+    knex.select().from('Project').where('projectid', req.params.projectid).then(function(Project){
+        res.send(Project)
+    })
+}
+
+function getLandingPage(req,res){
+    knex.select().from
+}
 
 
 
@@ -163,36 +187,28 @@ function addComment(req, res){
     });
 
 }
-function getAll(req, res) {
-    knex.select().from('Project').then( Project => res.send(Project) );
-}
 
-function getMembers(req, res){
-    knex
-        .select().from('User')
-        .join('UserHasProject', 'uhp_iduser', 'userid')
-        .where('uhp_idproject', req.params.projectid)
-        .then(function(Project){
-        res.send(Project)
-    })
-}
-
-function getOne(req, res) {
-    knex.select().from('Project').where('projectid', req.params.projectid).then(function(Project){
-        res.send(Project)
-    })
-}
 
 
 
 
 function getReactions(req,res){
-    knex.select('*')
+   /*  knex('Project')
+        .join('User','userid', 'project_author')
+        .select('*')
+        .where('Project_projectid', req.params.projectid) 
+        .leftjoin('Image', 'projectid', 'imageid_project')
+        .orderBy('project_created_at', 'desc')
+    
+    */
+   
+     knex.select('*')
         .from('Project')
         .where('Project_projectid', req.params.projectid)
-        .orderBy('project_created_at', 'desc')
-        .leftJoin('Image', 'projectid', 'image_idproject')
         
+        .join('User', 'userid', 'project_author')
+        .leftJoin('Image', 'projectid', 'image_idproject')
+        .orderBy('project_created_at', 'desc')
         
         .then(function(Project){
              res.send(Project)
