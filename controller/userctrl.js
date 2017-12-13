@@ -34,7 +34,7 @@ function getMyProject(req, res){
     knex
         .select().from('Project')
         .join('UserHasProject', 'uhp_idproject', 'projectid')
-        .where('iduser', req.params.userid)
+        .where('uhp_iduser', req.params.userid)
         .where(function(){
             this.where('uhp_userrole',"member")
                 .orWhere('uhp_userrole', "author")
@@ -45,9 +45,14 @@ function getMyProject(req, res){
 }
 
 function getMyFavProjects(req,res){
-
-
-
+    knex.select()
+        .from('Project')
+        .join('UserHasProject', 'uhp_idproject', 'projectid')
+        .where('uhp_iduser', req.params.userid)
+        .where('uhp_userrole',"favorite")
+        .then(function(Project){
+            res.send(Project)
+        })
 }
 
 function addOne(req,res){

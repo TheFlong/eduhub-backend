@@ -44,6 +44,7 @@ app.use('/imagectrl', imagectrl);
 app.get('/user', userctrl.getAll);
 app.get('/user/:email', userctrl.getOne);
 app.get('/user/getmyproject/:userid', userctrl.getMyProject);
+app.get('/user/getmyproject/favs/:userid',userctrl.getMyFavProjects);
 
 app.post('/user', userctrl.addOne);
 /* //req.files.foo, req.body.fileName, req.body.forename, req.body.surname, req.body.email, 
