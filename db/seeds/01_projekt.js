@@ -11,7 +11,8 @@ exports.seed = function(knex, Promise) {
           project_karma: 150,
           project_projecttype: "newProject",
           project_author: 1,
-          project_imagepath: "images/Chrysanthemum.jpg"
+          project_imagepath: "images/Chrysanthemum.jpg",
+          project_membercount: 4
 
           
         },
@@ -21,7 +22,8 @@ exports.seed = function(knex, Promise) {
           project_karma: 271,
           project_projecttype: "newProject",
           project_author: 5,
-          project_imagepath: "images/Desert.jpg"
+          project_imagepath: "images/Desert.jpg",
+          project_membercount: 3
           
         },
         {projectid: 3, 
@@ -30,8 +32,8 @@ exports.seed = function(knex, Promise) {
           project_karma: 39,
           project_projecttype: "newProject",
           project_author: 7,
-          project_imagepath: "images/Hydrangeas.jpg"
-          
+          project_imagepath: "images/Hydrangeas.jpg",
+          project_membercount: 2
         },
         {
           projectid: 4, 
@@ -40,7 +42,8 @@ exports.seed = function(knex, Promise) {
           project_karma: 12,
           project_projecttype: "newProject",
           project_author: 8,
-          project_imagepath: "images/Jellyfish.jpg"
+          project_imagepath: "images/Jellyfish.jpg",
+          project_membercount: 5
           
         },
         {
@@ -50,7 +53,8 @@ exports.seed = function(knex, Promise) {
           project_karma: 1022,
           project_projecttype: "newProject",
           project_author: 10,
-          project_imagepath:"images/Koala.jpg"
+          project_imagepath:"images/Koala.jpg",
+          project_membercount: 6
           
         },
         {
@@ -60,7 +64,8 @@ exports.seed = function(knex, Promise) {
           project_karma: 423,
           project_projecttype: "newProject",
           project_author: 1,
-          project_imagepath: "images/Lighthouse.jpg"
+          project_imagepath: "images/Lighthouse.jpg",
+          project_membercount: 7
           
         },
         {
@@ -70,7 +75,8 @@ exports.seed = function(knex, Promise) {
           project_karma: 111,
           project_projecttype: "newProject",
           project_author: 1,
-          project_imagepath: "images/Penguins.jpg"
+          project_imagepath: "images/Penguins.jpg",
+          project_membercount: 8
           
         },
         {
@@ -80,7 +86,8 @@ exports.seed = function(knex, Promise) {
           project_karma: 312,
           project_projecttype: "newProject",
           project_author: 1,
-          project_imagepath: "images/Tulips.jpg"
+          project_imagepath: "images/Tulips.jpg",
+          project_membercount: 1
           
         },
         {
