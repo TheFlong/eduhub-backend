@@ -7,16 +7,10 @@ exports.seed = function(knex, Promise) {
         return knex('Image').insert([
           { 
             imageid: 1, 
-            name: 'Bild',
-            imagepath: "5.jpg", 
-            idproject: 1 
+            imagepath: "/images/Bild.jpg", 
+            idproject: 11 
           },
-          {
-            imageid: 2, 
-            name: 'Bild',
-            imagepath: "5.jpg", 
-            idproject: 2
-          },
+         
         ]);
       });
   };

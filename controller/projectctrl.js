@@ -2,12 +2,16 @@ var knex = require('../db/knex')
 
 module.exports = {
 
+    
+    getAll,
+    getOne,
+    
+    getMembers,
+   
     newProject,
     addImage,
-    getAll,
-    getMembers,
-    getOne,
     addComment,
+    
     getReactions
     //addDocument
 
