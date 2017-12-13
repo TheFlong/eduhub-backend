@@ -26,7 +26,7 @@ exports.seed = function(knex, Promise) {
           interests2: "Kinder",
           interests3: "Computer",
 
-          profilpic: "/images/1.jpg"
+          profilpic: "images/1.jpg"
           
         
         },
@@ -51,7 +51,7 @@ exports.seed = function(knex, Promise) {
           interests2: "Vulkane",
           interests3: "Fechten",
 
-          profilpic: "/images/2.jpg"
+          profilpic: "images/2.jpg"
           
         
         },
@@ -76,7 +76,7 @@ exports.seed = function(knex, Promise) {
           interests2: "Computer",
           interests3: "Zahlen",
 
-          profilpic: "/images/3.jpg"
+          profilpic: "images/3.jpg"
           
         
         },
@@ -101,7 +101,7 @@ exports.seed = function(knex, Promise) {
           interests2: "Kinder",
           interests3: "Musik",
 
-          profilpic: "/images/4.jpg"
+          profilpic: "images/4.jpg"
           
         
         },
@@ -126,7 +126,7 @@ exports.seed = function(knex, Promise) {
           interests2: "Disziplin",
           interests3: "Technik",
 
-          profilpic: "/images/5.jpg"
+          profilpic: "images/5.jpg"
           
         
         },
@@ -151,7 +151,7 @@ exports.seed = function(knex, Promise) {
           interests2: "Experimente",
           interests3: "Campen",
 
-          profilpic: "/images/6.jpg"
+          profilpic: "images/6.jpg"
           
         
         },
@@ -176,7 +176,7 @@ exports.seed = function(knex, Promise) {
           interests2: "Kulturen",
           interests3: "aktuelles Weltgeschehen",
 
-          profilpic: "/images/7.jpg"
+          profilpic: "images/7.jpg"
           
         
         },
@@ -201,7 +201,7 @@ exports.seed = function(knex, Promise) {
           interests2: "Reisen",
           interests3: "Veranstalungsorganisation",
 
-          profilpic: "/images/8.jpg"
+          profilpic: "images/8.jpg"
           
         
         },
@@ -226,7 +226,7 @@ exports.seed = function(knex, Promise) {
           interests2: "China",
           interests3: "Kultureller Austausch",
 
-          profilpic: "/images/9.jpg"
+          profilpic: "images/9.jpg"
           
         
         },
@@ -251,7 +251,7 @@ exports.seed = function(knex, Promise) {
           interests2: "Macht",
           interests3: "Gerechtigkeit",
 
-          profilpic: "/images/10.jpg"
+          profilpic: "images/10.jpg"
           
         
         },
