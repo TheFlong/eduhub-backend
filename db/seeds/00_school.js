@@ -6,7 +6,7 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('School').insert([
         {
-          id: 1, 
+          schoolid: 1, 
           name: 'Lise-Meitner-Gesamtschule',
           street: 'Stresemannstraße',
           number: 36,
@@ -15,7 +15,7 @@ exports.seed = function(knex, Promise) {
           studentnumber : 900
         },
         {
-          id: 2, 
+          schoolid: 2, 
           name: 'Kaiserin-Augusta-Schule',
           street: 'Georgsplatz',
           number: 10,
@@ -24,7 +24,7 @@ exports.seed = function(knex, Promise) {
           studentnumber : 1050
         },
         {
-          id: 3, 
+          schoolid: 3, 
           name: 'Deutzer Gymnasium',
           street: 'Schaurtestraße',
           number: 1,
