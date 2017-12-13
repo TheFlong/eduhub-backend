@@ -69,6 +69,7 @@ app.get('/project/members/:projectid', projectctrl.getMembers);
 app.get('/project', projectctrl.getAll);
 app.get('/project/:projectid', projectctrl.getOne);
 app.get('/project/getReactions/:projectid',  projectctrl.getReactions);
+app.get('/project/landingpage/get', projectctrl.getLandingPage);
 
 app.post('/project/newProject', projectctrl.newProject); 
 /* //req.body.project_name, req.body.project_text, req.body.project_author, req.files.foo, req.body.fileName */

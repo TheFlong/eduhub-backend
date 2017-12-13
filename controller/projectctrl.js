@@ -18,7 +18,9 @@ module.exports = {
 
 };
 function getAll(req, res) {
-    knex.select().from('Project').then( Project => res.send(Project) );
+    knex.select()
+        .from('Project')
+        .then( Project => res.send(Project) );
 }
 
 function getMembers(req, res){
@@ -26,21 +28,32 @@ function getMembers(req, res){
         .select().from('User')
         .join('UserHasProject', 'uhp_iduser', 'userid')
         .where('uhp_idproject', req.params.projectid)
-        .then(function(Project){
-        res.send(Project)
+        .where(function(){
+            this.where('uhp_userrole',"member")
+                .orWhere('uhp_userrole', "author")
+        })
+        .then(function(User){
+        res.send(User)
     })
 }
 
 function getOne(req, res) {
-    knex.select().from('Project').where('projectid', req.params.projectid).then(function(Project){
-        res.send(Project)
-    })
+    knex.select()
+        .from('Project')
+        .where('projectid', req.params.projectid)
+        .then(function(Project){
+            res.send(Project)
+        })
 }
 
 function getLandingPage(req,res){
-    knex.select().from
+    knex.select()
+        .from('Project')
+        .where('project_projecttype', 'newProject')
+        .orderBy('project_karma', 'desc')
+        .limit(8)
+        .then(Project => res.send(Project));
 }
-
 
 
 function newProject(req,res){
@@ -74,7 +87,7 @@ function newProject(req,res){
             .insert({
                 uhp_iduser: req.body.project_author,
                 uhp_idproject: response[0],
-                uhp_userrole: "member"
+                uhp_userrole: "author"
 
             })
         })

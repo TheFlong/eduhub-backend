@@ -5,14 +5,14 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('UserHasProject').insert([
-        /* {userhasprojectid: 1, uhp_iduser: 1 , uhp_idproject: 1, uhp_userrole: "author"},
+        {userhasprojectid: 1, uhp_iduser: 1 , uhp_idproject: 1, uhp_userrole: "author"},
         {userhasprojectid: 2, uhp_iduser: 1 , uhp_idproject: 6, uhp_userrole: "author"},
         {userhasprojectid: 3, uhp_iduser: 1 , uhp_idproject: 7, uhp_userrole: "author"},
         {userhasprojectid: 4, uhp_iduser: 1 , uhp_idproject: 8, uhp_userrole: "author"},
         {userhasprojectid: 5, uhp_iduser: 5 , uhp_idproject: 2, uhp_userrole: "author"},
         {userhasprojectid: 6, uhp_iduser: 7 , uhp_idproject: 3, uhp_userrole: "author"},
         {userhasprojectid: 7, uhp_iduser: 8 , uhp_idproject: 4, uhp_userrole: "author"},
-        {userhasprojectid: 8, uhp_iduser: 10 , uhp_idproject: 5, uhp_userrole: "author"}, */
+        {userhasprojectid: 8, uhp_iduser: 10 , uhp_idproject: 5, uhp_userrole: "author"},
         {userhasprojectid: 9, uhp_iduser: 2 , uhp_idproject: 1, uhp_userrole: "member"},
         {userhasprojectid: 10, uhp_iduser: 3 , uhp_idproject: 1, uhp_userrole: "member"},
         {userhasprojectid: 11, uhp_iduser: 4 , uhp_idproject: 1, uhp_userrole: "member"},
