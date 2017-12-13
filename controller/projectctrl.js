@@ -185,12 +185,13 @@ function getOne(req, res) {
 
 
 function getReactions(req,res){
-    knex
-    .select().from('Project')
-    .where('Project_projectid', req.params.projectid)
-    .orderBy('created_at', 'desc')
-    .then(function(Project){
-    res.send(Project)
+    knex.select('*')
+        .from('Project')
+        .where('Project_projectid', req.params.projectid)
+        .leftJoin('Image', 'projectid', 'idproject')
+        //.orderBy('created_at', 'desc')
+       /*  .then(function(Project){
+             res.send(Project) */
     })
 }
 
