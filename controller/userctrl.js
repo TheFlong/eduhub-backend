@@ -43,7 +43,7 @@ function addOne(req,res){
     });
 
     knex('User').insert({
-        name: req.body.name,
+        forename: req.body.forename,
         surname: req.body.surname,
         email: req.body.email,
         street: req.body.street,
@@ -55,7 +55,8 @@ function addOne(req,res){
         subject1: req.body.subject1,
         subject2: req.body.subject2,
         subject3: req.body.subject3,
-        profilpic: 'images/' + fileName + '.png'
+        profilpic: 'images/' + fileName + '.png',
+        user_karma: 0
     })
     .then(function(response) {
         knex.select().from('User').where('userid', response[0])
@@ -67,7 +68,7 @@ function addOne(req,res){
 function changeOne(req, res){
     knex('User').where('email', req.body.email)
         .update({
-            name: req.body.name,
+            forename: req.body.forename,
             surname: req.body.surname,
             email: req.body.email,
             street: req.body.street,
@@ -104,7 +105,7 @@ function deleteOne(req, res){
 function getMyProject(req, res){
     knex
     .select().from('Project')
-        .join('UserHasProject', 'idproject', 'projectid')
+        .join('UserHasProject', 'uhp_idproject', 'projectid')
         .where('iduser', req.params.userid)
     .then(function(Project){
         res.send(Project)

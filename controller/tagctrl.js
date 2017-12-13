@@ -13,14 +13,14 @@ function addOne(req, res){
         return knex('Tag')
         .transacting(t)
         .insert({
-            name: req.body.name,
+            tag_name: req.body.tag_name,
         })
         .then(function(response){
             return knex('ProjectHasTag')
             .transacting(t)
             .insert({
-                idproject: req.body.projectid,
-                idtag: response[0]
+                pht_idproject: req.body.pht_idproject,
+                pht_idtag: response[0]
             })
         })
         .then(t.commit)
@@ -35,9 +35,9 @@ function addOne(req, res){
 }
 function getProjectsTags(req,res){
     knex
-        .select('tagid', 'name').from('Tag')
-        .join('ProjectHasTag', 'idtag', 'tagid')
-        .where('idproject', req.params.projectid)
+        .select('tagid', 'tag_name').from('Tag')
+        .join('ProjectHasTag', 'pht_idtag', 'tagid')
+        .where('pht_idproject', req.params.projectid)
         .then(function(Project){
             res.send(Project)
         })     

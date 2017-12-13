@@ -7,8 +7,8 @@ exports.seed = function(knex, Promise) {
         return knex('Image').insert([
           { 
             imageid: 1, 
-            imagepath: "/images/Bild.jpg", 
-            idproject: 11 
+            image_imagepath: "/images/Bild.jpg", 
+            image_idproject: 11 
           },
          
         ]);

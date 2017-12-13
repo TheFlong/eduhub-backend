@@ -7,30 +7,30 @@ exports.seed = function(knex, Promise) {
       return knex('School').insert([
         {
           schoolid: 1, 
-          name: 'Lise-Meitner-Gesamtschule',
-          street: 'Stresemannstraße',
-          number: 36,
-          postcode: 51149,
-          city: 'Köln',
-          studentnumber : 900
+          school_name: 'Lise-Meitner-Gesamtschule',
+          school_street: 'Stresemannstraße',
+          school_number: 36,
+          school_postcode: 51149,
+          school_city: 'Köln',
+          school_studentnumber : 900
         },
         {
           schoolid: 2, 
-          name: 'Kaiserin-Augusta-Schule',
-          street: 'Georgsplatz',
-          number: 10,
-          postcode: 50676,
-          city: 'Köln',
-          studentnumber : 1050
+          school_name: 'Kaiserin-Augusta-Schule',
+          school_street: 'Georgsplatz',
+          school_number: 10,
+          school_postcode: 50676,
+          school_city: 'Köln',
+          school_studentnumber : 1050
         },
         {
           schoolid: 3, 
-          name: 'Deutzer Gymnasium',
-          street: 'Schaurtestraße',
-          number: 1,
-          postcode: 50679,
-          city: 'Köln',
-          studentnumber : 576
+          school_name: 'Deutzer Gymnasium',
+          school_street: 'Schaurtestraße',
+          school_number: 1,
+          school_postcode: 50679,
+          school_city: 'Köln',
+          school_studentnumber : 576
         }
       ]);
     });

@@ -37,18 +37,20 @@ function newProject(req,res){
         return knex('Project')
         .transacting(t)
         .insert({
-            name: req.body.name,
-            text: req.body.text,
-            karma: 0,
-            projecttype: "newProject",
-            author: req.body.author
+            project_name: req.body.project_name,
+            project_text: req.body.project_text,
+            project_karma: 0,
+            project_projecttype: "newProject",
+            project_author: req.body.project_author,
+            project_imagepath: 'images/' + fileName + '.png'
         })
         .then(function(response){
             return knex('UserHasProject')
             .transacting(t)
             .insert({
-                iduser: req.body.author,
-                idproject: response[0],
+                uhp_iduser: req.body.project_author,
+                uhp_idproject: response[0],
+                uhp_userrole: "author"
 
             })
         })
@@ -85,19 +87,19 @@ function addImage(req, res){
         .transacting(t)
         .insert({
             Project_projectid: req.body.Project_projectid,
-            name: req.body.name,
-            text: req.body.text,
-            karma: 0,
-            projecttype: "addImage",
-            author: req.body.author
+            project_name: req.body.project_name,
+            project_text: req.body.project_text,
+            project_karma: 0,
+            project_projecttype: "addImage",
+            project_author: req.body.project_author
         })
         .then(function(response){
             return knex('Image')
             .transacting(t)
             .insert({
-                idproject: response[0],
-                name: fileName,
-                imagepath: 'images/' + fileName + '.png'
+                image_idproject: response[0],
+                image_name: fileName,
+                image_imagepath: 'images/' + fileName + '.png'
 
 
             })
@@ -116,9 +118,9 @@ function addImage(req, res){
 
 function addDocument(req, res){
     knex('Document').insert({
-        name: rey.body.name,
-        documentpath: req.body.imagepath,
-        idproject: req.body.idproject,
+        document_name: rey.body.document_name,
+        document_documentpath: req.body.imagepath,
+        document_idproject: req.body.idproject,
     })
     .then(function() {
         knex.select().from('Document')
@@ -133,19 +135,19 @@ function addComment(req, res){
         return knex('Project')
         .transacting(t)
         .insert({
-            name: req.body.name,
-            text: req.body.text,
-            karma: 0,
-            projecttype: "newComment",
-            author: req.body.author,
+            project_name: req.body.project_name,
+            project_text: req.body.project_text,
+            project_karma: 0,
+            project_projecttype: "newComment",
+            project_author: req.body.project_author,
             Project_projectid: req.body.Project_projectid
         })
         .then(function(response){
             return knex('UserHasProject')
             .transacting(t)
             .insert({
-                iduser: req.body.author,
-                idproject: response[0],
+                uhp_iduser: req.body.project_author,
+                uhp_idproject: response[0],
 
             })
         })
@@ -168,8 +170,8 @@ function getAll(req, res) {
 function getMembers(req, res){
     knex
         .select().from('User')
-        .join('UserHasProject', 'iduser', 'userid')
-        .where('idproject', req.params.projectid)
+        .join('UserHasProject', 'uhp_iduser', 'userid')
+        .where('uhp_idproject', req.params.projectid)
         .then(function(Project){
         res.send(Project)
     })
@@ -188,8 +190,9 @@ function getReactions(req,res){
     knex.select('*')
         .from('Project')
         .where('Project_projectid', req.params.projectid)
-        .orderBy('created_at', 'desc')
-        .leftJoin('Image', 'projectid', 'idproject')
+        .orderBy('project_created_at', 'desc')
+        .leftJoin('Image', 'projectid', 'image_idproject')
+        
         
         .then(function(Project){
              res.send(Project)
