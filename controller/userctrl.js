@@ -7,6 +7,7 @@ module.exports = {
     getOne,
     getMyProject,
     getMyFavProjects,
+    getMyTimeline,
 
     addOne,
     
