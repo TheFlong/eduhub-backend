@@ -9,6 +9,7 @@ var projectctrl = require('./controller/projectctrl');
 var tagctrl = require('./controller/tagctrl');
 var resourcectrl = require('./controller/resourcectrl');
 var imagectrl = require('./controller/imagectrl');
+var useraddsprojectctrl = require('./controller/useraddsprojectctrl');
 
 
 const http = require('http');
@@ -98,6 +99,13 @@ app.post('/resource', resourcectrl.addOne)
 //req.body.phr_idproject, req.body.resource_name
 
 
+
+//UseraddsProjectCtrl
+app.use('/useraddsproject/beMember', useraddsprojectctrl.takepart);
+app.post('/useraddsproject/beMember', useraddsprojectctrl.beMember);
+//req.body.uhp_iduser, req.body.uhp_idproject
+
+app.post('/useraddsproject/setasFav', useraddsprojectctrl.setasFav);
 
 
 
