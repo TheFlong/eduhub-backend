@@ -3,6 +3,8 @@ var knex = require('../db/knex')
 module.exports = {
     beMember,
     takepart,
+    cancelMembership,
+    
     setasFav
 
 };
@@ -31,6 +33,10 @@ function beMember(req,res){
     })
 
 }
+function cancelMembership(req,res){
+
+}
+
 
 function setasFav(req,res){
     knex('UserHasProject')
