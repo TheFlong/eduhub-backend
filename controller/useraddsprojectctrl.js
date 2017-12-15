@@ -10,7 +10,8 @@ module.exports = {
     beFavorite1,
     beFavorite2,
     cancelFavorite1,
-    cancelFavorit2
+    cancelFavorit2,
+    amIFavorite
 
 };
 
@@ -132,4 +133,17 @@ function cancelFavorit2(req,res){
                 })
         })
 }
-
+function amIFavorite(req, res){
+    knex('UserHasProject')
+         .count('uhp_idproject as CNT')
+        .where(function (){ 
+        this.where('uhp_idproject', req.params.uhp_idproject)
+                .andWhere('uhp_iduser', req.params.uhp_iduser)
+                .andWhere('uhp_userrole', 'favorite')
+        })
+        .then(function(response){
+            res.send({
+                response: response[0].CNT
+            });
+        })
+}
