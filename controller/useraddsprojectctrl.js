@@ -32,10 +32,11 @@ function beMember2(req,res){
     .increment('project_membercount', 1) 
     .then(function(response1) {
         knex.select()
-            .from('Project')
-            .then(function(Project){
-                res.send(Project);
-            })
+        .from('Project')
+        .where('projectid', req.projectid)
+        .then(function(Project){
+            res.send(Project);
+        })
     })
 
 }
@@ -58,10 +59,11 @@ function cancelMembership2(req,res){
         .del()
         .then(function(response1) { 
             knex.select()
-                .from('UserHasProject')
-                .then(function(Project){
-                    res.send(Project);
-                })
+            .from('Project')
+            .where('projectid', req.projectid)
+            .then(function(Project){
+                res.send(Project);
+            })
         })
 }
 
@@ -98,10 +100,11 @@ function beFavorite2(req,res){
         .increment('project_favcount', 1) 
         .then(function(response1) {
             knex.select()
-                .from('Project')
-                .then(function(Project){
-                    res.send(Project);
-                })
+            .from('Project')
+            .where('projectid', req.projectid)
+            .then(function(Project){
+                res.send(Project);
+            })
         })
     
 }
@@ -135,7 +138,7 @@ function cancelFavorit2(req,res){
 }
 function amIFavorite(req, res){
     knex('UserHasProject')
-         .count('uhp_idproject as CNT')
+        .count('uhp_idproject as CNT')
         .where(function (){ 
         this.where('uhp_idproject', req.params.uhp_idproject)
                 .andWhere('uhp_iduser', req.params.uhp_iduser)

@@ -116,7 +116,7 @@ app.post('/useraddsproject/beFavorite',useraddsprojectctrl.beFavorite2);
 app.use('/useraddsproject/cancelFavorite',useraddsprojectctrl.cancelFavorite1);
 app.delete('/useraddsproject/cancelFavorite',useraddsprojectctrl.cancelFavorit2);
 //req.body.uhp_iduser, req.body.uhp_idproject
-app.get('/useraddsproject/amIFavorite', useraddsprojectctrl.amIFavorite);
+app.get('/useraddsproject/amIFavorite/:uhp_idproject/:uhp_iduser', useraddsprojectctrl.amIFavorite);
 //Schickt "response": 1 wenn Favorit; schickt "response": 0 wenn noch kein Favorit.
 
 
