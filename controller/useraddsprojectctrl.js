@@ -62,11 +62,6 @@ function beMemberEvent1(req,res,next){
     })  
 }
 function beMemberEvent2(req,res, next){
-    var forename = req.name.temp2;
-    var surname = req.name.temp1;
-    var projectname= req.projectname.temp3
-    console.log(forename + surname + projectname)
-    
     return knex.transaction(function(t){
         return knex('Project')
         .transacting(t)
@@ -76,7 +71,8 @@ function beMemberEvent2(req,res, next){
             project_karma: 0,
             project_projecttype: "bemember",
             project_author: req.body.uhp_iduser,
-            project_membercount: 1
+            project_membercount: 1,
+            Project_projectid: req.body.uhp_idproject
         })
         .then(function(response){
             return knex('UserHasProject')
