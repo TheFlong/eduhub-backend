@@ -10,6 +10,7 @@ var tagctrl = require('./controller/tagctrl');
 var resourcectrl = require('./controller/resourcectrl');
 var imagectrl = require('./controller/imagectrl');
 var useraddsprojectctrl = require('./controller/useraddsprojectctrl');
+var favoritectrl = require('./controller/favoritectrl');
 
 
 const http = require('http');
@@ -110,11 +111,11 @@ app.delete('/useraddsproject/cancelMembership',useraddsprojectctrl.cancelMembers
 app.get('/useraddsproject/amIMember/:uhp_idproject/:uhp_iduser', useraddsprojectctrl.amIMember)
 //Schickt "response": 1 wenn Member; schickt "response": 0 wenn noch kein Member.
 
-app.use('/useraddsproject/beFavorite',useraddsprojectctrl.beFavorite1);
-app.post('/useraddsproject/beFavorite',useraddsprojectctrl.beFavorite2);
+app.use('/useraddsproject/beFavorite',favoritectrl.beFavorite1, favoritectrl.beFavoriteEvent1);
+app.post('/useraddsproject/beFavorite',favoritectrl.beFavoriteEvent2,favoritectrl.beFavorite2);
 //req.body.uhp_iduser, req.body.uhp_idproject
-app.use('/useraddsproject/cancelFavorite',useraddsprojectctrl.cancelFavorite1);
-app.delete('/useraddsproject/cancelFavorite',useraddsprojectctrl.cancelFavorit2);
+app.use('/useraddsproject/cancelFavorite',favoritectrl.cancelFavorite1, favoritectrl.cancelFavoriteEvent1);
+app.delete('/useraddsproject/cancelFavorite',favoritectrl.cancelFavoriteEvent2, favoritectrl.cancelFavorit2);
 //req.body.uhp_iduser, req.body.uhp_idproject
 app.get('/useraddsproject/amIFavorite/:uhp_idproject/:uhp_iduser', useraddsprojectctrl.amIFavorite);
 //Schickt "response": 1 wenn Favorit; schickt "response": 0 wenn noch kein Favorit.
