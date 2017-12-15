@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
     next();
 });
 
@@ -48,12 +48,12 @@ app.get('/user/getmyproject/:userid', userctrl.getMyProject);
 app.get('/user/getmyproject/favs/:userid',userctrl.getMyFavProjects);
 
 app.post('/user', userctrl.addOne);
-/* //req.files.foo, req.body.fileName, req.body.forename, req.body.surname, req.body.email, 
+/* //req.files.foo, req.body.fileName, req.body.forename, req.body.surname, req.body.email,
 req.body.street, req.body.city, req.body.number, req.body.postcode, req.body.schoolid,
 req.body.function, subject1: req.body.subject1, subject2: req.body.subject2, subject3: req.body.subject3  */
 
 app.put('/user', userctrl.changeOne);
-/* req.body.forename, req.body.surname, req.body.email, 
+/* req.body.forename, req.body.surname, req.body.email,
 req.body.street, req.body.city, req.body.number, req.body.postcode, req.body.schoolid,
 req.body.function, subject1: req.body.subject1, subject2: req.body.subject2, subject3: req.body.subject3 */
 
@@ -73,10 +73,10 @@ app.get('/project/:projectid', projectctrl.getOne);
 app.get('/project/getReactions/:projectid',  projectctrl.getReactions);
 app.get('/project/landingpage/get', projectctrl.getLandingPage);
 
-app.post('/project/newProject', projectctrl.newProject); 
+app.post('/project/newProject', projectctrl.newProject);
 /* //req.body.project_name, req.body.project_text, req.body.project_author, req.files.foo, req.body.fileName */
 
-app.post('/project/addComment', projectctrl.addComment); 
+app.post('/project/addComment', projectctrl.addComment);
 //req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(KommentarText),req.body.project_author(Nutzer id)
 
 app.post('/project/addImage', projectctrl.addImage);
@@ -89,13 +89,13 @@ req.body.project_author(Nutzer id),req.body.fileName,req.files.foo */
 //tagctrl Routes
 app.get('/tag/:projectid', tagctrl.getProjectsTags)
 
-app.post('/tag', tagctrl.addOne)   
+app.post('/tag', tagctrl.addOne)
 //req.body.pht_idproject, req.body.tag_name
 
 //resourcectrl Routes
 app.get('/resource', resourcectrl.getProjectsResources)
 
-app.post('/resource', resourcectrl.addOne) 
+app.post('/resource', resourcectrl.addOne)
 //req.body.phr_idproject, req.body.resource_name
 
 
