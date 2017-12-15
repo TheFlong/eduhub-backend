@@ -113,6 +113,13 @@ app.get('/useraddsproject/amIMember/:uhp_idproject/:uhp_iduser', useraddsproject
 app.use('/useraddsproject/beFavorite',useraddsprojectctrl.beFavorite1);
 app.post('/useraddsproject/beFavorite',useraddsprojectctrl.beFavorite2);
 //req.body.uhp_iduser, req.body.uhp_idproject
+app.use('/useraddsproject/cancelFavorite',useraddsprojectctrl.cancelFavorite1);
+app.delete('/useraddsproject/cancelFavorite',useraddsprojectctrl.cancelFavorit2);
+//req.body.uhp_iduser, req.body.uhp_idproject
+
+
+
+
 
 
 app.listen(port, function(){
