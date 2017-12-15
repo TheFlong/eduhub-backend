@@ -101,8 +101,8 @@ app.post('/resource', resourcectrl.addOne)
 
 
 //UseraddsProjectCtrl
-app.use('/useraddsproject/beMember', useraddsprojectctrl.takepart);
-app.post('/useraddsproject/beMember', useraddsprojectctrl.beMember);
+app.use('/useraddsproject/beMember', useraddsprojectctrl.beMember1);
+app.post('/useraddsproject/beMember', useraddsprojectctrl.beMember2);
 //req.body.uhp_iduser, req.body.uhp_idproject
 app.use('/useraddsproject/cancelMembership', useraddsprojectctrl.cancelMembership1);
 app.delete('/useraddsproject/cancelMembership', useraddsprojectctrl.cancelMembership2);

@@ -2,7 +2,7 @@ var knex = require('../db/knex')
 
 module.exports = {
     beMember,
-    takepart,
+    beMember2,
     cancelMembership1,
     cancelMembership2,
     amIMember,
@@ -11,7 +11,7 @@ module.exports = {
 
 };
 
-function takepart (req,res,next){
+function beMember1 (req,res,next){
 knex('UserHasProject')
         .insert({
             uhp_iduser: req.body.uhp_iduser,
@@ -22,7 +22,7 @@ knex('UserHasProject')
              next();
         })
 }
-function beMember(req,res){
+function beMember2(req,res){
     knex('Project')
     .where('projectid', req.projectid)
     .increment('project_membercount', 1) 
