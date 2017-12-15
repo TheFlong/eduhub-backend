@@ -123,7 +123,6 @@ function cancelMembershipEvent1(req,res,next){
         .then(function(response, response1){
             response : response[0].temp1;
             req.name = response[0];
-            console.log(req.name.temp1); 
         })   
        .then(function(){
             knex.select('project_name as temp3').from('Project').where('projectid',req.body.uhp_idproject)
@@ -131,8 +130,6 @@ function cancelMembershipEvent1(req,res,next){
             response1 : response1[0].temp3; 
             req.projectname = response1[0];  
             next();
-            console.log(req.projectname.temp3); 
-            console.log(req.name.temp1);    
         }) 
     })  
 }
