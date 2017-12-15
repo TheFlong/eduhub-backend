@@ -110,8 +110,9 @@ app.delete('/useraddsproject/cancelMembership', useraddsprojectctrl.cancelMember
 app.get('/useraddsproject/amIMember/:uhp_idproject/:uhp_iduser', useraddsprojectctrl.amIMember)
 //Schickt "response": 1 wenn Member; schickt "response": 0 wenn noch kein Member.
 
-app.post('/useraddsproject/setasFav',useraddsprojectctrl.setasFav);
-
+app.use('/useraddsproject/beFavorite',useraddsprojectctrl.beFavorite1);
+app.post('/useraddsproject/beFavorite',useraddsprojectctrl.beFavorite2);
+//req.body.uhp_iduser, req.body.uhp_idproject
 
 
 app.listen(port, function(){
