@@ -48,7 +48,8 @@ exports.up = function(knex, Promise) {
           table.string('project_statement', 4000);
           table.string('project_imagepath');
           table.string('project_writeRights');
-          table.integer('project_membercount')
+          table.integer('project_membercount');
+          table.integer('project_favcount').defaultTo(0);
           table.integer('Project_projectid').unsigned().references('projectid').inTable('Project');
           table.timestamp('project_created_at').defaultTo(knex.fn.now());
           table.timestamp('project_updated_at').defaultTo(knex.fn.now());
