@@ -104,8 +104,8 @@ app.post('/resource', resourcectrl.addOne)
 app.use('/useraddsproject/beMember',useraddsprojectctrl.beMember1,  useraddsprojectctrl.beMemberEvent1);
 app.post('/useraddsproject/beMember', useraddsprojectctrl.beMemberEvent2, useraddsprojectctrl.beMember2);
 //req.body.uhp_iduser, req.body.uhp_idproject
-app.use('/useraddsproject/cancelMembership', useraddsprojectctrl.cancelMembership1);
-app.delete('/useraddsproject/cancelMembership', useraddsprojectctrl.cancelMembership2);
+app.use('/useraddsproject/cancelMembership', useraddsprojectctrl.cancelMembership1, useraddsprojectctrl.cancelMembershipEvent1);
+app.delete('/useraddsproject/cancelMembership',useraddsprojectctrl.cancelMembershipEvent2 ,useraddsprojectctrl.cancelMembership2);
 //req.body.uhp_iduser, req.body.uhp_idproject
 app.get('/useraddsproject/amIMember/:uhp_idproject/:uhp_iduser', useraddsprojectctrl.amIMember)
 //Schickt "response": 1 wenn Member; schickt "response": 0 wenn noch kein Member.
