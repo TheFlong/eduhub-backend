@@ -56,8 +56,8 @@ exports.seed = function(knex, Promise) {
         {userhasprojectid: 49, uhp_iduser: 10 , uhp_idproject: 6, uhp_userrole: "favorite"},
         {userhasprojectid: 50, uhp_iduser: 10 , uhp_idproject: 7, uhp_userrole: "favorite"},
         {userhasprojectid: 51, uhp_iduser: 5 , uhp_idproject: 8, uhp_userrole: "favorite"},
-        {userhasprojectid: 52, uhp_iduser: 1 , uhp_idproject: 9, uhp_userrole: "author"},
-        {userhasprojectid: 53, uhp_iduser: 1 , uhp_idproject: 10, uhp_userrole: "author"},
+       /*  {userhasprojectid: 52, uhp_iduser: 1 , uhp_idproject: 9, uhp_userrole: "author"},
+        {userhasprojectid: 53, uhp_iduser: 1 , uhp_idproject: 10, uhp_userrole: "author"}, */
 
 
 

@@ -3,8 +3,10 @@ var knex = require('../db/knex')
 module.exports = {
     beMember,
     takepart,
-    cancelMembership,
-    
+    cancelMembership1,
+    cancelMembership2,
+    amIMember,
+
     setasFav
 
 };
@@ -33,9 +35,54 @@ function beMember(req,res){
     })
 
 }
-function cancelMembership(req,res){
+function cancelMembership1(req,res,next){
+    knex('Project')
+    .where('projectid', req.body.uhp_idproject)
+    .decrement('project_membercount', 1)
+    .then(function(){
+        req.projectid = req.body.uhp_idproject;
+        req.userid = req.body.uhp_iduser;
+        next();
+   })
 
 }
+function cancelMembership2(req,res){
+    knex('UserHasProject')
+        .where('uhp_idproject',  req.projectid)
+        .andWhere('uhp_iduser', req.userid )
+        .andWhere('uhp_userrole', 'member')
+        .del()
+        .then(function(response1) { 
+            knex.select()
+                .from('UserHasProject')
+                .then(function(Project){
+                    res.send(Project);
+                })
+        })
+}
+
+function amIMember(req, res){
+    knex('UserHasProject').count('uhp_idproject as CNT')
+                      .where(function (){ 
+                            this.where('uhp_idproject', req.params.uhp_idproject)
+                            .andWhere('uhp_iduser', req.params.uhp_iduser)
+                            .andWhere('uhp_userrole', 'member')
+                         })
+                        
+                        .then(function(response){
+                            console.log(response);
+                            res.send({
+                                    response: response[0].CNT
+                                     
+                            });
+
+                        })
+}
+
+
+
+
+
 
 
 function setasFav(req,res){
