@@ -158,7 +158,7 @@ function cancelMembershipEvent2(req,res, next){
 }
 function amIMember(req, res){
     knex('UserHasProject')
-         .count('uhp_idproject as CNT')
+        .count('uhp_idproject as CNT')
         .where(function (){ 
         this.where('uhp_idproject', req.params.uhp_idproject)
                 .andWhere('uhp_iduser', req.params.uhp_iduser)

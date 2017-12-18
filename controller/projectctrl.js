@@ -9,7 +9,7 @@ module.exports = {
     
     getMembers,
    
-    newProject,
+    
     addImage,
     addComment,
     
@@ -56,53 +56,6 @@ function getLandingPage(req,res){
 }
 
 
-function newProject(req,res){
-    var startup_image = req.files.foo;
-    var fileName = filename(req.body.fileName);
-        
-    
-    // Use the mv() method to place the file somewhere on your server
-    startup_image.mv('images/' + fileName + '.png' , function(err) {
-      if(err){
-        console.log(err);
-      }else{
-     console.log("uploaded");
-        }
-    });
-
-    return knex.transaction(function(t){
-        return knex('Project')
-        .transacting(t)
-        .insert({
-            project_name: req.body.project_name,
-            project_text: req.body.project_text,
-            project_karma: 0,
-            project_projecttype: "newProject",
-            project_author: req.body.project_author,
-            project_imagepath: 'images/' + fileName + '.png',
-            project_membercount: 1
-        })
-        .then(function(response){
-            return knex('UserHasProject')
-            .transacting(t)
-            .insert({
-                uhp_iduser: req.body.project_author,
-                uhp_idproject: response[0],
-                uhp_userrole: "author"
-
-            })
-        })
-        .then(t.commit)
-        .catch(t.rollback)
-        .then(function() {
-            knex.select().from('UserHasProject')
-            .then(function(UserHasProject) {
-                res.send(UserHasProject);
-            })
-        })
-
-    });
-}
 
 function addImage(req, res){
     var startup_image = req.files.foo;
