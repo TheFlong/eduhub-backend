@@ -124,7 +124,7 @@
           table.string('project_writeRights');
           table.integer('project_membercount').defaultTo(1);
           table.integer('project_favcount').defaultTo(0);
-          table.string('termin');
+          table.string('project_termin');
           table.integer('Project_projectid').unsigned().references('projectid').inTable('Project');
           table.integer('project_informationid').unsigned().references('ProjectInformationid').inTable('ProjektInformation').onDelete('CASCADE');
           table.timestamp('project_created_at').defaultTo(knex.fn.now());
