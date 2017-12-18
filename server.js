@@ -85,7 +85,8 @@ app.post('/project/addComment', reactionctrl.addComment);
 app.post('/project/addImage', reactionctrl.addImage);
 /* //req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(Beschreibung),
 req.body.project_author(Nutzer id),req.body.fileName,req.files.foo */
-
+app.post('/project/addDocument', reactionctrl.addDocument);
+app.post('/project/addTermin', reactionctrl.addTermin);
 
 //tagctrl Routes
 app.get('/tag/:projectid', tagctrl.getProjectsTags)
