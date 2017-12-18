@@ -12,6 +12,7 @@ var imagectrl = require('./controller/imagectrl');
 var useraddsprojectctrl = require('./controller/useraddsprojectctrl');
 var favoritectrl = require('./controller/favoritectrl');
 var wizardctrl = require('./controller/wizardctrl');
+var reactionctrl = require('./controller/reactionctrl');
 
 
 const http = require('http');
@@ -75,28 +76,24 @@ app.get('/project/:projectid', projectctrl.getOne);
 app.get('/project/getReactions/:projectid',  projectctrl.getReactions);
 app.get('/project/landingpage/get', projectctrl.getLandingPage);
 
-app.post('/project/newProject', projectctrl.newProject);
+app.use('/project/newProject', wizardctrl.setInformation);
+app.post('/project/newProject', wizardctrl.newProject);
+ //req.body.project_name, req.body.project_text, req.body.project_author, req.files.foo, req.body.fileName
 
-
-app.post('/project/addComment', projectctrl.addComment);
+app.post('/project/addComment', reactionctrl.addComment);
 //req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(KommentarText),req.body.project_author(Nutzer id)
-
-app.post('/project/addImage', projectctrl.addImage);
+app.post('/project/addImage', reactionctrl.addImage);
 /* //req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(Beschreibung),
 req.body.project_author(Nutzer id),req.body.fileName,req.files.foo */
 
 
-//app.post('/image', projectctrl.addImage)
-
 //tagctrl Routes
 app.get('/tag/:projectid', tagctrl.getProjectsTags)
-
 app.post('/tag', tagctrl.addOne)
 //req.body.pht_idproject, req.body.tag_name
 
 //resourcectrl Routes
 app.get('/resource', resourcectrl.getProjectsResources)
-
 app.post('/resource', resourcectrl.addOne)
 //req.body.phr_idproject, req.body.resource_name
 
@@ -118,14 +115,14 @@ app.post('/useraddsproject/beFavorite',favoritectrl.beFavoriteEvent2,favoritectr
 app.use('/useraddsproject/cancelFavorite',favoritectrl.cancelFavorite1, favoritectrl.cancelFavoriteEvent1);
 app.delete('/useraddsproject/cancelFavorite',favoritectrl.cancelFavoriteEvent2, favoritectrl.cancelFavorit2);
 //req.body.uhp_iduser, req.body.uhp_idproject
-
 app.get('/useraddsproject/amIFavorite/:uhp_idproject/:uhp_iduser', favoritectrl.amIFavorite);
 //Schickt "response": 1 wenn Favorit; schickt "response": 0 wenn noch kein Favorit.
+
 
 app.use('/wizardctrl/newProject', wizardctrl.setInformation);
 app.post('/wizardctrl/newProject', wizardctrl.newProject);
  //req.body.project_name, req.body.project_text, req.body.project_author, req.files.foo, req.body.fileName
- 
+
 app.get('/wizardctrl', wizardctrl.getInformation);
 
 
