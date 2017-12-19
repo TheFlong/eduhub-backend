@@ -21,7 +21,7 @@ function newProject(req,res){
      console.log("uploaded");
         }
     });
-
+    var projectid
     return knex.transaction(function(t){
         return knex('Project')
         .transacting(t)
@@ -36,6 +36,8 @@ function newProject(req,res){
             project_informationid: req.Informationid
         })
         .then(function(response){
+            projectid = response[0];
+            console.log(projectid);
             return knex('UserHasProject')
             .transacting(t)
             .insert({
@@ -48,9 +50,9 @@ function newProject(req,res){
         .then(t.commit)
         .catch(t.rollback)
         .then(function() {
-            knex.select().from('Project')
-            .then(function(UserHasProject) {
-                res.send(UserHasProject);
+            knex.select().from('Project').where('projectid', projectid)
+            .then(function(project) {
+                res.send(project);
             })
         })
 
