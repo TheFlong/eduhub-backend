@@ -74,7 +74,7 @@
             table.boolean('SchulischeAusstatung').defaultTo(false);
             table.boolean('ITtechnischerSupport').defaultTo(false);
             table.boolean('VerpflegunginderSchule').defaultTo(false);
-            table.boolean('Finaznierung').defaultTo(false);
+            table.boolean('Finanzierung').defaultTo(false);
             table.boolean('SozialesEngagement').defaultTo(false);
       })
 

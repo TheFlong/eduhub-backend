@@ -122,7 +122,7 @@ app.get('/useraddsproject/amIFavorite/:uhp_idproject/:uhp_iduser', favoritectrl.
 
 app.use('/wizardctrl/newProject', wizardctrl.setInformation);
 app.post('/wizardctrl/newProject', wizardctrl.newProject);
- //req.body.project_name, req.body.project_text, req.body.project_author, req.files.foo, req.body.fileName
+//req.body.project_name, req.body.project_text, req.body.project_author, req.files.foo, req.body.fileName
 
 app.get('/wizardctrl', wizardctrl.getInformation);
 

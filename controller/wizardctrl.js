@@ -127,7 +127,7 @@ function setInformation(req,res,next){
             SchulischeAusstatung: req.body.SchulischeAusstatung,
             ITtechnischerSupport: req.body.ITtechnischerSupport,
             VerpflegunginderSchule: req.body.VerpflegunginderSchule,
-            Finaznierung: req.body.Finaznierung,
+            Finanzierung: req.body.Finanzierung,
             SozialesEngagement: req.body.SozialesEngagement,
         })
         .then(function(UserHasProject) {
