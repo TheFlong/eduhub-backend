@@ -24,8 +24,6 @@ function addImage(req, res){
     }
     });
 
-
-
     return knex.transaction(function(t){
         return knex('Project')
         .transacting(t)
