@@ -134,7 +134,6 @@ function setInformation(req,res,next){
         })
         .then(function(UserHasProject) {
            req.Informationid = UserHasProject[0];
-            console.log(req.Informationid);
             next();
         })
 }

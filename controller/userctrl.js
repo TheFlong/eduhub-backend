@@ -120,10 +120,11 @@ function changeOne(req, res){
         })
 }
 //req.body.userid, req.file.foo
-function changePicture1(req,res){
+function changePicture1(req,res,next){
     knex.select('profilpic as temp1').from('User').where('email', req.body.email)
     .then(function(response){
         req.filepath = response[0];
+        next();
     })   
 }
 
