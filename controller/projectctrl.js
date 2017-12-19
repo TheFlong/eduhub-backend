@@ -45,7 +45,12 @@ function getOne(req, res) {
 }
 
 function getProjectInfo(req,res){
-    
+    knex.select()
+        .from('ProjektInformation')
+        .where('ProjectInformationid', req.params.project_informationid)
+        .then(function(Projectinformation){
+            res.send(Projectinformation)
+        })
 }
 
 function getLandingPage(req,res){

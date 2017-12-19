@@ -75,6 +75,7 @@ app.get('/project', projectctrl.getAll);
 app.get('/project/:projectid', projectctrl.getOne);
 app.get('/project/getReactions/:projectid',  projectctrl.getReactions);
 app.get('/project/landingpage/get', projectctrl.getLandingPage);
+app.get('/project/projectinformation/:project_informationid', projectctrl.getProjectInfo);
 
 app.use('/project/newProject', wizardctrl.setInformation);
 app.post('/project/newProject', wizardctrl.newProject);
