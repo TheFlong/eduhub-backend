@@ -121,7 +121,7 @@ function changeOne(req, res){
 }
 //req.body.userid, req.file.foo
 function changePicture1(req,res){
-    knex.select('profilpic as temp1').from('User').where('userid', req.body.userid)
+    knex.select('profilpic as temp1').from('User').where('email', req.body.email)
     .then(function(response){
         req.filepath = response[0];
     })   
@@ -139,7 +139,7 @@ function changePicture2(req, res){
         }
     });
     knex('User')
-        .where('userid', req.body.userid)
+        .where('email', req.body.email)
         .update({
             profilpic: req.filepath
         })
