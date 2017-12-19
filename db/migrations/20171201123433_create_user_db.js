@@ -3,6 +3,9 @@
           return knex.schema
           .createTable('ProjektInformation',function(table){
             table.increments('ProjectInformationid').primary();
+            table.boolean('lehrundlernProjekt').defaultTo(false);
+            table.boolean('managementProjekt').defaultTo(false);
+            table.boolean('unterstuetzendesProjekt').defaultTo(false);
             table.boolean('SuchenVerarbeitenundAufbewahren').defaultTo(false);
             table.boolean('KommunizierenundKooperieren').defaultTo(false);
             table.boolean('ProduzierenundPräsentieren').defaultTo(false);
@@ -125,6 +128,7 @@
           table.integer('project_membercount').defaultTo(1);
           table.integer('project_favcount').defaultTo(0);
           table.string('project_termin');
+          table.string('project_change', 4000);
           table.integer('Project_projectid').unsigned().references('projectid').inTable('Project');
           table.integer('project_informationid').unsigned().references('ProjectInformationid').inTable('ProjektInformation').onDelete('CASCADE');
           table.timestamp('project_created_at').defaultTo(knex.fn.now());

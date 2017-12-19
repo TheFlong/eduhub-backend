@@ -60,6 +60,9 @@ function newProject(req,res){
 function setInformation(req,res,next){
     knex('ProjektInformation')
         .insert({
+            lehrundlernProjekt: req.body.lehrundlernProjekt,
+            managementProjekt: req.body.managementProjekt,
+            unterstuetzendesProjekt: req.body.unterstuetzendesProjekt,
             SuchenVerarbeitenundAufbewahren: req.body.SuchenVerarbeitenundAufbewahren,
             KommunizierenundKooperieren: req.body.KommunizierenundKooperieren,
             ProduzierenundPräsentieren: req.body.ProduzierenundPräsentieren,
