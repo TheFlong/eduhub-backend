@@ -42,14 +42,27 @@ function addImage(req, res){
                 image_idproject: response[0],
                 image_name: fileName,
                 image_imagepath: 'images/' + fileName + '.png'
-
-
+            })
+        })
+        .then(function(response){
+            return knex('Image')
+                .transacting(t)
+                .select('image_idproject as temp1')
+                .where('imageid',response[0])
+        })
+        .then(function(response){ 
+            return knex('UserHasProject')
+                .transacting(t)
+                .insert({
+                    uhp_iduser: req.body.project_author,
+                    uhp_idproject: response[0].temp1,
+                    uhp_userrole: "author"
             })
         })
         .then(t.commit)
         .catch(t.rollback)
         .then(function() {
-            knex.select().from('Image')
+            knex.select().from('UserHasProject')
             .then(function(Image) {
                 res.send(Image);
             })
@@ -126,6 +139,7 @@ function addComment(req, res){
             .insert({
                 uhp_iduser: req.body.project_author,
                 uhp_idproject: response[0],
+                uhp_userrole: "author"
 
             })
         })
