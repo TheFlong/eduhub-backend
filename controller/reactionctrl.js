@@ -99,14 +99,27 @@ function addDocument(req, res){
             project_author: req.body.project_author
         })
         .then(function(response){
-            return knex('Image')
+            return knex('Document')
             .transacting(t)
             .insert({
                 document_idproject: response[0],
                 document_name: fileName,
                 document_documentpath: 'documents/' + fileName + '.pdf'
-
-
+            })
+        })
+        .then(function(response){
+            return knex('Document')
+                .transacting(t)
+                .select('document_idproject as temp1')
+                .where('documentid',response[0])
+        })
+        .then(function(response){ 
+            return knex('UserHasProject')
+                .transacting(t)
+                .insert({
+                    uhp_iduser: req.body.project_author,
+                    uhp_idproject: response[0].temp1,
+                    uhp_userrole: "author"
             })
         })
         .then(t.commit)
@@ -175,6 +188,7 @@ function addTermin(req,res){
             .insert({
                 uhp_iduser: req.body.project_author,
                 uhp_idproject: response[0],
+                uhp_userrole: "author"
 
             })
         })
