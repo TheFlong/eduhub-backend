@@ -116,7 +116,7 @@ function changeProject2(req,res){
                 project_text: req.body.newtitle,
                 project_change: req.projectname.temp3,
                 project_karma: 0,
-                project_projecttype: "changeTitel",
+                project_projecttype: "changeTitle",
                 project_author: req.body.userid,
                 project_membercount: 1,
                 Project_projectid: req.body.projectid
