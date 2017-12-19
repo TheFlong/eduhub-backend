@@ -44,6 +44,10 @@ function getOne(req, res) {
         })
 }
 
+function getProjectInfo(req,res){
+    
+}
+
 function getLandingPage(req,res){
     knex.select()
         .from('Project')

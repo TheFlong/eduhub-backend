@@ -88,7 +88,7 @@ req.body.project_author(Nutzer id),req.body.fileName,req.files.foo */
 app.post('/project/addDocument', reactionctrl.addDocument);
 app.post('/project/addTermin', reactionctrl.addTermin);
 
-app.use('/project/update', projectctrl.changeProject);
+app.use('/project/update', projectctrl.changeProject1);
 app.put('/project/update', projectctrl.changeProject2);
 //tagctrl Routes
 app.get('/tag/:projectid', tagctrl.getProjectsTags)
