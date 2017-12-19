@@ -144,6 +144,11 @@ function changePicture2(req, res){
         .update({
             profilpic: req.filepath
         })
+        .then(() => {
+            knex.select()
+                .from('User')
+                .then(User => res.send(User));
+        })
 }
 
 
