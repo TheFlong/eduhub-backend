@@ -96,7 +96,7 @@ function changeProject1(req,res,next){
     .then(function(response){
         req.name = response[0];
     })   
-   .then(function(){
+    .then(function(){
         knex
         .select('project_name as temp3','project_text as temp4', 'project_imagepath as temp5'  ).from('Project').where('projectid',req.body.projectid)
         .then(function(response1){

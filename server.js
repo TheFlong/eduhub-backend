@@ -59,13 +59,14 @@ app.put('/user', userctrl.changeOne);
 /* req.body.forename, req.body.surname, req.body.email,
 req.body.street, req.body.city, req.body.number, req.body.postcode, req.body.schoolid,
 req.body.function, subject1: req.body.subject1, subject2: req.body.subject2, subject3: req.body.subject3 */
+app.use('/user/changePicture',userctrl.changePicture1);
+app.put('/user/changePicture', userctrl.changePicture2);
 
 
-
-
-// funktioniert noch nicht !!!!/////////////////////////////////
 app.delete('/user',userctrl.deleteOne);
-app.post('/user/changePicture', userctrl.changePicture)
+// funktioniert noch nicht !!!!/////////////////////////////////
+
+
 ///////////////////////////////////////////////////////////////
 
 

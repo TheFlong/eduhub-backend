@@ -12,7 +12,8 @@ module.exports = {
     addOne,
     
     changeOne,
-    changePicture,
+    changePicture1,
+    changePicture2,
     
     deleteOne
     
@@ -118,23 +119,30 @@ function changeOne(req, res){
                 .then(User => res.send(User));
         })
 }
+//req.body.userid, req.file.foo
+function changePicture1(req,res){
+    knex.select('profilpic as temp1').from('User').where('userid', req.body.userid)
+    .then(function(response){
+        req.filepath = response[0];
+    })   
+}
 
-
-function changePicture(req, res){
-    var filepath = getfilepath(req.body.userid);
+function changePicture2(req, res){
+    var filepath = req.filepath;
     var startup_image = req.files.foo;
-    //var fileName = filename(req.body.fileName);
-
-
     // Use the mv() method to place the file somewhere on your server
     startup_image.mv(filepath , function(err) {
-      if(err){
-        console.log(err);
-      }else{
-     console.log("uploaded");
-    }
+        if(err){
+            console.log(err);
+        }else{
+            console.log("uploaded");
+        }
     });
-
+    knex('User')
+        .where('userid', req.body.userid)
+        .update({
+            profilpic: req.filepath
+        })
 }
 
 
