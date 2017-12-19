@@ -75,7 +75,7 @@ function getReactions(req,res){
 }
 
 // req.body.userid , req.body.projectid, req.body.changeid (1,2,3)
-// req.body.newtitel , req.body.newdescription, req.body.fileName, req.files.foo
+// req.body.newtitle , req.body.newdescription, req.body.fileName, req.files.foo
 function changeProject1(req,res,next){
     req.changeid = req.body.changeid;
     if(req.changeid == 3){
@@ -113,7 +113,7 @@ function changeProject2(req,res){
             .transacting(t)
             .insert({
                 project_name: req.name.temp2 + ' ' + req.name.temp1 + ' ' + 'hat den Titel geändert!',
-                project_text: req.body.newtitel,
+                project_text: req.body.newtitle,
                 project_change: req.projectname.temp3,
                 project_karma: 0,
                 project_projecttype: "changeTitel",
@@ -135,7 +135,7 @@ function changeProject2(req,res){
                 .transacting(t)
                 .where('projectid', req.body.projectid)
                 .update({
-                    project_name : req.body.newtitel
+                    project_name : req.body.newtitle
                 })
             })
             .then(t.commit)
