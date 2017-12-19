@@ -122,14 +122,16 @@ function changeOne(req, res){
 //req.body.userid, req.file.foo
 function changePicture1(req,res,next){
     knex.select('profilpic as temp1').from('User').where('email', req.body.email)
-    .then(function(response){
+    .then(function(response, response1){
+        response : response[0].temp1;
         req.filepath = response[0];
         next();
-    })   
+    })       
 }
 
 function changePicture2(req, res){
-    var filepath = req.filepath;
+    console.log(req.filepath.temp1)
+    var filepath = req.filepath.temp1;
     var startup_image = req.files.foo;
     // Use the mv() method to place the file somewhere on your server
     startup_image.mv(filepath , function(err) {
@@ -142,7 +144,7 @@ function changePicture2(req, res){
     knex('User')
         .where('email', req.body.email)
         .update({
-            profilpic: req.filepath
+            profilpic: req.filepath.temp1
         })
         .then(() => {
             knex.select()
