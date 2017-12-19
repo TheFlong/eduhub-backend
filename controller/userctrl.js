@@ -130,7 +130,6 @@ function changePicture1(req,res,next){
 }
 
 function changePicture2(req, res){
-    console.log(req.filepath.temp1)
     var filepath = req.filepath.temp1;
     var startup_image = req.files.foo;
     // Use the mv() method to place the file somewhere on your server
