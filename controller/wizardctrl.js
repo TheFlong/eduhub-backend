@@ -4,8 +4,6 @@ module.exports = {
 
     newProject,
     setInformation,
-    getInformation
-
 };
 
 function newProject(req,res){
@@ -138,12 +136,7 @@ function setInformation(req,res,next){
         })
 }
 
-function getInformation(req,res){
-    knex.select().from('ProjektInformation')
-    .then(function(UserHasProject) {
-        res.send(UserHasProject);
-    })
-}
+
 
 function filename(a){
 
