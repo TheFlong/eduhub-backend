@@ -8,7 +8,6 @@ var userctrl = require('./controller/userctrl');
 var projectctrl = require('./controller/projectctrl');
 var tagctrl = require('./controller/tagctrl');
 var resourcectrl = require('./controller/resourcectrl');
-var imagectrl = require('./controller/imagectrl');
 var useraddsprojectctrl = require('./controller/useraddsprojectctrl');
 var favoritectrl = require('./controller/favoritectrl');
 var wizardctrl = require('./controller/wizardctrl');
@@ -43,7 +42,7 @@ const server = http.createServer(app);
 
 
 
-app.use('/imagectrl', imagectrl);
+
 //userctrl Routes
 app.get('/user', userctrl.getAll);
 app.get('/user/:email', userctrl.getOne);
@@ -92,6 +91,11 @@ app.post('/project/addTermin', reactionctrl.addTermin);
 
 app.use('/project/update', projectctrl.changeProject1);
 app.put('/project/update', projectctrl.changeProject2);
+
+app.delete('/project/delete', projectctrl.deleteProject)
+
+
+
 //tagctrl Routes
 app.get('/tag/:projectid', tagctrl.getProjectsTags)
 app.post('/tag', tagctrl.addOne)
