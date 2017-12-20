@@ -8,6 +8,7 @@ module.exports = {
     getMyProject,
     getMyFavProjects,
     getMyTimeline,
+    getMyMeetings,
 
     addOne,
     
@@ -65,6 +66,20 @@ function getMyTimeline(req,res){
         .then(function(Project){
             res.send(Project)
     })
+ }
+
+ function getMyMeetings(req,res){
+     knex.select('*')
+        .from('Project')
+        .where('project_projecttype', "addTermin")
+        .join('UserHasProject', 'uhp_idproject', 'projectid')
+        .where('uhp_iduser', req.params.userid)
+        .orderBy('project_termin', 'asc')
+        .then(function(Project){
+            res.send(Project)
+    })
+
+        
  }
 
 function addOne(req,res){
