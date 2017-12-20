@@ -12,6 +12,7 @@ var useraddsprojectctrl = require('./controller/useraddsprojectctrl');
 var favoritectrl = require('./controller/favoritectrl');
 var wizardctrl = require('./controller/wizardctrl');
 var reactionctrl = require('./controller/reactionctrl');
+var searchctrl = require('./controller/searchctrl');
 
 
 const http = require('http');
@@ -132,7 +133,17 @@ app.use('/wizardctrl/newProject', wizardctrl.setInformation);
 app.post('/wizardctrl/newProject', wizardctrl.newProject);
 //req.body.project_name, req.body.project_text, req.body.project_author, req.files.foo, req.body.fileName
 
-app.get('/wizardctrl', wizardctrl.getInformation);
+
+
+
+
+
+app.get('/project/stringsearch/:project_name', searchctrl.searchString);
+
+
+
+
+
 
 
 app.listen(port, function(){
