@@ -41,7 +41,8 @@ function addImage(req, res){
             .insert({
                 image_idproject: response[0],
                 image_name: fileName,
-                image_imagepath: 'images/' + fileName + '.png'
+                src: 'http://backend-edu.azurewebsites.net/images/' + fileName + '.png',
+                thumbnail: 'http://backend-edu.azurewebsites.net/images/' + fileName + '.png'
             })
         })
         .then(function(response){

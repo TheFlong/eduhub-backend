@@ -124,7 +124,7 @@
           table.string('project_activity');
           table.string('project_statement', 4000);
           table.string('project_imagepath');
-          table.string('project_writeRights');
+          table.integer('project_writeRights').setdefaulTo(0);
           table.integer('project_membercount').defaultTo(1);
           table.integer('project_favcount').defaultTo(0);
           table.string('project_termin');
@@ -161,7 +161,10 @@
       .createTable('Image', function(table){
           table.increments('imageid').primary();
           table.string('image_name');
-          table.string('image_imagepath', 500);
+          table.string('src', 500);
+          table.string('thumbnail',500);
+          table.integer('thumbnailWidth').defaultTo(320);
+          table.integer('thumbnailHeight').defaultTo(212);          
           table.boolean('image_deleted').notNullable().defaultTo(false);
           table.integer('image_idproject').unsigned().references('projectid').inTable('Project').onDelete('CASCADE');
           

@@ -96,7 +96,7 @@ function getImageList(req,res){
         .andWhere('project_projecttype', "addImage")
         .leftJoin('Image', 'projectid', 'image_idproject')
         .orderBy('project_created_at', 'desc')
-        .select('project_name','image_imagepath')
+        .select('src','thumbnail','thumbnailWidth','thumbnailHeight')
         .then(function(image){
             res.send(image)
         })
