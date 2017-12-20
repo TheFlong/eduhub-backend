@@ -57,6 +57,16 @@ function getMyFavProjects(req,res){
         })
 }
 
+function getMyTimeline(req,res){
+    knex.select('*')
+        .from('Project')
+        .where('project_author', req.params.userid)
+        .orderBy('project_created_at', 'desc')
+        .then(function(Project){
+            res.send(Project)
+    })
+ }
+
 function addOne(req,res){
     var startup_image = req.files.foo;
     var fileName = filename(req.body.fileName);
@@ -164,17 +174,7 @@ function deleteOne(req, res){
 
 }
 
-function getMyTimeline(req,res){
 
-    knex.select('*')
-        .from('Project')
-        .where('project_author', req.params.userid)
-        .orderBy('project_created_at', 'desc')
-        .then(function(Project){
-            res.send(Project)
-    })
-
-}
 
 function filename(a){
 
