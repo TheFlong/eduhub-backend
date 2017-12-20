@@ -125,9 +125,9 @@ function addDocument(req, res){
         .then(t.commit)
         .catch(t.rollback)
         .then(function() {
-            knex.select().from('Image')
-            .then(function(Image) {
-                res.send(Image);
+            knex.select().from('Document')
+            .then(function(Document) {
+                res.send(Document);
             })
         })
 
