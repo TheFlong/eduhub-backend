@@ -8,7 +8,7 @@ exports.seed = function(knex, Promise) {
           { 
             imageid: 1, 
             src: "images/Bild.jpg", 
-            thumbnail: "images/Bild.jpg",
+            thumbnail: "http://backend-edu.azurewebsites.net/images/Bild.jpg",
             image_idproject: 11 
           },
          

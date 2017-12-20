@@ -124,7 +124,7 @@
           table.string('project_activity');
           table.string('project_statement', 4000);
           table.string('project_imagepath');
-          table.integer('project_writeRights').setdefaulTo(0);
+          table.integer('project_writeRights').defaultTo(0);
           table.integer('project_membercount').defaultTo(1);
           table.integer('project_favcount').defaultTo(0);
           table.string('project_termin');
