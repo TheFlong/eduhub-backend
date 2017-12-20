@@ -10,6 +10,7 @@ module.exports = {
     getLandingPage,
     getReactions,
     getDocumentList,
+    getImageList,
 
     changeProject1,
     changeProject2,
@@ -86,6 +87,18 @@ function getDocumentList(req,res){
         .select('project_name','document_documentpath')
         .then(function(documents){
             res.send(documents)
+        })
+}
+
+function getImageList(req,res){
+    knex('Project')
+        .where('Project_projectid', req.params.projectid)
+        .andWhere('project_projecttype', "addImage")
+        .leftJoin('Image', 'projectid', 'image_idproject')
+        .orderBy('project_created_at', 'desc')
+        .select('project_name','image_imagepath')
+        .then(function(image){
+            res.send(image)
         })
 }
 
