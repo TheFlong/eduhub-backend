@@ -59,7 +59,7 @@ function beFavoriteEvent2(req,res, next){
         .transacting(t)
         .insert({
             project_name: req.name.temp2 + ' ' + req.name.temp1 + ' ' + 'hat das Projekt' + ' "'+ req.projectname.temp3 + '" ' + 'als Favorit markiert!',
-            project_text: "test2345",
+            project_text: "",
             project_karma: 0,
             project_projecttype: "befavorite",
             project_author: req.body.uhp_iduser,
@@ -131,7 +131,7 @@ function cancelFavoriteEvent2(req,res, next){
         .transacting(t)
         .insert({
             project_name: req.name.temp2 + ' ' + req.name.temp1 + ' ' + 'hat das Projekt' + ' "'+ req.projectname.temp3 + '" ' + 'verlassen!',
-            project_text: "test234",
+            project_text: "",
             project_karma: 0,
             project_projecttype: "cancelfavorite",
             project_author: req.body.uhp_iduser,

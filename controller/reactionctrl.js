@@ -5,7 +5,12 @@ module.exports = {
         addImage,
         addComment,
         addDocument,
-        addTermin
+        addTermin,
+
+        deleteImage,
+        /* deleteComment,
+        deleteDocument,
+        deleteTermin */
         
     };
 
@@ -204,6 +209,12 @@ function addTermin(req,res){
 
     });
 }
+
+function deleteImage(req,res){
+    
+}
+
+
 function filename(a){    
     return a + '-' + Date.now()
 }

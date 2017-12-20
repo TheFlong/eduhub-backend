@@ -94,6 +94,7 @@ function getImageList(req,res){
     knex('Project')
         .where('Project_projectid', req.params.projectid)
         .andWhere('project_projecttype', "addImage")
+        //.andWhere('image_deleted', 0)
         .leftJoin('Image', 'projectid', 'image_idproject')
         .orderBy('project_created_at', 'desc')
         .select('src','thumbnail','thumbnailWidth','thumbnailHeight')

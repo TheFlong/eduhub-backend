@@ -58,7 +58,7 @@ function beMemberEvent2(req,res, next){
         .transacting(t)
         .insert({
             project_name: req.name.temp2 + ' ' + req.name.temp1 + ' ' + 'ist dem Projekt' + ' "'+ req.projectname.temp3 + '" ' + 'beigetreten!',
-            project_text: "test234",
+            project_text: "",
             project_karma: 0,
             project_projecttype: "bemember",
             project_author: req.body.uhp_iduser,
@@ -131,7 +131,7 @@ function cancelMembershipEvent2(req,res, next){
         .transacting(t)
         .insert({
             project_name: req.name.temp2 + ' ' + req.name.temp1 + ' ' + 'hat das Projekt' + ' "'+ req.projectname.temp3 + '" ' + 'verlassen!',
-            project_text: "test234",
+            project_text: "",
             project_karma: 0,
             project_projecttype: "cancelmembership",
             project_author: req.body.uhp_iduser,
