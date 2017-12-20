@@ -9,6 +9,7 @@ module.exports = {
     getProjectInfo,
     getLandingPage,
     getReactions,
+    getDocumentList,
 
     changeProject1,
     changeProject2,
@@ -74,6 +75,18 @@ function getReactions(req,res){
         .then(function(Project){
              res.send(Project)
     })
+}
+
+function getDocumentList(req,res){
+    knex('Project')
+        .where('Project_projectid', req.params.projectid)
+        .andWhere('project_projecttype', "addDocument")
+        .leftJoin('Document', 'projectid', 'document_idproject')
+        .orderBy('project_created_at', 'desc')
+        .select('project_name','document_documentpath')
+        .then(function(documents){
+            res.send(documents)
+        })
 }
 
 // req.body.userid , req.body.projectid, req.body.changeid (1,2,3)
