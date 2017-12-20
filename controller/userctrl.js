@@ -7,7 +7,7 @@ module.exports = {
     getOne,
     getMyProject,
     getMyFavProjects,
-    //getMyTimeline,
+    getMyTimeline,
 
     addOne,
     
@@ -164,7 +164,17 @@ function deleteOne(req, res){
 
 }
 
+function getMyTimeline(req,res){
 
+    knex.select('*')
+        .from('Project')
+        .where('project_author', req.params.userid)
+        .orderBy('project_created_at', 'desc')
+        .then(function(Project){
+            res.send(Project)
+    })
+
+}
 
 function filename(a){
 
