@@ -118,7 +118,7 @@
           table.increments('projectid').primary();
           table.string('project_name');
           table.string('project_text', 4000);
-          table.integer('project_karma');
+          table.integer('project_karma').defaultTo(0);
           table.string('project_projecttype');
           table.integer('project_author');
           table.string('project_activity');
@@ -146,8 +146,8 @@
         })
       .createTable('ProjectHasTag', function(table){
           table.increments('projecthastagid').primary();
-          table.integer('pht_idtag').unsigned().references('tagid').inTable('Tag');
-          table.integer('pht_idproject').unsigned().references('projectid').inTable('Project');
+          table.integer('pht_idtag').unsigned().references('tagid').inTable('Tag').onDelete('CASCADE');
+          table.integer('pht_idproject').unsigned().references('projectid').inTable('Project').onDelete('CASCADE');
         })
       .createTable('Resource', function(table) {
           table.increments('resourceid').primary();
@@ -155,15 +155,15 @@
         })
       .createTable('ProjectHasResource', function(table){
           table.increments('projecthasresourceid').primary();
-          table.integer('phr_idresource').unsigned().references('resourceid').inTable('Resource');
-          table.integer('phr_idproject').unsigned().references('projectid').inTable('Project');
+          table.integer('phr_idresource').unsigned().references('resourceid').inTable('Resource').onDelete('CASCADE');
+          table.integer('phr_idproject').unsigned().references('projectid').inTable('Project').onDelete('CASCADE');
         })
       .createTable('Image', function(table){
           table.increments('imageid').primary();
           table.string('image_name');
           table.string('image_imagepath', 500);
           table.boolean('image_deleted').notNullable().defaultTo(false);
-          table.integer('image_idproject').unsigned().references('projectid').inTable('Project');
+          table.integer('image_idproject').unsigned().references('projectid').inTable('Project').onDelete('CASCADE');
           
         })
       .createTable('Document', function(table){
@@ -171,7 +171,7 @@
           table.string('document_name');
           table.string('document_documentpath', 500);
           table.boolean('document_deleted').notNullable().defaultTo(false);
-          table.integer('document_idproject').unsigned().references('projectid').inTable('Project');
+          table.integer('document_idproject').unsigned().references('projectid').inTable('Project').onDelete('CASCADE');
          
         })
 };
