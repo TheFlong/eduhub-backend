@@ -102,7 +102,7 @@ app.post('/tag', tagctrl.addOne)
 //req.body.pht_idproject, req.body.tag_name
 
 //resourcectrl Routes
-app.get('/resource', resourcectrl.getProjectsResources)
+app.get('/resource/:projectid', resourcectrl.getProjectsResources)
 app.post('/resource', resourcectrl.addOne)
 //req.body.phr_idproject, req.body.resource_name
 
