@@ -228,6 +228,7 @@ function changeProject2(req,res){
             .catch(t.rollback)
             .then(function() {
                 knex.select().from('Project')
+                .where('projectid', req.body.projectid)
                 .then(function(Project) {
                     res.send(Project);
                 })
