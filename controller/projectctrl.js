@@ -11,7 +11,9 @@ module.exports = {
     getReactions,
 
     changeProject1,
-    changeProject2
+    changeProject2,
+
+    deleteProject
     
 
 };
@@ -236,6 +238,18 @@ function changeProject2(req,res){
         }); 
     }
 }
+
+function deleteProject(req, res){
+    knex('Project').where('projectid', req.body.projectid)
+        .del()
+        .then(() => {
+            knex.select()
+            .from('UserHasProject')
+            .then(Project => res.send(Project));
+        })
+
+}
+
 
 function filename(a){    
     return a + '-' + Date.now()

@@ -129,7 +129,7 @@
           table.integer('project_favcount').defaultTo(0);
           table.string('project_termin');
           table.string('project_change', 4000);
-          table.integer('Project_projectid').unsigned().references('projectid').inTable('Project');
+          table.integer('Project_projectid').unsigned().references('projectid').inTable('Project').onDelete('CASCADE');
           table.integer('project_informationid').unsigned().references('ProjectInformationid').inTable('ProjektInformation').onDelete('CASCADE');
           table.timestamp('project_created_at').defaultTo(knex.fn.now());
           table.timestamp('project_updated_at').defaultTo(knex.fn.now());
