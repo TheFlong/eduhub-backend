@@ -82,6 +82,10 @@ app.get('/project/projectinformation/:project_informationid', projectctrl.getPro
 app.get('/project/documents/get/:projectid', projectctrl.getDocumentList);
 app.get('/project/images/get/:projectid', projectctrl.getImageList);
 app.get('/project/filter/documentsimage/:projectid', filterctrl.getUploadEvents);
+app.get('/project/filter/memberevents/:projectid', filterctrl.getMemberEvents);
+app.get('/project/filter/comments/:projectid', filterctrl.getCommentEvents);
+app.get('/project/filter/termin/:projectid', filterctrl.getTerminEvents);
+
 
 
 app.use('/project/newProject', wizardctrl.setInformation);
