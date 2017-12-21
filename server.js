@@ -13,6 +13,7 @@ var favoritectrl = require('./controller/favoritectrl');
 var wizardctrl = require('./controller/wizardctrl');
 var reactionctrl = require('./controller/reactionctrl');
 var searchctrl = require('./controller/searchctrl');
+var filterctrl = require('/controller/filterctrl');
 
 
 const http = require('http');
@@ -82,6 +83,7 @@ app.get('/project/landingpage/get', projectctrl.getLandingPage);
 app.get('/project/projectinformation/:project_informationid', projectctrl.getProjectInfo);
 app.get('/project/documents/get/:projectid', projectctrl.getDocumentList);
 app.get('/project/images/get/:projectid', projectctrl.getImageList);
+app.get('project/filter/documentsimage/:projectid', filterctrl.getUploadEvents);
 
 
 app.use('/project/newProject', wizardctrl.setInformation);
