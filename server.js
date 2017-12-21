@@ -71,8 +71,6 @@ app.delete('/user',userctrl.deleteOne);
 // funktioniert noch nicht !!!!/////////////////////////////////
 
 
-///////////////////////////////////////////////////////////////
-
 
 //projectctrl Routes
 app.get('/project/members/:projectid', projectctrl.getMembers);
