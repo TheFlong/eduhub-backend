@@ -9,7 +9,11 @@ exports.seed = function(knex, Promise) {
           {ProjectInformationid: 1 },
           {ProjectInformationid: 2 },
           {ProjectInformationid: 3 },
-          {ProjectInformationid: 4 }
+          {ProjectInformationid: 4 },
+          {ProjectInformationid: 5 },
+          {ProjectInformationid: 6 },
+          {ProjectInformationid: 7 },
+          {ProjectInformationid: 8 }
 
           
         ]);

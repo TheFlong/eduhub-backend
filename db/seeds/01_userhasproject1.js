@@ -26,6 +26,13 @@ exports.seed = function(knex, Promise) {
           {userhasprojectid: 21, uhp_iduser: 3 , uhp_idproject: 17, uhp_userrole: "author"},
           {userhasprojectid: 22, uhp_iduser: 3 , uhp_idproject: 18, uhp_userrole: "author"},
           {userhasprojectid: 23, uhp_iduser: 3 , uhp_idproject: 19, uhp_userrole: "author"},
+          {userhasprojectid: 24, uhp_iduser: 1 , uhp_idproject: 20, uhp_userrole: "author"},
+          {userhasprojectid: 25, uhp_iduser: 2 , uhp_idproject: 21, uhp_userrole: "author"},
+          {userhasprojectid: 26, uhp_iduser: 3 , uhp_idproject: 22, uhp_userrole: "author"},
+          {userhasprojectid: 27, uhp_iduser: 4 , uhp_idproject: 23, uhp_userrole: "author"},
+          {userhasprojectid: 28, uhp_iduser: 5 , uhp_idproject: 24, uhp_userrole: "author"},
+          {userhasprojectid: 29, uhp_iduser: 6 , uhp_idproject: 25, uhp_userrole: "author"},
+          {userhasprojectid: 30, uhp_iduser: 7 , uhp_idproject: 26, uhp_userrole: "author"},
         
 
 
