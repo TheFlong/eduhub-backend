@@ -13,7 +13,7 @@ var favoritectrl = require('./controller/favoritectrl');
 var wizardctrl = require('./controller/wizardctrl');
 var reactionctrl = require('./controller/reactionctrl');
 var searchctrl = require('./controller/searchctrl');
-var filterctrl = require('/controller/filterctrl');
+var filterctrl = require('./controller/filterctrl');
 
 
 const http = require('http');
