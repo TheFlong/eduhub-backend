@@ -81,7 +81,7 @@ app.get('/project/landingpage/get', projectctrl.getLandingPage);
 app.get('/project/projectinformation/:project_informationid', projectctrl.getProjectInfo);
 app.get('/project/documents/get/:projectid', projectctrl.getDocumentList);
 app.get('/project/images/get/:projectid', projectctrl.getImageList);
-app.get('project/filter/documentsimage/:projectid', filterctrl.getUploadEvents);
+app.get('/project/filter/documentsimage/:projectid', filterctrl.getUploadEvents);
 
 
 app.use('/project/newProject', wizardctrl.setInformation);
