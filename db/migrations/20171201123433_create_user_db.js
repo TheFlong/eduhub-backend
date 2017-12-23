@@ -101,7 +101,7 @@
             table.integer('number');
             table.integer('postcode');
             //Funktion und Fächer in der Schule
-            table.integer('schoolid')
+            table.integer('user_schoolid')
             table.string('function');
             table.string('subject1');
             table.string('subject2');
