@@ -15,7 +15,7 @@ exports.seed = function(knex, Promise) {
             number: 56,
             postcode: 34566,
   
-            schoolid: 5,
+            user_schoolid: 5,
             function: "Lehrer",
             subject1: "Politik",
             subject2: "Geschichte",
@@ -41,7 +41,7 @@ exports.seed = function(knex, Promise) {
             number: 99,
             postcode:  50767,
   
-            schoolid: 7,
+            user_schoolid: 7,
             function: "Lehrer",
             subject1: "Informatik",
             subject2: "EDV-Kurs",
@@ -67,7 +67,7 @@ exports.seed = function(knex, Promise) {
             number: 15,
             postcode:  52345,
   
-            schoolid: 3,
+            user_schoolid: 3,
             function: "Lehrer, SV-Beauftragte",
             subject1: "Mathematik",
             subject2: "Biologie",
@@ -94,7 +94,7 @@ exports.seed = function(knex, Promise) {
             number: 15,
             postcode:  52345,
   
-            schoolid: 3,
+            user_schoolid: 3,
             function: "Schulleiter",
             subject1: "Physik",
             subject2: "Biologie",
@@ -120,7 +120,7 @@ exports.seed = function(knex, Promise) {
             number: 2,
             postcode: 50931,
   
-            schoolid: 4,
+            user_schoolid: 4,
             function: "Lehrer",
             subject1: "Philosophie",
             subject2: "Kunst",
@@ -146,7 +146,7 @@ exports.seed = function(knex, Promise) {
             number: 17,
             postcode: 50823,
   
-            schoolid: 7,
+            user_schoolid: 7,
             function: "Schulleiter",
             subject1: "Deutsch",
             subject2: "BWL",
@@ -172,7 +172,7 @@ exports.seed = function(knex, Promise) {
             number: 78,
             postcode: 50777,
   
-            schoolid: 7,
+            user_schoolid: 7,
             function: "Lehrer",
             subject1: "EDV-Kurs",
             subject2: "VWL",

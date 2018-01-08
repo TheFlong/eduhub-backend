@@ -3,7 +3,8 @@ var knex = require('../db/knex')
 
 module.exports = {
     amIAuthor,
-    amIEditor
+    amIEditor,
+    addEditor
 
 };
 
@@ -35,4 +36,18 @@ function amIEditor(req, res){
                 response: response[0].CNT
             });
         })
+}
+
+function addEditor(req,res){
+    knex('UserHasProject')
+        .where('uhp_idproject', req.body.uhp_idproject)
+        .andWhere('uhp_iduser', req.body.uhp_iduser)
+        .update({
+            uhp_userrole : "editor"
+        })
+
+}
+
+function removeEditor(req,res){
+
 }
