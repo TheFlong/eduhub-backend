@@ -14,6 +14,7 @@ var wizardctrl = require('./controller/wizardctrl');
 var reactionctrl = require('./controller/reactionctrl');
 var searchctrl = require('./controller/searchctrl');
 var filterctrl = require('./controller/filterctrl');
+var governancectrl = require('./controller/governancectrl');
 
 
 const http = require('http');
@@ -138,18 +139,16 @@ app.delete('/useraddsproject/cancelFavorite',favoritectrl.cancelFavoriteEvent2, 
 app.get('/useraddsproject/amIFavorite/:uhp_idproject/:uhp_iduser', favoritectrl.amIFavorite);
 //Schickt "response": 1 wenn Favorit; schickt "response": 0 wenn noch kein Favorit.
 
-
 app.use('/wizardctrl/newProject', wizardctrl.setInformation);
 app.post('/wizardctrl/newProject', wizardctrl.newProject);
 //req.body.project_name, req.body.project_text, req.body.project_author, req.files.foo, req.body.fileName
 
-
-
-
-
-
+//suche
 app.get('/project/stringsearch/:project_name', searchctrl.searchString);
 
+//Rechtemanagement
+app.get('/governance/amIAuthor/:uhp_idproject/:uhp_iduser', useraddsprojectctrl.amIMember)
+app.get('/governance/amIEditor/:uhp_idproject/:uhp_iduser', useraddsprojectctrl.amIMember)
 
 
 

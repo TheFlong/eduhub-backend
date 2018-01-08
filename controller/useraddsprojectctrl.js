@@ -170,4 +170,3 @@ function amIMember(req, res){
             });
         })
 }
-

@@ -113,6 +113,8 @@
             table.integer('user_karma');
             table.timestamp('user_created_at').defaultTo(knex.fn.now());
             table.timestamp('user_updated_at').defaultTo(knex.fn.now());
+
+            table.boolean('user_privacy').defaultTo(false);
          })
       .createTable('Project', function(table){
           table.increments('projectid').primary();

@@ -77,9 +77,7 @@ function getMyTimeline(req,res){
         .orderBy('project_termin', 'asc')
         .then(function(Project){
             res.send(Project)
-    })
-
-        
+         })
  }
 
 function addOne(req,res){
@@ -111,7 +109,8 @@ function addOne(req,res){
         subject3: req.body.subject3,
         profilpic: 'images/' + fileName + '.png',
         user_karma: 0,
-        user_description: req.body.user_description
+        user_description: req.body.user_description,
+        user_privacy: req.body.user_privacy
     })
     .then(function(response) {
         knex.select().from('User').where('userid', response[0])
@@ -135,7 +134,8 @@ function changeOne(req, res){
             subject1: req.body.subject1,
             subject2: req.body.subject2,
             subject3: req.body.subject3,
-            user_description: req.body.user_description
+            user_description: req.body.user_description,
+            user_privacy: req.body.user_privacy
 
         })
         .then(() => {
