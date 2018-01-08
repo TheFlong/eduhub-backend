@@ -147,8 +147,10 @@ app.post('/wizardctrl/newProject', wizardctrl.newProject);
 app.get('/project/stringsearch/:project_name', searchctrl.searchString);
 
 //Rechtemanagement
-app.get('/governance/amIAuthor/:uhp_idproject/:uhp_iduser', useraddsprojectctrl.amIMember)
-app.get('/governance/amIEditor/:uhp_idproject/:uhp_iduser', useraddsprojectctrl.amIMember)
+app.get('/governance/amIAuthor/:uhp_idproject/:uhp_iduser', governancectrl.amIAuthor);
+app.get('/governance/amIEditor/:uhp_idproject/:uhp_iduser', governancectrl.amIEditor);
+app.put('/governance/addEditor', governancectrl.addEditor);
+// req.body.uhp_idproject, req.body.uhp_iduser)
 
 
 
