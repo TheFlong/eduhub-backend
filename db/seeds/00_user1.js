@@ -184,7 +184,34 @@ exports.seed = function(knex, Promise) {
   
             profilpic: "images/renate.jpeg",
             user_karma: 12    
+          },
+          {
+            userid: 8,
+            forename: "Richard",
+            surname: "Reinartz",
+            email: "r.reinartz@realschule-kerpen.de",
+  
+            street: "Theresia-von-Wüllenweber-Str",
+            city: "Horrem",
+            number: 28,
+            postcode: 50169,
+  
+            user_schoolid: 6,
+            function: "Lehrer",
+            subject1: "Sport",
+            subject2: "Deutsch",
+            subject3: "Politik",
+  
+            interests1: "Badminton",
+            interests2: "Eishockey",
+            interests3: "Ski",
+  
+            profilpic: "images/richard.png",
+            user_karma: 50    
           }
+          
+          
+          
         ]);
       });
   };
