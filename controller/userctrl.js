@@ -1,3 +1,4 @@
+
 var knex = require('../db/knex')
 
 
@@ -9,6 +10,8 @@ module.exports = {
     getMyFavProjects,
     getMyTimeline,
     getMyMeetings,
+    getMyMeetings2,
+    getMyMeetings3,
 
     addOne,
     
@@ -68,17 +71,106 @@ function getMyTimeline(req,res){
     })
  }
 
- function getMyMeetings(req,res){
-     knex.select('*')
+function getMyMeetings(req,res,next){
+    req.termin = [];
+    knex.select('projectid as projectid', 'project_name as project_name', 'Project_projectid as project_projectid')
         .from('Project')
         .where('project_projecttype', "addTermin")
         .join('UserHasProject', 'uhp_idproject', 'projectid')
         .where('uhp_iduser', req.params.userid)
         .orderBy('project_termin', 'asc')
-        .then(function(Project){
-            res.send(Project)
-         })
- }
+        .then(function(response){
+            req.termin = response;
+            next();
+        })
+}
+function getMyMeetings2(req,res,next){
+    var i = 0;
+    req.name = []
+    req.termin.forEach(function(response2){
+        knex.select('project_name as titel')
+            .from('Project')
+            .where('projectid', req.termin[i].project_projectid)
+            .then(function(response3){
+                req.name.push(response3) 
+            }).then(function(response12){
+                if(i < req.termin.length -1){
+                   i = i+1;
+                }
+                else{
+                    next();
+                }
+            })
+    })
+}     
+
+function getMyMeetings3(req,res){
+    var r = 0;
+    req.body.ergebnis = []
+    req.termin.forEach(function(){
+        var a = [{projectid : req.termin[r].projectid, project_name: req.termin[r].project_name ,project_projectid: req.termin[r].project_projectid, project_titel: (req.name[r])[0].titel}];
+        req.body.ergebnis.push(a)
+        r++;
+    })
+     console.log(req.body.ergebnis)
+     res.send(req.body.ergebnis);
+}
+       
+       
+       
+       
+       
+       
+       
+       
+        /*  .then(function (response1){
+            var a = [];
+            var i = 0;
+            req.body.termin.forEach(function(response2){
+                knex.select('project_name as project_titel')
+                    .from('Project')
+                    .where('projectid', req.body.termin[i].project_projectid)
+                    .then(function(response3){
+                        a.push(response3)
+                        console.log(a)
+                        })    
+                i = i+1;
+                
+            }) */
+            
+            /* var j = 0;
+            req.body.termin.forEach(function(response){  
+                req.body.termin[0].push(req.body.ergebnis[j])
+                console.log(req.body.termin)
+                 j++;
+                }) */
+      /*   }).then(function(){
+            res.send();
+            console.log(req.body.ergebnis);
+            console.log(req.body.termin);
+        })
+ */
+           
+       
+
+/* 
+function getMeetings2(req,res){ 
+    var j=0;
+    console.log(req.termin)
+    var a = req.termin;
+    console.log(req.ergebnis)
+   // req.body.endergebnis = [];
+    req.termin.forEach(function(){
+        a.push(req.ergebins);
+        j++;
+    })
+    console.log(req.termin)
+}
+ */
+
+
+
+
 
 function addOne(req,res){
     var startup_image = req.files.foo;
