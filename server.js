@@ -160,6 +160,8 @@ app.get('/governance/amIAuthor/:uhp_idproject/:uhp_iduser', governancectrl.amIAu
 app.get('/governance/amIEditor/:uhp_idproject/:uhp_iduser', governancectrl.amIEditor);
 app.use('/governance/addEditor', governancectrl.addEditorEvent1, governancectrl.addEditor1);
 app.post('/governance/addEditor', governancectrl.addEditorEvent2)
+app.use('/governance/deleteEditor', governancectrl.deleteEditorEvent1)
+app.delete('/governance/addEditor', governancectrl.delEditorEvent2, governancectrl.deleteEditor1)
 // req.body.uhp_idproject, req.body.uhp_iduser, req.body.authorid)
 
 
