@@ -73,7 +73,7 @@ function getMyTimeline(req,res){
 
 function getMyMeetings(req,res,next){
     req.termin = [];
-    knex.select('projectid as projectid', 'project_name as project_name', 'Project_projectid as project_projectid')
+    knex.select('projectid as projectid', 'project_name as project_name', 'Project_projectid as project_projectid', 'project_termin as project_termin')
         .from('Project')
         .where('project_projecttype', "addTermin")
         .join('UserHasProject', 'uhp_idproject', 'projectid')
@@ -108,7 +108,7 @@ function getMyMeetings3(req,res){
     var r = 0;
     req.body.ergebnis = []
     req.termin.forEach(function(){
-        var a = [{projectid : req.termin[r].projectid, project_name: req.termin[r].project_name ,project_projectid: req.termin[r].project_projectid, project_titel: (req.name[r])[0].titel}];
+        var a = [{projectid : req.termin[r].projectid, project_name: req.termin[r].project_name ,project_projectid: req.termin[r].project_projectid, project_titel: (req.name[r])[0].titel, project_termin: req.termin[r].project_termin}];
         req.body.ergebnis.push(a)
         r++;
     })
