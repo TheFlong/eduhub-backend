@@ -154,8 +154,9 @@ app.get('/project/stringsearch/:project_name', searchctrl.searchString);
 //Rechtemanagement
 app.get('/governance/amIAuthor/:uhp_idproject/:uhp_iduser', governancectrl.amIAuthor);
 app.get('/governance/amIEditor/:uhp_idproject/:uhp_iduser', governancectrl.amIEditor);
-app.put('/governance/addEditor', governancectrl.addEditor);
-// req.body.uhp_idproject, req.body.uhp_iduser)
+app.use('/governance/addEditor', governancectrl.addEditorEvent1, governancectrl.addEditor1);
+app.post('/governance/addEditor', governancectrl.addEditorEvent2)
+// req.body.uhp_idproject, req.body.uhp_iduser, req.body.authorid)
 
 
 
