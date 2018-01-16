@@ -115,7 +115,10 @@ app.delete('/project/delete', projectctrl.deleteProject)
 
 //tagctrl Routes
 app.get('/tag/:projectid', tagctrl.getProjectsTags)
-app.post('/tag', tagctrl.addOne)
+
+app.use('/addtag', tagctrl.addTag1)
+app.post('/addtag', tagctrl.addTag2)
+
 //req.body.pht_idproject, req.body.tag_name
 
 //resourcectrl Routes
