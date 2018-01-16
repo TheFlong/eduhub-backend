@@ -99,7 +99,7 @@ function cancelMembership2(req,res){
     knex('UserHasProject')
         .where('uhp_idproject',  req.projectid)
         .andWhere('uhp_iduser', req.userid )
-        .andWhere('uhp_userrole', 'member')
+        .andWhereNot('uhp_userrole', 'favorite')
         .del()
         .then(function(response1) { 
             knex.select()
