@@ -6,17 +6,16 @@ module.exports = {
     getProjectsResources
 }
 function addRes1(req, res, next){
-    
-        knex('Resource')
-            .select('resourceid as resourceid')
-            .where('resource_name', req.body.resource_name)
-            .then(function(response1){
-                response1 : response1[0]; 
-                req.resourceid = response1[0];  
-                next();
-            }) 
-    
-    }
+    knex('Resource')
+        .select('resourceid as resourceid')
+        .where('resource_name', req.body.resource_name)
+        .then(function(response1){
+            response1 : response1[0]; 
+            req.resourceid = response1[0];  
+            next();
+        }) 
+
+}
 function addRes2(req,res){
     if(req.resourceid != null){
         knex('ProjectHasResource')
