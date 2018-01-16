@@ -112,7 +112,6 @@ function getMyMeetings3(req,res){
         req.body.ergebnis.push(a)
         r++;
     })
-     console.log(req.body.ergebnis)
      res.send(req.body.ergebnis);
 }
        
