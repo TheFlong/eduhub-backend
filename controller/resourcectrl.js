@@ -1,36 +1,60 @@
 var knex = require('../db/knex')
 
 module.exports = {
-    addOne,
+    addRes1,
+    addRes2,
     getProjectsResources
 }
-
-
-function addOne(req, res){
-    return knex.transaction(function(t){
-        return knex('Resource')
-        .transacting(t)
-        .insert({
-            resource_name: req.body.resource_name,
-        })
-        .then(function(response){
-            return knex('ProjectHasResource')
-            .transacting(t)
+function addRes1(req, res, next){
+    
+        knex('Resource')
+            .select('resourceid as resourceid')
+            .where('resource_name', req.body.resource_name)
+            .then(function(response1){
+                response1 : response1[0]; 
+                req.resourceid = response1[0];  
+                next();
+            }) 
+    
+    }
+function addRes2(req,res){
+    if(req.resourceid != null){
+        knex('ProjectHasResource')
             .insert({
-                phr_idproject: req.body.phr_idproject,
-                phr_idresource: response[0]
+                phr_idresource: req.resourceid.resourceid,
+                phr_idproject: req.body.projectid
             })
+            .then(function(response){
+                res.send(response)
+            })
+    }
+    else {
+        return knex.transaction(function(t){
+            return knex('Resource')
+                .transacting(t)
+                .insert({
+                    resource_name: req.body.resource_name,
+                })
+                .then(function(response){
+                    return knex('ProjectHasResource')
+                        .transacting(t)
+                        .insert({
+                            phr_idresource: response[0],
+                            phr_idproject: req.body.projectid
+                        })
+
+                })
+                .then(t.commit)
+                .catch(t.rollback)
+                .then(function(){
+                    res.send(Project)
+
+                })
         })
-        .then(t.commit)
-        .catch(t.rollback)
-        .then(function() {
-            knex.select().from('ProjectHasResource')
-            .then(function(ProjectHasResource) {
-                res.send(ProjectHasResource);
-            })
-        }) 
-    });
+    }
 }
+
+
 function getProjectsResources(req,res){
     knex
         .select('resourceid', 'resource_name').from('Resource')

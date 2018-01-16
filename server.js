@@ -122,8 +122,9 @@ app.post('/addtag', tagctrl.addTag2)
 //req.body.pht_idproject, req.body.tag_name
 
 //resourcectrl Routes
-app.get('/resource/:projectid', resourcectrl.getProjectsResources)
-app.post('/resource', resourcectrl.addOne)
+app.get('/resource/:projectid', resourcectrl.getProjectsResources);
+app.use('/addresource', resourcectrl.addRes1);
+app.post('/addresource', resourcectrl.addRes2);
 //req.body.phr_idproject, req.body.resource_name
 
 

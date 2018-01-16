@@ -33,6 +33,7 @@ function getMembers(req, res){
         .where(function(){
             this.where('uhp_userrole',"member")
                 .orWhere('uhp_userrole', "author")
+                .orWhere('uhp_userrole', "editor")
         })
         .then(function(User){
         res.send(User)
