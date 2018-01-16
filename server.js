@@ -53,7 +53,10 @@ app.get('/user/:email', userctrl.getOne);
 app.get('/user/getmyproject/:userid', userctrl.getMyProject);
 app.get('/user/getmyproject/favs/:userid',userctrl.getMyFavProjects);
 app.get('/user/profil/timeline/:userid', userctrl.getMyTimeline);
-app.get('/user/myevents/:userid', userctrl.getMyMeetings);
+
+app.use('/user/myevents/:userid', userctrl.getMyMeetings, userctrl.getMyMeetings2);
+app.get('/user/myevents/:userid', userctrl.getMyMeetings3);
+
 
 app.post('/user', userctrl.addOne);
 /* //req.files.foo, req.body.fileName, req.body.forename, req.body.surname, req.body.email,
