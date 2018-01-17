@@ -106,7 +106,10 @@ function cancelMembership2(req,res){
     knex('UserHasProject')
         .where('uhp_idproject',  req.projectid)
         .andWhere('uhp_iduser', req.userid )
-        .andWhereNot('uhp_userrole', 'favorite')
+        .andWhere(function(){ 
+            this.where('uhp_userrole', "editor")
+            .orWhere('uhp_userrole', "member")
+        })
         .del()
         .then(function(response1) { 
             knex.select()
