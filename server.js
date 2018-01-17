@@ -145,7 +145,7 @@ app.get('/useraddsproject/amIFavorite/:uhp_idproject/:uhp_iduser', favoritectrl.
 
 app.post('/wizardctrl/newProject', wizardctrl.newProject);
 //req.body.project_author
-app.update('/wizardctrl/newProject', wizardctrl.addProjectinformation);
+app.put('/wizardctrl/newProject', wizardctrl.addProjectinformation);
 //req.body.project_name, req.body.project_text, req.files.foo, req.body.fileName, req.body.project_writeRights, req.body.ziel, req.body.termin , req.body.projectid
 
 //suche
