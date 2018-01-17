@@ -6,7 +6,6 @@ module.exports = {
     getAll,
     getMembers,
     getOne,
-    getProjectInfo,
     getLandingPage,
     getReactions,
     getDocumentList,
@@ -19,12 +18,14 @@ module.exports = {
     
 
 };
+//Abfrage aller Projekte
 function getAll(req, res) {
     knex.select()
         .from('Project')
         .then( Project => res.send(Project) );
 }
 
+//Abfrage aller Mitglieder eines Projekts
 function getMembers(req, res){
     knex
         .select().from('User')
@@ -40,6 +41,7 @@ function getMembers(req, res){
     })
 }
 
+//Abfrage eines bestimmten Projekts mit projektid
 function getOne(req, res) {
     knex.select()
         .from('Project')
@@ -48,16 +50,7 @@ function getOne(req, res) {
             res.send(Project)
         })
 }
-
-function getProjectInfo(req,res){
-    knex.select()
-        .from('ProjektInformation')
-        .where('ProjectInformationid', req.params.project_informationid)
-        .then(function(Projectinformation){
-            res.send(Projectinformation)
-        })
-}
-
+//Abfrage um Landingpage zu generieren
 function getLandingPage(req,res){
     knex.select()
         .from('Project')
@@ -66,7 +59,7 @@ function getLandingPage(req,res){
         .limit(8)
         .then(Project => res.send(Project));
 }
-
+//Abfrage der Reaktionen auf ein Projekt
 function getReactions(req,res){
      knex.select('*')
         .from('Project')
@@ -78,7 +71,7 @@ function getReactions(req,res){
              res.send(Project)
     })
 }
-
+//Abfrage aller zum Projekt gehörender Dokumente
 function getDocumentList(req,res){
     knex('Project')
         .where('Project_projectid', req.params.projectid)
@@ -90,7 +83,7 @@ function getDocumentList(req,res){
             res.send(documents)
         })
 }
-
+//Abfrage aller zum Projekt gehörender Bilder
 function getImageList(req,res){
     knex('Project')
         .where('Project_projectid', req.params.projectid)
@@ -104,10 +97,12 @@ function getImageList(req,res){
         })
 }
 
+//Funktion um Einträge in bestehendem Projekt zu ändern.
 // req.body.userid , req.body.projectid, req.body.changeid (1,2,3)
-// req.body.newtitle , req.body.newdescription, req.body.fileName, req.files.foo
+// req.body.newtitle , req.body.newdescription, req.body.fileName, req.files.foo, req.body.newtermin, req.body.newgoal, req.body.newwriteRights
 function changeProject1(req,res,next){
     req.changeid = req.body.changeid;
+    //Projektpofilfoto ändern
     if(req.changeid == 3){
         var startup_image = req.files.foo;
         var fileName = filename(req.body.fileName);
@@ -122,21 +117,24 @@ function changeProject1(req,res,next){
              }
         });
     }
+
+    //Auslesen von Vorname, Nachname, Projektname für Änderungsevent
     knex.select('surname as temp1', 'forename as temp2').from('User').where('userid', req.body.userid)
     .then(function(response){
         req.name = response[0];
     })   
     .then(function(){
         knex
-        .select('project_name as temp3','project_text as temp4', 'project_imagepath as temp5'  ).from('Project').where('projectid',req.body.projectid)
+        .select('project_name as temp3','project_text as temp4', 'project_imagepath as temp5', 'project_termin as temp6', 'project_statement as temp7', 'project_writeRights as temp8'   )
+        .from('Project').where('projectid',req.body.projectid)
         .then(function(response1){
             req.projectname = response1[0];  
             next();
         }) 
     }) 
 }
-
 function changeProject2(req,res){
+    //Titel ändern
     if (req.changeid == 1){
         return knex.transaction(function(t){
             return knex('Project')
@@ -179,7 +177,7 @@ function changeProject2(req,res){
             })
         }); 
     }
-    
+    //Beschreibung ändern
     if(req.changeid == 2){
         return knex.transaction(function(t){
             return knex('Project')
@@ -265,8 +263,146 @@ function changeProject2(req,res){
             })
         }); 
     }
-}
+    //Projektbeginn ändern
+    if(req.changeid == 4){
+        return knex.transaction(function(t){
+            return knex('Project')
+            .transacting(t)
+            .insert({
+                project_name: req.name.temp2 + ' ' + req.name.temp1 + ' ' + 'hat den Projektbeginn verschoben!',
+                project_text: req.body.newtermin,
+                project_change: req.projectname.temp6,
+                project_karma: 0,
+                project_projecttype: "changeTermin",
+                project_author: req.body.userid,
+                project_membercount: 1,
+                Project_projectid: req.body.projectid
+            })
+            .then(function(response){
+                return knex('UserHasProject')
+                .transacting(t)
+                .insert({
+                    uhp_iduser: req.body.userid,
+                    uhp_idproject: response[0],
+                    uhp_userrole: "author"
+    
+                })
+            }).then(function(){
+                return knex('Project')
+                .transacting(t)
+                .where('projectid', req.body.projectid)
+                .update({
+                    project_termin : req.body.newtermin
+                })
+            })
+            .then(t.commit)
+            .catch(t.rollback)
+            
+            .then(function() {
+                knex.select().from('Project')
+                .then(function(Project) {
+                    res.send(Project);
+                })
+            })
+        }); 
 
+    }
+    //Projektzielsetzung ändern
+    if(req.changeid == 5){
+        return knex.transaction(function(t){
+            return knex('Project')
+            .transacting(t)
+            .insert({
+                project_name: req.name.temp2 + ' ' + req.name.temp1 + ' ' + 'hat die Zielsetzung geändert!',
+                project_text: req.body.newgoal,
+                project_change: req.projectname.temp7,
+                project_projecttype: "changeGoal",
+                project_author: req.body.userid,
+                project_membercount: 1,
+                Project_projectid: req.body.projectid
+            })
+            .then(function(response){
+                return knex('UserHasProject')
+                .transacting(t)
+                .insert({
+                    uhp_iduser: req.body.userid,
+                    uhp_idproject: response[0],
+                    uhp_userrole: "author"
+    
+                })
+            }).then(function(){
+                return knex('Project')
+                .transacting(t)
+                .where('projectid', req.body.projectid)
+                .update({
+                    project_statement : req.body.newgoal
+                })
+            })
+            .then(t.commit)
+            .catch(t.rollback)
+            
+            .then(function() {
+                knex.select().from('Project')
+                .then(function(Project) {
+                    res.send(Project);
+                })
+            })
+        }); 
+
+    }
+    //Schreibrechte ändern
+    if(req.changeid == 6){
+        var str = '';
+        var str2 = '';
+        if(req.projectname.temp8 == 0){
+            str = 'Das Projekt ist jetzt als privat markiert.'
+        }
+        else{
+            str = 'Das Projekt ist jetzt als öffentlich markiert.'
+        }
+        return knex.transaction(function(t){
+            return knex('Project')
+            .transacting(t)
+            .insert({
+                project_name: req.name.temp2 + ' ' + req.name.temp1 + ' ' + 'hat die Schreibrechte geändert!',
+                project_text: str,
+                project_change: req.projectname.temp8,
+                project_projecttype: "changeRights",
+                project_author: req.body.userid,
+                project_membercount: 1,
+                Project_projectid: req.body.projectid
+            })
+            .then(function(response){
+                return knex('UserHasProject')
+                .transacting(t)
+                .insert({
+                    uhp_iduser: req.body.userid,
+                    uhp_idproject: response[0],
+                    uhp_userrole: "author"
+    
+                })
+            }).then(function(){
+                return knex('Project')
+                .transacting(t)
+                .where('projectid', req.body.projectid)
+                .update({
+                    project_writeRights : req.body.newwriteRights
+                })
+            })
+            .then(t.commit)
+            .catch(t.rollback)
+            
+            .then(function() {
+                knex.select().from('Project')
+                .then(function(Project) {
+                    res.send(Project);
+                })
+            })
+        }); 
+
+    }
+}
+//Projekt löschen
 function deleteProject(req, res){
     knex('Project').where('projectid', req.body.projectid)
         .del()
