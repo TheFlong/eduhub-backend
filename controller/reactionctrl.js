@@ -7,14 +7,9 @@ module.exports = {
         addDocument,
         addTermin,
 
-        deleteImage,
-        /* deleteComment,
-        deleteDocument,
-        deleteTermin */
-        
     };
 
-
+//Dem Projekt ein Bild hinzufügen
 function addImage(req, res){
     var startup_image = req.files.foo;
     var fileName = filename(req.body.fileName);
@@ -76,7 +71,7 @@ function addImage(req, res){
 
     });
 }
-
+//Dem Projekt ein Dokument hinzufügen
 function addDocument(req, res){
     var startup_image = req.files.foo;
     var fileName = filename(req.body.fileName);
@@ -139,7 +134,7 @@ function addDocument(req, res){
 
     });
 }
-
+//Dem Projekt ein kommentar hinzufügen
 function addComment(req, res){
     return knex.transaction(function(t){
         return knex('Project')
@@ -174,7 +169,7 @@ function addComment(req, res){
     });
 
 }
-
+//Dem Projekt ein Termin hinzufügen
 function addTermin(req,res){
     return knex.transaction(function(t){
         return knex('Project')
@@ -209,11 +204,6 @@ function addTermin(req,res){
 
     });
 }
-
-function deleteImage(req,res){
-    
-}
-
 
 function filename(a){    
     return a + '-' + Date.now()

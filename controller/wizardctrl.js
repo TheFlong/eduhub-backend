@@ -6,6 +6,7 @@ module.exports = {
     addProjectinformation
 };
 
+//Projekt wird nahezu leer erzeugt
 function newProject(req,res){
     var projectid
     return knex.transaction(function(t){
@@ -38,6 +39,7 @@ function newProject(req,res){
 
     });
 }
+//Projektinformationen werden hinzugefügt
 function addProjectinformation(req,res){
     var startup_image = req.files.foo;
     var fileName = filename(req.body.fileName);
@@ -74,7 +76,6 @@ function addProjectinformation(req,res){
         })
     });
 }
-
 
 function filename(a){
         return a + '-' + Date.now()
