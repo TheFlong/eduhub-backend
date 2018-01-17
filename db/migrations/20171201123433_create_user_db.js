@@ -1,83 +1,6 @@
 
       exports.up = function(knex, Promise) {
           return knex.schema
-          .createTable('ProjektInformation',function(table){
-            table.increments('ProjectInformationid').primary();
-            table.boolean('lehrundlernProjekt').defaultTo(false);
-            table.boolean('managementProjekt').defaultTo(false);
-            table.boolean('unterstuetzendesProjekt').defaultTo(false);
-            table.boolean('SuchenVerarbeitenundAufbewahren').defaultTo(false);
-            table.boolean('KommunizierenundKooperieren').defaultTo(false);
-            table.boolean('ProduzierenundPräsentieren').defaultTo(false);
-            table.boolean('Schützenundsicheragieren').defaultTo(false);
-            table.boolean('ProblemelösenundHandeln').defaultTo(false);
-            table.boolean('AnalysierenundReflektieren').defaultTo(false);
-            table.boolean('KitaVorschule').defaultTo(false);
-            table.boolean('Grundschule').defaultTo(false);
-            table.boolean('Sekundarstufe1').defaultTo(false);
-            table.boolean('Sekundarstufe2').defaultTo(false);
-            table.boolean('HoehereHandelschule').defaultTo(false);
-            table.boolean('Handelschule').defaultTo(false);
-            table.boolean('Sprachen').defaultTo(false);
-            table.boolean('KulturelleBildung').defaultTo(false);
-            table.boolean('GeschichteGesellschaft').defaultTo(false);
-            table.boolean('Naturwissenschaften').defaultTo(false);
-            table.boolean('InformatiktechnischeBildung').defaultTo(false);
-            table.boolean('Mathematik').defaultTo(false);
-            table.boolean('Deutsch').defaultTo(false);
-            table.boolean('Englisch').defaultTo(false);
-            table.boolean('Physik').defaultTo(false);
-            table.boolean('Chemie').defaultTo(false);
-            table.boolean('Erdkunde').defaultTo(false);
-            table.boolean('Sport').defaultTo(false);
-            table.boolean('Kunst').defaultTo(false);
-            table.boolean('Französisch').defaultTo(false);
-            table.boolean('Spanisch').defaultTo(false);
-            table.boolean('Italienisch').defaultTo(false);
-            table.boolean('Bwl').defaultTo(false);
-            table.boolean('Vwl').defaultTo(false);
-            table.boolean('Informatik').defaultTo(false);
-            table.boolean('Pädagogik').defaultTo(false);
-            table.boolean('Politik').defaultTo(false);
-            table.boolean('KeinInternet').defaultTo(false);
-            table.boolean('PCLaptop').defaultTo(false);
-            table.boolean('TabletSmartphone').defaultTo(false);
-            table.boolean('HardwareBasteln').defaultTo(false);
-            table.boolean('VideosFilme').defaultTo(false);
-            table.boolean('Unterrichstreihe').defaultTo(false);
-            table.boolean('Stunde').defaultTo(false);
-            table.boolean('Doppelstunde').defaultTo(false);
-            table.boolean('Flexibel').defaultTo(false);
-            
-            
-            table.boolean('Klasse').defaultTo(false);
-            table.boolean('Schule').defaultTo(false);
-            table.boolean('Fachlich').defaultTo(false);
-            table.boolean('Lehrer').defaultTo(false);
-            table.boolean('Elternvertretung').defaultTo(false);
-            table.boolean('Zeitmanagementbesserplanen').defaultTo(false);
-            table.boolean('BudgetFinanzierung').defaultTo(false);
-            table.boolean('BildungWissenvermittlung').defaultTo(false);
-            table.boolean('Unterrichtneugestalten').defaultTo(false);
-            table.boolean('Verwaltungverbessern').defaultTo(false);
-            table.boolean('Konfliktmanagement').defaultTo(false);
-            table.boolean('SonstigestrategischeZiele').defaultTo(false);
-            table.boolean('Tage').defaultTo(false);
-            table.boolean('Wochen').defaultTo(false);
-            table.boolean('Monate').defaultTo(false);
-
-            
-            table.boolean('StadtGemeinde').defaultTo(false);
-            table.boolean('Personal').defaultTo(false);
-            table.boolean('Schueler').defaultTo(false);
-            table.boolean('Bildung').defaultTo(false);
-            table.boolean('SchulischeAusstatung').defaultTo(false);
-            table.boolean('ITtechnischerSupport').defaultTo(false);
-            table.boolean('VerpflegunginderSchule').defaultTo(false);
-            table.boolean('Finanzierung').defaultTo(false);
-            table.boolean('SozialesEngagement').defaultTo(false);
-      })
-
       .createTable('School', function(table){
           table.increments('schoolid').primary();
           table.timestamp('school_created_at').defaultTo(knex.fn.now());
@@ -132,7 +55,6 @@
           table.string('project_termin');
           table.string('project_change', 4000);
           table.integer('Project_projectid').unsigned().references('projectid').inTable('Project').onDelete('CASCADE');
-          table.integer('project_informationid').unsigned().references('ProjectInformationid').inTable('ProjektInformation').onDelete('CASCADE');
           table.timestamp('project_created_at').defaultTo(knex.fn.now());
           table.timestamp('project_updated_at').defaultTo(knex.fn.now());
         })

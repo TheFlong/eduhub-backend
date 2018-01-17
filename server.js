@@ -93,11 +93,6 @@ app.get('/project/filter/comments/:projectid', filterctrl.getCommentEvents);
 app.get('/project/filter/termin/:projectid', filterctrl.getTerminEvents);
 
 
-
-app.use('/project/newProject', wizardctrl.setInformation);
-app.post('/project/newProject', wizardctrl.newProject);
- //req.body.project_name, req.body.project_text, req.body.project_author, req.files.foo, req.body.fileName
-
 app.post('/project/addComment', reactionctrl.addComment);
 //req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(KommentarText),req.body.project_author(Nutzer id)
 app.post('/project/addImage', reactionctrl.addImage);
@@ -148,9 +143,10 @@ app.delete('/useraddsproject/cancelFavorite',favoritectrl.cancelFavoriteEvent2, 
 app.get('/useraddsproject/amIFavorite/:uhp_idproject/:uhp_iduser', favoritectrl.amIFavorite);
 //Schickt "response": 1 wenn Favorit; schickt "response": 0 wenn noch kein Favorit.
 
-app.use('/wizardctrl/newProject', wizardctrl.setInformation);
 app.post('/wizardctrl/newProject', wizardctrl.newProject);
-//req.body.project_name, req.body.project_text, req.body.project_author, req.files.foo, req.body.fileName
+//req.body.project_author
+app.update('/wizardctrl/newProject', wizardctrl.addProjectinformation);
+//req.body.project_name, req.body.project_text, req.files.foo, req.body.fileName, req.body.project_writeRights, req.body.ziel, req.body.termin , req.body.projectid
 
 //suche
 app.get('/project/stringsearch/:project_name', searchctrl.searchString);
