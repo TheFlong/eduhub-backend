@@ -5,6 +5,7 @@ module.exports = {
     addRes2,
     getProjectsResources
 }
+//Prüfen ob Ressource schon vorhanden
 function addRes1(req, res, next){
     knex('Resource')
         .select('resourceid as resourceid')
@@ -16,6 +17,7 @@ function addRes1(req, res, next){
         }) 
 
 }
+//Hinzufügen der Ressource zum Projekt
 function addRes2(req,res){
     if(req.resourceid != null){
         knex('ProjectHasResource')
@@ -53,7 +55,7 @@ function addRes2(req,res){
     }
 }
 
-
+//Abfrage aller verlinkten Ressource
 function getProjectsResources(req,res){
     knex
         .select('resourceid', 'resource_name').from('Resource')

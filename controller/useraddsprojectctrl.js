@@ -1,17 +1,20 @@
 var knex = require('../db/knex')
 
 module.exports = {
+    //Mitglied eines Projekts werden
     beMember1,
     beMember2,
     beMemberEvent1,
     beMemberEvent2,
+    //Mitgliedschaft in einem Projekt beenden
     cancelMembership1,
     cancelMembership2,
     cancelMembershipEvent1,
     cancelMembershipEvent2,
+    //Abfrage der Mitglieder
     amIMember
 };
-
+// Eintrag in Verknüpfungstabelle 'UserHasProject' mit dem rolle: member
 function beMember1 (req,res,next){
 knex('UserHasProject')
         .insert({
@@ -23,6 +26,7 @@ knex('UserHasProject')
              next();
         })
 }
+//Update des Zählers für Member im Projekt
 function beMember2(req,res){
     knex('Project')
     .where('projectid', req.projectid)
@@ -37,6 +41,7 @@ function beMember2(req,res){
     })
 
 }
+//Auslesen von Vorname, Nachname und Projektname um Memberevent zu erzeugen
 function beMemberEvent1(req,res,next){
     knex.select('surname as temp1', 'forename as temp2').from('User').where('userid', req.body.uhp_iduser)
         .then(function(response, response1){
@@ -52,6 +57,7 @@ function beMemberEvent1(req,res,next){
         }) 
     })  
 }
+//Memberevent als Projekt ablegen
 function beMemberEvent2(req,res, next){
     return knex.transaction(function(t){
         return knex('Project')
@@ -83,7 +89,7 @@ function beMemberEvent2(req,res, next){
 
     });
 }
-
+//Herabsetzen des Memberzählers im Projekt
 function cancelMembership1(req,res,next){
     knex('Project')
     .where('projectid', req.body.uhp_idproject)
@@ -95,6 +101,7 @@ function cancelMembership1(req,res,next){
    })
 
 }
+//Löschen des Eintrages in der Verknüpfungstabelle 'UserHasProject'
 function cancelMembership2(req,res){
     knex('UserHasProject')
         .where('uhp_idproject',  req.projectid)
@@ -110,6 +117,7 @@ function cancelMembership2(req,res){
             })
         })
 }
+//Auslesen von Vorname, Nachname und Projektname um Memberevent zu erzeugen
 function cancelMembershipEvent1(req,res,next){
     knex.select('surname as temp1', 'forename as temp2').from('User').where('userid', req.body.uhp_iduser)
         .then(function(response, response1){
@@ -125,6 +133,7 @@ function cancelMembershipEvent1(req,res,next){
         }) 
     })  
 }
+//Memberevent als Projekt ablegen
 function cancelMembershipEvent2(req,res, next){
     return knex.transaction(function(t){
         return knex('Project')
@@ -156,6 +165,7 @@ function cancelMembershipEvent2(req,res, next){
 
     });
 }
+//Ausgabe ob User Mitglied dieses Projekts ist 0/1
 function amIMember(req, res){
     knex('UserHasProject')
         .count('uhp_idproject as CNT')

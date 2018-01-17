@@ -9,6 +9,7 @@ module.exports = {
     getMyProject,
     getMyFavProjects,
     getMyTimeline,
+    //Abfrage aller Termine des Nutzers
     getMyMeetings,
     getMyMeetings2,
     getMyMeetings3,
@@ -16,6 +17,7 @@ module.exports = {
     addOne,
     
     changeOne,
+    //Profilfoto ändern
     changePicture1,
     changePicture2,
     
@@ -25,17 +27,17 @@ module.exports = {
 
 };
 
-
+//Ausgabe aller Nutzer
 function getAll(req, res) {
     knex.select().from('User').then( User => res.send(User) );
 }
-
+//Ausgabe eines bestimmten Users anhand der Emailadresse
 function getOne(req, res) {
     knex.select().from('User').where('email', req.params.email).then(function(User){
         res.send(User)
     })
 }
-
+//Ausgabe aller Projekte die mit User mit den Rollen "member" oder "author" verlinkt sind
 function getMyProject(req, res){
     knex
         .select().from('Project')
@@ -50,6 +52,7 @@ function getMyProject(req, res){
     })
 }
 
+//Abfrage aller Projekte die User als Favorit markiert hat
 function getMyFavProjects(req,res){
     knex.select()
         .from('Project')
@@ -61,6 +64,7 @@ function getMyFavProjects(req,res){
         })
 }
 
+//Abfrage aller vergangenen Aktionen des Users
 function getMyTimeline(req,res){
     knex.select('*')
         .from('Project')
@@ -71,6 +75,7 @@ function getMyTimeline(req,res){
     })
  }
 
+//Abfrage aller Termine des Users
 function getMyMeetings(req,res,next){
     req.termin = [];
     knex.select('projectid as projectid', 'project_name as project_name', 'Project_projectid as project_projectid', 'project_termin as project_termin')
@@ -84,6 +89,7 @@ function getMyMeetings(req,res,next){
             next();
         })
 }
+//Abfrage der Projektnamen der zugehörigen Vaterprojekte
 function getMyMeetings2(req,res,next){
     var i = 0;
     req.name = []
@@ -103,7 +109,7 @@ function getMyMeetings2(req,res,next){
             })
     })
 }     
-
+//Fertigmachen des Ergebnissarrays
 function getMyMeetings3(req,res){
     var r = 0;
     req.body.ergebnis = []
@@ -116,61 +122,7 @@ function getMyMeetings3(req,res){
 }
        
        
-       
-       
-       
-       
-       
-       
-        /*  .then(function (response1){
-            var a = [];
-            var i = 0;
-            req.body.termin.forEach(function(response2){
-                knex.select('project_name as project_titel')
-                    .from('Project')
-                    .where('projectid', req.body.termin[i].project_projectid)
-                    .then(function(response3){
-                        a.push(response3)
-                        console.log(a)
-                        })    
-                i = i+1;
-                
-            }) */
-            
-            /* var j = 0;
-            req.body.termin.forEach(function(response){  
-                req.body.termin[0].push(req.body.ergebnis[j])
-                console.log(req.body.termin)
-                 j++;
-                }) */
-      /*   }).then(function(){
-            res.send();
-            console.log(req.body.ergebnis);
-            console.log(req.body.termin);
-        })
- */
-           
-       
-
-/* 
-function getMeetings2(req,res){ 
-    var j=0;
-    console.log(req.termin)
-    var a = req.termin;
-    console.log(req.ergebnis)
-   // req.body.endergebnis = [];
-    req.termin.forEach(function(){
-        a.push(req.ergebins);
-        j++;
-    })
-    console.log(req.termin)
-}
- */
-
-
-
-
-
+//User hinzufügen
 function addOne(req,res){
     var startup_image = req.files.foo;
     var fileName = filename(req.body.fileName);
@@ -210,6 +162,8 @@ function addOne(req,res){
         })
     })
 }
+
+//Userdaten aktualisieren
 function changeOne(req, res){
     knex('User').where('email', req.body.email)
         .update({
@@ -235,6 +189,7 @@ function changeOne(req, res){
                 .then(User => res.send(User));
         })
 }
+//Abfragen des Imagepath des vorhandenen Profilfotos
 //req.body.userid, req.file.foo
 function changePicture1(req,res,next){
     knex.select('profilpic as temp1').from('User').where('email', req.body.email)
@@ -244,7 +199,7 @@ function changePicture1(req,res,next){
         next();
     })       
 }
-
+//Neues Bild speichern
 function changePicture2(req, res){
     var filepath = req.filepath.temp1;
     var startup_image = req.files.foo;
@@ -268,7 +223,7 @@ function changePicture2(req, res){
         })
 }
 
-
+//User löschen
 function deleteOne(req, res){
     knex('User').where('email', req.body.email)
         .del()

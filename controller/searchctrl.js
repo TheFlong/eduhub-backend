@@ -3,7 +3,7 @@ var knex = require('../db/knex')
 module.exports = {
     searchString
 }
-
+//Suche nach Teilstring
 function searchString(req,res){
     knex('Project')
     .select()

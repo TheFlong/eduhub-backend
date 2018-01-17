@@ -168,7 +168,7 @@ function cancelFavoriteEvent2(req,res, next){
     });
 }
 
-//Ausgabe des Favzählers eines Projektes
+//Ausgabe ob User dieses Projekt als fav markiert hat 0/1
 function amIFavorite(req, res){
     knex('UserHasProject')
         .count('uhp_idproject as CNT')

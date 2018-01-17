@@ -7,7 +7,7 @@ module.exports = {
     getProjectsTags
 }
 
-
+//Abfrage aller zugehöriger Tags
 function getProjectsTags(req,res){
     knex
         .select('tagid', 'tag_name').from('Tag')
@@ -17,13 +17,7 @@ function getProjectsTags(req,res){
             res.send(Project)
         })     
 }
-
-// Muss erst checken ob Tag schon vorhanden:
-/* Wenn Ja: ProjectHasTag mit vorhandenem Tag
-        Nein: neuen Tag erst
- */
-
- //Testing steht noch aus dann funktion übertragen auf Ressourcen. Ist die Funktion anwendbar wenn neues Projekt erstellt wird? Mit Kev absprechen!
+//Prüfen ob Tag schon vorhanden ist
 function addTag1(req, res, next){
 
     knex('Tag')
@@ -36,6 +30,7 @@ function addTag1(req, res, next){
         }) 
 
 }
+//Hinzufügen des Tags
 function addTag2(req,res){
     if(req.tagid != null){
         knex('ProjectHasTag')
