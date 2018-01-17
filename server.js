@@ -144,7 +144,7 @@ app.get('/useraddsproject/amIFavorite/:uhp_idproject/:uhp_iduser', favoritectrl.
 //Schickt "response": 1 wenn Favorit; schickt "response": 0 wenn noch kein Favorit.
 
 app.post('/wizardctrl/newProject', wizardctrl.newProject);
-//req.body.project_author
+//req.body.project_author, req.body.project_activity
 app.put('/wizardctrl/newProject', wizardctrl.addProjectinformation);
 //req.body.project_name, req.body.project_text, req.files.foo, req.body.fileName, req.body.project_writeRights, req.body.ziel, req.body.termin , req.body.projectid
 
@@ -159,7 +159,7 @@ app.get('/governance/amIEditor/:uhp_idproject/:uhp_iduser', governancectrl.amIEd
 app.use('/governance/addEditor', governancectrl.addEditorEvent1, governancectrl.addEditor1);
 app.post('/governance/addEditor', governancectrl.addEditorEvent2)
 app.use('/governance/deleteEditor', governancectrl.deleteEditorEvent1,governancectrl.deleteEditor1)
-app.post('/governance/addEditor', governancectrl.deleteEditorEvent2)
+app.post('/governance/deleteEditor', governancectrl.deleteEditorEvent2)
 // req.body.uhp_idproject, req.body.uhp_iduser, req.body.authorid)
 
 
