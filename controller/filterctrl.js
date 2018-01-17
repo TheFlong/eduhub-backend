@@ -7,7 +7,7 @@ module.exports = {
     getMemberEvents
 
 };
-
+//Gibt alle Reaktionen auf ein Projekt aus mit dem Typ "addDocument" oder "addImage"
 function getUploadEvents(req,res){
     knex('Project')
         .select('*')
@@ -18,7 +18,7 @@ function getUploadEvents(req,res){
             res.send(response);
         })
 }
-
+//Gibt alle Reaktionen auf ein Projekt aus mit dem Typ "addTermin"
 function getTerminEvents(req,res){
     knex('Project')
     .select('*')
@@ -29,7 +29,7 @@ function getTerminEvents(req,res){
         res.send(response);
     })
 }
-
+//Gibt alle Reaktionen auf ein Projekt aus mit dem Typ "newComment"
 function getCommentEvents(req,res){
     knex('Project')
     .select('*')
@@ -40,7 +40,7 @@ function getCommentEvents(req,res){
         res.send(response);
     })
 }
-
+//Gibt alle Reaktionen auf ein Projekt aus mit dem Typ "bemember" oder "cancelmembership"
 function getMemberEvents(req,res){
     knex('Project')
     .select('*')

@@ -1,18 +1,21 @@
 var knex = require('../db/knex')
 module.exports = {
+    //Funktionen um ein Projekt als Favorit zu markieren
     beFavorite1,
     beFavorite2,
     beFavoriteEvent1,
     beFavoriteEvent2,
+    //Funktionen um ein Projekt als Favorit zu löschen
     cancelFavorite1,
     cancelFavorit2,
     cancelFavoriteEvent1,
     cancelFavoriteEvent2,
+    //Funktion um Favoritenanzahl auszugeben
     amIFavorite
 }
 
 
-
+// Eintrag in Verknüpfungstabelle 'UserHasProject' mit dem rolle: favorite
 function beFavorite1 (req,res,next){
     knex('UserHasProject')
             .insert({
@@ -24,6 +27,8 @@ function beFavorite1 (req,res,next){
                  next();
             })
  }
+
+//Update des Zählers für Favoriten im Projekt
 function beFavorite2(req,res){
     knex('Project')
         .where('projectid', req.projectid)
@@ -38,6 +43,7 @@ function beFavorite2(req,res){
         })
     
 }
+//Auslesen von Vorname, Nachname und Projektname um Favoritevent zu erzeugen
 function beFavoriteEvent1(req,res,next){
     knex.select('surname as temp1', 'forename as temp2').from('User').where('userid', req.body.uhp_iduser)
         .then(function(response, response1){
@@ -53,6 +59,7 @@ function beFavoriteEvent1(req,res,next){
         }) 
     })  
 }
+//Favoriteevent als Projekt ablegen
 function beFavoriteEvent2(req,res, next){
     return knex.transaction(function(t){
         return knex('Project')
@@ -84,6 +91,7 @@ function beFavoriteEvent2(req,res, next){
 
     });
 }
+//Herabsetzen des Favzählers im Projekt
 function cancelFavorite1(req,res,next){
     knex('Project')
     .where('projectid', req.body.uhp_idproject)
@@ -95,6 +103,7 @@ function cancelFavorite1(req,res,next){
    })
 
 }
+//Löschen des Eintrages in der Verknüpfungstabelle 'UserHasProject'
 function cancelFavorit2(req,res){
     knex('UserHasProject')
         .where('uhp_idproject',  req.projectid)
@@ -110,6 +119,7 @@ function cancelFavorit2(req,res){
                 })
         })
 }
+//Auslesen von Vorname, Nachname und Projektname um Favoritevent zu erzeugen
 function cancelFavoriteEvent1(req,res,next){
     knex.select('surname as temp1', 'forename as temp2').from('User').where('userid', req.body.uhp_iduser)
         .then(function(response, response1){
@@ -125,6 +135,7 @@ function cancelFavoriteEvent1(req,res,next){
         }) 
     })  
 }
+//Favoriteevent als Projekt ablegen
 function cancelFavoriteEvent2(req,res, next){
     return knex.transaction(function(t){
         return knex('Project')
@@ -156,6 +167,8 @@ function cancelFavoriteEvent2(req,res, next){
 
     });
 }
+
+//Ausgabe des Favzählers eines Projektes
 function amIFavorite(req, res){
     knex('UserHasProject')
         .count('uhp_idproject as CNT')

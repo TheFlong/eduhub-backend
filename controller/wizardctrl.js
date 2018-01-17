@@ -14,6 +14,7 @@ function newProject(req,res){
         .insert({
             project_projecttype: "newProject",
             project_author: req.body.project_author,
+            project_activity: req.body.project_activity
         })
         .then(function(response){
             projectid = response[0];
@@ -76,7 +77,6 @@ function addProjectinformation(req,res){
 
 
 function filename(a){
-
         return a + '-' + Date.now()
 
-    }
+}

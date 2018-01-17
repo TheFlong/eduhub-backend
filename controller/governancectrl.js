@@ -2,18 +2,22 @@ var knex = require('../db/knex')
 
 
 module.exports = {
+    //Abfrage nach Rechtetyp
     amIAuthor,
     amIEditor,
     
+    //Editor hinzufügen
     addEditor1,
     addEditorEvent1,
     addEditorEvent2,
+
+    //Editor entfernen
     deleteEditor1,
     deleteEditorEvent1,
     deleteEditorEvent2
 
 };
-
+//Abfrage ob Nutzer Autor ist mit dem Rückgabewert 0 für nein und 1 für ja
 function amIAuthor(req, res){
     knex('UserHasProject')
         .count('uhp_idproject as CNT')
@@ -28,7 +32,7 @@ function amIAuthor(req, res){
             });
         })
 }
-
+//Abfrage ob Nutzer Editor ist mit dem Rückgabewert 0 für nein und 1 für ja
 function amIEditor(req, res){
     knex('UserHasProject')
         .count('uhp_idproject as CNT')
@@ -44,7 +48,7 @@ function amIEditor(req, res){
         })
 }
 
-
+//Updaten der verknüfungstabelle des Nutzer der als Editor hinzugefügt wird
 function addEditor1 (req,res,next){
     knex('UserHasProject')
     .where('uhp_iduser',req.body.uhp_iduser)
@@ -56,7 +60,7 @@ function addEditor1 (req,res,next){
          next();
     })
 }
-
+//Auslesen von Vorname, Nachname und Projektname um Editorevent zu erzeugen
 function addEditorEvent1(req,res,next){
     knex.select('surname as temp1', 'forename as temp2').from('User').where('userid', req.body.uhp_iduser)
         .then(function(response, response1){
@@ -72,6 +76,7 @@ function addEditorEvent1(req,res,next){
         }) 
     })  
 }
+//Editorevent als Projekt ablegen
 function addEditorEvent2(req,res){
     var projectid = 0;
     return knex.transaction(function(t){
@@ -118,7 +123,7 @@ function addEditorEvent2(req,res){
 
     });
 }
-
+//Updaten der verknüfungstabelle des Nutzer der als Editor entfernt wird
 function deleteEditor1 (req,res,next){
     knex('UserHasProject')
     .where('uhp_iduser',req.body.uhp_iduser)
@@ -131,6 +136,7 @@ function deleteEditor1 (req,res,next){
     })
 }
 
+//Auslesen von Vorname, Nachname und Projektname um Editorevent zu erzeugen
 function deleteEditorEvent1(req,res,next){
     knex.select('surname as temp1', 'forename as temp2').from('User').where('userid', req.body.uhp_iduser)
         .then(function(response, response1){
@@ -146,6 +152,7 @@ function deleteEditorEvent1(req,res,next){
         }) 
     })  
 }
+//Editorevent als Projekt ablegen
 function deleteEditorEvent2(req,res){
     var projectid = 0;
     return knex.transaction(function(t){
