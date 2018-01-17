@@ -47,12 +47,10 @@ function amIEditor(req, res){
 
 function addEditor1 (req,res,next){
     knex('UserHasProject')
-    .insert({
-        uhp_iduser: req.body.uhp_iduser,
-        uhp_idproject: req.body.uhp_idproject,
+    .where('uhp_iduser',req.body.uhp_iduser)
+    .update({
         uhp_userrole: "editor"
     }).then(function(){
-         req.projectid = req.body.uhp_idproject;
          next();
     })
 }
