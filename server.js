@@ -15,6 +15,7 @@ var reactionctrl = require('./controller/reactionctrl');
 var searchctrl = require('./controller/searchctrl');
 var filterctrl = require('./controller/filterctrl');
 var governancectrl = require('./controller/governancectrl');
+var karmactrl  = require('./controller/karmactrl');
 
 
 const http = require('http');
@@ -160,6 +161,15 @@ app.post('/governance/addEditor', governancectrl.addEditorEvent2)
 app.use('/governance/deleteEditor', governancectrl.deleteEditorEvent1,governancectrl.deleteEditor1)
 app.post('/governance/deleteEditor', governancectrl.deleteEditorEvent2)
 // req.body.uhp_idproject, req.body.uhp_iduser, req.body.authorid)
+
+app.use('/useraddsproject/karma/add',karmactrl.addLike1, karmactrl.addLikeEvent1);
+app.post('/useraddsproject/karma/add',karmactrl.addLikeEvent2,karmactrl.addLike2);
+//req.body.uhp_iduser, req.body.uhp_idproject
+app.use('/useraddsproject/karma/remove',karmactrl.deleteLike1, karmactrl.deleteLikeEvent2);
+app.delete('/useraddsproject/karma/remove',karmactrl.deleteLikeEvent2, karmactrl.deleteLike2);
+//req.body.uhp_iduser, req.body.uhp_idproject
+app.get('/useraddsproject/karma/amILiker/:uhp_idproject/:uhp_iduser', karmactrl.amILiker);
+//Schickt "response": 1 wenn liked; schickt "response": 0 wenn noch nicht geliked.
 
 
 
