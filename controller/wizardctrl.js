@@ -61,7 +61,7 @@ function addProjectinformation(req,res){
             project_text: req.body.project_text,
             project_imagepath: 'images/' + fileName + '.png',
             project_writeRights: req.body.project_writeRights,
-            project_statement: req.body.ziel,
+            project_statement: req.body.project_statement,
             project_termin: req.body.termin
         })
         .then(t.commit)
