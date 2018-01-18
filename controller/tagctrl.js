@@ -32,6 +32,7 @@ function addTag1(req, res, next){
 }
 //Hinzufügen des Tags
 function addTag2(req,res){
+    console.log(req.tagid)
     if(req.tagid != null){
         knex('ProjectHasTag')
             .insert({
@@ -39,7 +40,12 @@ function addTag2(req,res){
                 pht_idproject: req.body.projectid
             })
             .then(function(response){
-                res.send(response)
+                knex.select()
+                .from('Tag')
+                .where('tag_name', req.body.tag_name)
+                .then(function(project) {
+                    res.send(project);
+                })
             })
     }
     else {
@@ -60,9 +66,13 @@ function addTag2(req,res){
                 })
                 .then(t.commit)
                 .catch(t.rollback)
-                .then(function(){
-                    res.send(Project)
-
+                .then(function(response){
+                    knex.select()
+                    .from('Tag')
+                    .where('tag_name', req.body.tag_name)
+                    .then(function(project) {
+                        res.send(project);
+                    })
                 })
         })
     }
