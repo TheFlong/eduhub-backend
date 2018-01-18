@@ -26,7 +26,12 @@ function addRes2(req,res){
                 phr_idproject: req.body.projectid
             })
             .then(function(response){
-                res.send(response)
+                knex.select()
+                .from('Resource')
+                .where('resource_name', req.body.resource_name)
+                .then(function(project) {
+                    res.send(project);
+                })
             })
     }
     else {
@@ -47,9 +52,13 @@ function addRes2(req,res){
                 })
                 .then(t.commit)
                 .catch(t.rollback)
-                .then(function(){
-                    res.send(Project)
-
+                .then(function(response){
+                    knex.select()
+                    .from('Resource')
+                    .where('resource_name', req.body.resource_name)
+                    .then(function(project) {
+                        res.send(project);
+                    })
                 })
         })
     }
