@@ -69,7 +69,7 @@ function addProjectinformation(req,res){
         .then(t.commit)
         .catch(t.rollback)
         .then(function() {
-            knex.select().from('Project').where('projectid', projectid)
+            knex.select().from('Project').where('projectid', req.body.projectid)
             .then(function(project) {
                 res.send(project);
             })
