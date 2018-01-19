@@ -61,8 +61,7 @@ app.get('/user/getmyproject/favs/:userid',userctrl.getMyFavProjects);
 app.get('/user/profil/timeline/:userid', userctrl.getMyTimeline);
 ////Input: userid
 
-app.use('/user/myevents/:userid', userctrl.getMyMeetings, userctrl.getMyMeetings2);
-app.get('/user/myevents/:userid', userctrl.getMyMeetings3);
+app.get('/user/myevents/:userid', userctrl.getMyMeetings);
 //Input: userid
 
 

@@ -11,8 +11,6 @@ module.exports = {
     getMyTimeline,
     //Abfrage aller Termine des Nutzers
     getMyMeetings,
-    getMyMeetings2,
-    getMyMeetings3,
 
     addOne,
     
@@ -79,51 +77,16 @@ function getMyTimeline(req,res){
 
 
 //Abfrage aller Termine des Users
-function getMyMeetings(req,res,next){
-    req.termin = [];
-    knex.select('projectid as projectid', 'project_name as project_name', 'Project_projectid as project_projectid', 'project_termin as project_termin')
-        .from('Project')
-        .where('project_projecttype', "addTermin")
-        .join('UserHasProject', 'uhp_idproject', 'projectid')
-        .where('uhp_iduser', req.params.userid)
-        .orderBy('project_termin', 'asc')
-        .then(function(response){
-            req.termin = response;
-            next();
-        })
+function getMyMeetings(req,res){
+   
+        knex.select('ua.projectid as projectid1', 'ua.project_name as project_name1', 'ua.Project_projectid as project_projectid1', 'ua.project_termin as project_termin1','ua.project_projecttype as project_projecttype1',  'uw.project_name as parentproject' )
+             .from('Project as ua')
+             .innerJoin('Project as uw', 'uw.projectid', 'ua.Project_projectid')
+             .where('ua.project_projecttype', 'addTermin') 
+             .leftJoin('UserHasProject', 'uhp_idproject', 'ua.projectid')
+             .where('uhp_iduser', req.params.userid)
+        .then( User => res.send(User))
 }
-//Abfrage der Projektnamen der zugehörigen Vaterprojekte
-function getMyMeetings2(req,res,next){
-    var i = 0;
-    req.name = []
-    req.termin.forEach(function(response2){
-        knex.select('project_name as titel')
-            .from('Project')
-            .where('projectid', req.termin[i].project_projectid)
-            .then(function(response3){
-                req.name.push(response3) 
-            }).then(function(response12){
-                if(i < req.termin.length -1){
-                   i = i+1;
-                }
-                else{
-                    next();
-                }
-            })
-    })
-}     
-//Fertigmachen des Ergebnissarrays
-function getMyMeetings3(req,res){
-    var r = 0;
-    req.body.ergebnis = []
-    req.termin.forEach(function(){
-        var a = [{projectid : req.termin[r].projectid, project_name: req.termin[r].project_name ,project_projectid: req.termin[r].project_projectid, project_titel: (req.name[r])[0].titel, project_termin: req.termin[r].project_termin}];
-        req.body.ergebnis.push(a)
-        r++;
-    })
-     res.send(req.body.ergebnis);
-}
-       
        
 //User hinzufügen
 function addOne(req,res){
