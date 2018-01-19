@@ -75,6 +75,9 @@ function getMyTimeline(req,res){
     })
  }
 
+
+
+
 //Abfrage aller Termine des Users
 function getMyMeetings(req,res,next){
     req.termin = [];
