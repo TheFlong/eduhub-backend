@@ -79,7 +79,7 @@ function getMyTimeline(req,res){
 //Abfrage aller Termine des Users
 function getMyMeetings(req,res){
    
-        knex.select('ua.projectid as projectid1', 'ua.project_name as project_name1', 'ua.Project_projectid as project_projectid1', 'ua.project_termin as project_termin1','ua.project_projecttype as project_projecttype1',  'uw.project_name as parentproject' )
+        knex.select('ua.projectid as projectid1', 'ua.project_name as project_name1', 'ua.Project_projectid as project_projectid1', 'ua.project_termin as project_termin1',  'uw.project_name as parentproject' )
              .from('Project as ua')
              .innerJoin('Project as uw', 'uw.projectid', 'ua.Project_projectid')
              .where('ua.project_projecttype', 'addTermin') 
