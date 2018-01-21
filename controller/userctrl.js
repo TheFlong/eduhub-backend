@@ -44,7 +44,9 @@ function getMyProject(req, res){
         .where(function(){
             this.where('uhp_userrole',"member")
                 .orWhere('uhp_userrole', "author")
+                .orWhere('uhp_userrole', "editor")
         })
+        .andWhere('project_projecttype', "newProject")
     .then(function(Project){
         res.send(Project)
     })
