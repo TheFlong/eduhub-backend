@@ -4,7 +4,9 @@ module.exports = {
 
     addTag1,
     addTag2,
-    getProjectsTags
+    getProjectsTags,
+
+    deleteTag
 }
 
 //Abfrage aller zugehöriger Tags
@@ -76,4 +78,33 @@ function addTag2(req,res){
                 })
         })
     }
+}
+
+//Löschen eines Tag
+function deleteTag(req,res){
+    return knex.transaction(function(t){
+        return knex('Tag')
+            .transacting(t)
+            .select('tagid')
+            .where('tag_name', req.body.tag_name)
+            .then(function(response){
+                return knex('ProjectHasTag')
+                    .transacting(t)
+                    .where('pht_idtag', response[0].tagid)
+                    .andWhere('pht_idproject', req.body.projectid)
+                    .del()
+            })
+            .then(t.commit)
+            .catch(t.rollback)
+            .then(function(response){
+                knex
+                .from('Tag')
+                .select('tagid', 'tag_name')
+                .join('ProjectHasTag', 'pht_idtag', 'tagid')
+                .where('pht_idproject', req.body.projectid)
+                .then(function(Project){
+                    res.send(Project)
+                })     
+            })
+        })
 }
