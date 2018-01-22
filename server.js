@@ -48,9 +48,6 @@ app.use(fileUpload());
 
 const server = http.createServer(app);
 
-
-
-
 //userctrl Routes
 app.get('/user', userctrl.getAll);
 app.get('/user/:email', userctrl.getOne);
@@ -61,10 +58,8 @@ app.get('/user/getmyproject/favs/:userid',userctrl.getMyFavProjects);
 //Input: userid
 app.get('/user/profil/timeline/:userid', userctrl.getMyTimeline);
 ////Input: userid
-
 app.get('/user/myevents/:userid', userctrl.getMyMeetings);
 //Input: userid
-
 app.use('/user', userctrl.adduser1)
 app.post('/user', userctrl.adduser2);
 //Input:
@@ -72,7 +67,6 @@ app.post('/user', userctrl.adduser2);
 //req.body.street, req.body.city, req.body.number, req.body.postcode,
 //req.body.function, subject1: req.body.subject1, subject2: req.body.subject2, subject3: req.body.subject3
 //req.body.school_name, req.body.school_street,  req.body.school_postcode,req.body.house_number, req.body.school_city, req.body.student_number
-
 app.use('/user/update', userctrl.changeOne1);
 app.post('/user/update', userctrl.changeOne2);
 //Input:
@@ -84,12 +78,8 @@ app.post('/user/update', userctrl.changeOne2);
 app.use('/user/changepicture',userctrl.changePicture1);
 app.put('/user/changepicture', userctrl.changePicture2);
 //Input: req.body.userid, req.file.foo
-
-
 app.delete('/user',userctrl.deleteOne);
 //Input: req.body.email
-
-
 
 //projectctrl Routes
 app.get('/project/members/:projectid', projectctrl.getMembers);
@@ -113,7 +103,6 @@ app.get('/project/filter/memberevents/:projectid', filterctrl.getMemberEvents);
 app.get('/project/filter/comments/:projectid', filterctrl.getCommentEvents);
 app.get('/project/filter/termin/:projectid', filterctrl.getTerminEvents);
 //Input: projectid
-
 app.post('/project/addComment', reactionctrl.addComment);
 //Input:
 //req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(KommentarText),
@@ -138,18 +127,14 @@ app.put('/project/update', projectctrl.changeProject2);
 app.delete('/project/delete', projectctrl.deleteProject)
 //Input: req.body.projectid
 
-
 //tagctrl Routes
 app.get('/tag/:projectid', tagctrl.getProjectsTags)
 //Input: projectid
-
-
 app.use('/addtag', tagctrl.addTag1)
 app.post('/addtag', tagctrl.addTag2)
 //Input: req.body.pht_idproject, req.body.tag_name
 app.delete('/deletetag', tagctrl.deleteTag)
 //Input: req.body.pht_idproject, req.body.tag_name
-
 
 //resourcectrl Routes
 app.get('/resource/:projectid', resourcectrl.getProjectsResources);
@@ -157,8 +142,6 @@ app.get('/resource/:projectid', resourcectrl.getProjectsResources);
 app.use('/addresource', resourcectrl.addRes1);
 app.post('/addresource', resourcectrl.addRes2);
 //Input: req.body.phr_idproject, req.body.resource_name
-
-
 
 //UseraddsProjectCtrl
 app.use('/useraddsproject/beMember',useraddsprojectctrl.beMember1,  useraddsprojectctrl.beMemberEvent1);
@@ -170,7 +153,6 @@ app.delete('/useraddsproject/cancelMembership',useraddsprojectctrl.cancelMembers
 app.get('/useraddsproject/amIMember/:uhp_idproject/:uhp_iduser', useraddsprojectctrl.amIMember)
 //Input: uhp_idproject,uhp_iduser
 //Schickt "response": 1 wenn Member; schickt "response": 0 wenn noch kein Member.
-
 app.use('/useraddsproject/beFavorite',favoritectrl.beFavorite1, favoritectrl.beFavoriteEvent1);
 app.post('/useraddsproject/beFavorite',favoritectrl.beFavoriteEvent2,favoritectrl.beFavorite2);
 //Input: req.body.uhp_iduser, req.body.uhp_idproject
@@ -181,6 +163,7 @@ app.get('/useraddsproject/amIFavorite/:uhp_idproject/:uhp_iduser', favoritectrl.
 //Input: uhp_idproject, uhp_iduser
 //Schickt "response": 1 wenn Favorit; schickt "response": 0 wenn noch kein Favorit.
 
+//wizardctrl Neues Projekt erstellen
 app.post('/wizardctrl/newProject', wizardctrl.newProject);
 //Input: req.body.project_author, req.body.project_activity
 app.put('/wizardctrl/newProject', wizardctrl.addProjectinformation);
@@ -190,14 +173,12 @@ app.put('/wizardctrl/newProject', wizardctrl.addProjectinformation);
 
 //Suche
 app.get('/project/stringsearch/:project_name', searchctrl.searchString);
-
 //Input: project_name
 
 //Rechtemanagement
 app.get('/governance/amIAuthor/:uhp_idproject/:uhp_iduser', governancectrl.amIAuthor);
 app.get('/governance/amIEditor/:uhp_idproject/:uhp_iduser', governancectrl.amIEditor);
 //Input: uhp_idproject, uhp_iduser
-
 app.use('/governance/addEditor', governancectrl.addEditorEvent1, governancectrl.addEditor1);
 app.post('/governance/addEditor', governancectrl.addEditorEvent2)
 //Input: req.body.uhp_idproject, req.body.uhp_iduser, req.body.authorid
@@ -205,6 +186,7 @@ app.use('/governance/deleteEditor', governancectrl.deleteEditorEvent1,governance
 app.post('/governance/deleteEditor', governancectrl.deleteEditorEvent2)
 //Input: req.body.uhp_idproject, req.body.uhp_iduser, req.body.authorid
 
+//Karmactrl
 app.use('/useraddsproject/karma/add',karmactrl.addLike1, karmactrl.addLikeEvent1);
 app.post('/useraddsproject/karma/add',karmactrl.addLikeEvent2,karmactrl.addLike2);
 //Input: req.body.uhp_iduser, req.body.uhp_idproject
