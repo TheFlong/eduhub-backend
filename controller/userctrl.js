@@ -14,7 +14,7 @@ module.exports = {
     //Nutzer hinzufügen
     adduser1,
     adduser2,
-    
+    //User aktualisieren
     changeOne1,
     changeOne2,
     //Profilfoto ändern
@@ -204,7 +204,7 @@ function adduser2(req,res){
         })
     }
 }
-
+//Schule prüfen bei Aktualisierung
 function changeOne1(req,res,next){
     
         knex.from('School')
@@ -219,6 +219,7 @@ function changeOne1(req,res,next){
             }) 
    
 }
+//Update des Users und wenn nötig eintrag einer neuen Schule
 function changeOne2(req,res){ 
     if(req.schoolid != null){
         
@@ -297,54 +298,6 @@ function changeOne2(req,res){
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Userdaten aktualisieren
-function changeOne(req, res){
-    knex('User').where('email', req.body.email)
-        .update({
-            forename: req.body.forename,
-            surname: req.body.surname,
-            email: req.body.email,
-            street: req.body.street,
-            city: req.body.city,
-            number: req.body.number,
-            postcode: req.body.postcode,
-            user_schoolid: req.body.schoolid,
-            function: req.body.function,
-            subject1: req.body.subject1,
-            subject2: req.body.subject2,
-            subject3: req.body.subject3,
-            user_description: req.body.user_description,
-            user_privacy: req.body.user_privacy
-
-        })
-        .then(() => {
-            knex.select()
-                .from('User')
-                .then(User => res.send(User));
-        })
-}
 //Abfragen des Imagepath des vorhandenen Profilfotos
 //req.body.userid, req.file.foo
 function changePicture1(req,res,next){
