@@ -15,7 +15,8 @@ module.exports = {
     adduser1,
     adduser2,
     
-    changeOne,
+    changeOne1,
+    changeOne2,
     //Profilfoto ändern
     changePicture1,
     changePicture2,
@@ -203,6 +204,120 @@ function adduser2(req,res){
         })
     }
 }
+
+function changeOne1(req,res,next){
+    
+        knex.from('School')
+            .select('schoolid')
+            .where('school_name', req.body.school_name)
+            .andWhere('school_street', req.body.school_street)
+            .andWhere('school_postcode', req.body.school_postcode)
+            .then(function(response1){
+                response1 : response1[0]; 
+                req.schoolid = response1[0];  
+                next(); 
+            }) 
+   
+}
+function changeOne2(req,res){ 
+    if(req.schoolid != null){
+        
+        knex('User')
+        .where('email', req.body.email)
+        .update({
+            forename: req.body.forename,
+            surname: req.body.surname,
+            email: req.body.email,
+            street: req.body.street,
+            city: req.body.city,
+            number: req.body.number,
+            postcode: req.body.postcode,
+            user_schoolid: req.schoolid.schoolid,
+            function: req.body.function,
+            subject1: req.body.subject1,
+            subject2: req.body.subject2,
+            subject3: req.body.subject3,
+            user_description: req.body.user_description,
+            user_privacy: req.body.user_privacy
+            
+
+        })
+        .then(function(response) {
+            knex.select().from('User')
+            .then(function(User) {
+                res.send(User);
+            })
+        })
+    }
+    else {
+        return knex.transaction(function(t){
+            return knex('School')
+                .transacting(t)
+                .insert({
+                    school_name: req.body.school_name,
+                    school_street: req.body.school_street,
+                    school_number: req.body.house_number,
+                    school_postcode: req.body.school_postcode,
+                    school_city: req.body.school_city,
+                    school_studentnumber: req.body.student_number
+                })
+                .then(function(response){
+                    return knex('User')
+                        .transacting(t)
+                        .where('email', req.body.email)
+                        .update({
+                            forename: req.body.forename,
+                            surname: req.body.surname,
+                            email: req.body.email,
+                            street: req.body.street,
+                            city: req.body.city,
+                            number: req.body.number,
+                            postcode: req.body.postcode,
+                            function: req.body.function,
+                            subject1: req.body.subject1,
+                            subject2: req.body.subject2,
+                            subject3: req.body.subject3,
+                            user_description: req.body.user_description,
+                            user_privacy: req.body.user_privacy,
+                            user_schoolid: response[0]
+                        })
+
+                }).then(function(response2) { 
+                    return knex('User')
+                    .transacting(t)
+                    .select()
+                    .then(function(User) {
+                        res.send(User);
+                    })
+                })
+                .then(t.commit)
+                .catch(t.rollback)
+    
+        })
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Userdaten aktualisieren
 function changeOne(req, res){

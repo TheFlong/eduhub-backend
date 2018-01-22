@@ -73,11 +73,14 @@ app.post('/user', userctrl.adduser2);
 //req.body.function, subject1: req.body.subject1, subject2: req.body.subject2, subject3: req.body.subject3
 //req.body.school_name, req.body.school_street,  req.body.school_postcode,req.body.house_number, req.body.school_city, req.body.student_number
 
-app.put('/user', userctrl.changeOne);
+app.use('/user/update', userctrl.changeOne1);
+app.post('/user/update', userctrl.changeOne2);
 //Input:
+//req.body.school_name, req.body.school_street, req.body.school_postcode, req.body.house_number,req.body.school_city, req.body.student_number
 //req.body.forename, req.body.surname, req.body.email,
-//req.body.street, req.body.city, req.body.number, req.body.postcode, req.body.schoolid,
-//req.body.function, subject1: req.body.subject1, subject2: req.body.subject2, subject3: req.body.subject3
+//req.body.street, req.body.city, req.body.number, req.body.postcode,
+//req.body.function, req.body.subject1,  req.body.subject2,  req.body.subject3
+//req.body.user_description, req.body.user_privacy
 app.use('/user/changepicture',userctrl.changePicture1);
 app.put('/user/changepicture', userctrl.changePicture2);
 //Input: req.body.userid, req.file.foo
@@ -133,7 +136,7 @@ app.put('/project/update', projectctrl.changeProject2);
 // changeid [5]: Projektzielsetzung ändern, req.body.newgoal
 // changeid [6]: Schreibrechte ändern, req.body.newwriteRights
 app.delete('/project/delete', projectctrl.deleteProject)
-
+//Input: 
 
 
 //tagctrl Routes
