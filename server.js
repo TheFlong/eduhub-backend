@@ -71,7 +71,7 @@ app.post('/user', userctrl.adduser2);
 //req.files.foo, req.body.fileName, req.body.forename, req.body.surname, req.body.email,
 //req.body.street, req.body.city, req.body.number, req.body.postcode,
 //req.body.function, subject1: req.body.subject1, subject2: req.body.subject2, subject3: req.body.subject3
-//req.body.school_name, req.body.school_street,  req.body.school_postcode,req.body.house_number, req.body.school_city, req.body.student_number  
+//req.body.school_name, req.body.school_street,  req.body.school_postcode,req.body.house_number, req.body.school_city, req.body.student_number
 
 app.put('/user', userctrl.changeOne);
 //Input:
@@ -120,9 +120,9 @@ app.post('/project/addImage', reactionctrl.addImage);
 //req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(Beschreibung),
 //req.body.project_author(Nutzer id),req.body.fileName,req.files.foo
 app.post('/project/addDocument', reactionctrl.addDocument);
-//Input: req.files.foo, req.body.fileName, req.body.Project_projectid, req.body.project_name, req.body.project_text, req.body.project_author 
+//Input: req.files.foo, req.body.fileName, req.body.Project_projectid, req.body.project_name, req.body.project_text, req.body.project_author
 app.post('/project/addTermin', reactionctrl.addTermin);
-//Input: req.files.foo, req.body.fileName, req.body.Project_projectid, req.body.project_name, req.body.project_text, req.body.project_author 
+//Input: req.files.foo, req.body.fileName, req.body.Project_projectid, req.body.project_name, req.body.project_text, req.body.project_author
 app.use('/project/update', projectctrl.changeProject1);
 app.put('/project/update', projectctrl.changeProject2);
 //Input: req.body.changeid, req.body.projectid, req.body.userid, req.body.projectid
@@ -138,7 +138,7 @@ app.delete('/project/delete', projectctrl.deleteProject)
 
 //tagctrl Routes
 app.get('/tag/:projectid', tagctrl.getProjectsTags)
-//Input: projectid 
+//Input: projectid
 
 
 app.use('/addtag', tagctrl.addTag1)
@@ -197,7 +197,7 @@ app.post('/governance/deleteEditor', governancectrl.deleteEditorEvent2)
 app.use('/useraddsproject/karma/add',karmactrl.addLike1, karmactrl.addLikeEvent1);
 app.post('/useraddsproject/karma/add',karmactrl.addLikeEvent2,karmactrl.addLike2);
 //req.body.uhp_iduser, req.body.uhp_idproject
-app.use('/useraddsproject/karma/remove',karmactrl.deleteLike1, karmactrl.deleteLikeEvent1,);
+app.use('/useraddsproject/karma/remove',karmactrl.deleteLike1, karmactrl.deleteLikeEvent1);
 app.delete('/useraddsproject/karma/remove',karmactrl.deleteLikeEvent2, karmactrl.deleteLike2);
 //req.body.uhp_iduser, req.body.uhp_idproject
 app.get('/useraddsproject/karma/amILiker/:uhp_idproject/:uhp_iduser', karmactrl.amILiker);
@@ -210,7 +210,7 @@ app.get('/getschools', schoolctrl.getSchools)
 
 var testctrl = require('./controller/zztest')
 
-/* 
+/*
 app.use('/test', testctrl.addschool1);
 app.post('/test', testctrl.addschool2);
 
