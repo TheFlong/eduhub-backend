@@ -18,6 +18,7 @@ var searchctrl = require('./controller/searchctrl');
 var filterctrl = require('./controller/filterctrl');
 var governancectrl = require('./controller/governancectrl');
 var karmactrl  = require('./controller/karmactrl');
+var schoolctrl = require('./controller/schoolctrl');
 
 
 const http = require('http');
@@ -64,12 +65,13 @@ app.get('/user/profil/timeline/:userid', userctrl.getMyTimeline);
 app.get('/user/myevents/:userid', userctrl.getMyMeetings);
 //Input: userid
 
-
-app.post('/user', userctrl.addOne);
+app.use('/user', userctrl.adduser1)
+app.post('/user', userctrl.adduser2);
 //Input:
 //req.files.foo, req.body.fileName, req.body.forename, req.body.surname, req.body.email,
-//req.body.street, req.body.city, req.body.number, req.body.postcode, req.body.schoolid,
-//req.body.function, subject1: req.body.subject1, subject2: req.body.subject2, subject3: req.body.subject3  
+//req.body.street, req.body.city, req.body.number, req.body.postcode,
+//req.body.function, subject1: req.body.subject1, subject2: req.body.subject2, subject3: req.body.subject3
+//req.body.school_name, req.body.school_street,  req.body.school_postcode,req.body.house_number, req.body.school_city, req.body.student_number  
 
 app.put('/user', userctrl.changeOne);
 //Input:
@@ -201,15 +203,18 @@ app.delete('/useraddsproject/karma/remove',karmactrl.deleteLikeEvent2, karmactrl
 app.get('/useraddsproject/karma/amILiker/:uhp_idproject/:uhp_iduser', karmactrl.amILiker);
 //Schickt "response": 1 wenn liked; schickt "response": 0 wenn noch nicht geliked.
 
-
+//Schoolctrl
+app.get('/getschools', schoolctrl.getSchools)
 
 
 
 var testctrl = require('./controller/zztest')
 
-app.get('/test', testctrl.test)
+/* 
+app.use('/test', testctrl.addschool1);
+app.post('/test', testctrl.addschool2);
 
-
+ */
 app.listen(port, function(){
     console.log("listening on port: ", port);
 
