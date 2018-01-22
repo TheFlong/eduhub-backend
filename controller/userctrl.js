@@ -32,11 +32,14 @@ function getAll(req, res) {
 }
 //Ausgabe eines bestimmten Users anhand der Emailadresse
 function getOne(req, res) {
-    knex.select().from('User').where('email', req.params.email).then(function(User){
+    knex.select().from('User')
+    .where('email', req.params.email)
+    .join('School', 'schoolid','user_schoolid')
+    .then(function(User){
         res.send(User)
     })
 }
-//Ausgabe aller Projekte die mit User mit den Rollen "member" oder "author" verlinkt sind
+//Ausgabe aller Projekte die mit User mit den Rollen "member" oder "author" oder "editor" verlinkt sind
 function getMyProject(req, res){
     knex
         .select().from('Project')
