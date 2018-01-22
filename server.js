@@ -208,13 +208,7 @@ app.get('/getschools', schoolctrl.getSchools)
 
 
 
-var testctrl = require('./controller/zztest')
 
-/*
-app.use('/test', testctrl.addschool1);
-app.post('/test', testctrl.addschool2);
-
- */
 app.listen(port, function(){
     console.log("listening on port: ", port);
 
