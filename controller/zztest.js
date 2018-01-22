@@ -72,7 +72,6 @@ function adduser2(req,res){
                     school_studentnumber: req.body.student_number
                 })
                 .then(function(response){
-                    console.log(response[0])
                     return knex('User')
                         .transacting(t)
                         .insert({
@@ -95,7 +94,6 @@ function adduser2(req,res){
                         })
 
                 }).then(function(response2) { 
-                    console.log(response2[0])
                     return knex('User')
                     .transacting(t)
                     .select()

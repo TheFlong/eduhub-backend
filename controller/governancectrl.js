@@ -102,7 +102,6 @@ function addEditorEvent2(req,res){
             })
         })
         .then(function(response){
-            console.log(projectid)
             return knex('UserHasProject')
             .transacting(t)
             .insert({

@@ -34,7 +34,6 @@ function addTag1(req, res, next){
 }
 //Hinzufügen des Tags
 function addTag2(req,res){
-    console.log(req.tagid)
     if(req.tagid != null){
         knex('ProjectHasTag')
             .insert({
