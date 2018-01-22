@@ -136,7 +136,7 @@ app.put('/project/update', projectctrl.changeProject2);
 // changeid [5]: Projektzielsetzung ändern, req.body.newgoal
 // changeid [6]: Schreibrechte ändern, req.body.newwriteRights
 app.delete('/project/delete', projectctrl.deleteProject)
-//Input: 
+//Input: req.body.projectid
 
 
 //tagctrl Routes
@@ -153,57 +153,64 @@ app.delete('/deletetag', tagctrl.deleteTag)
 
 //resourcectrl Routes
 app.get('/resource/:projectid', resourcectrl.getProjectsResources);
+//Input: projectid
 app.use('/addresource', resourcectrl.addRes1);
 app.post('/addresource', resourcectrl.addRes2);
-//req.body.phr_idproject, req.body.resource_name
+//Input: req.body.phr_idproject, req.body.resource_name
 
 
 
 //UseraddsProjectCtrl
 app.use('/useraddsproject/beMember',useraddsprojectctrl.beMember1,  useraddsprojectctrl.beMemberEvent1);
 app.post('/useraddsproject/beMember', useraddsprojectctrl.beMemberEvent2, useraddsprojectctrl.beMember2);
-//req.body.uhp_iduser, req.body.uhp_idproject
+//Input: req.body.uhp_iduser, req.body.uhp_idproject
 app.use('/useraddsproject/cancelMembership', useraddsprojectctrl.cancelMembership1, useraddsprojectctrl.cancelMembershipEvent1);
 app.delete('/useraddsproject/cancelMembership',useraddsprojectctrl.cancelMembershipEvent2 ,useraddsprojectctrl.cancelMembership2);
-//req.body.uhp_iduser, req.body.uhp_idproject
+//Input: req.body.uhp_iduser, req.body.uhp_idproject
 app.get('/useraddsproject/amIMember/:uhp_idproject/:uhp_iduser', useraddsprojectctrl.amIMember)
+//Input: uhp_idproject,uhp_iduser
 //Schickt "response": 1 wenn Member; schickt "response": 0 wenn noch kein Member.
 
 app.use('/useraddsproject/beFavorite',favoritectrl.beFavorite1, favoritectrl.beFavoriteEvent1);
 app.post('/useraddsproject/beFavorite',favoritectrl.beFavoriteEvent2,favoritectrl.beFavorite2);
-//req.body.uhp_iduser, req.body.uhp_idproject
+//Input: req.body.uhp_iduser, req.body.uhp_idproject
 app.use('/useraddsproject/cancelFavorite',favoritectrl.cancelFavorite1, favoritectrl.cancelFavoriteEvent1);
 app.delete('/useraddsproject/cancelFavorite',favoritectrl.cancelFavoriteEvent2, favoritectrl.cancelFavorit2);
-//req.body.uhp_iduser, req.body.uhp_idproject
+//Input: req.body.uhp_iduser, req.body.uhp_idproject
 app.get('/useraddsproject/amIFavorite/:uhp_idproject/:uhp_iduser', favoritectrl.amIFavorite);
+//Input: uhp_idproject, uhp_iduser
 //Schickt "response": 1 wenn Favorit; schickt "response": 0 wenn noch kein Favorit.
 
 app.post('/wizardctrl/newProject', wizardctrl.newProject);
-//req.body.project_author, req.body.project_activity
+//Input: req.body.project_author, req.body.project_activity
 app.put('/wizardctrl/newProject', wizardctrl.addProjectinformation);
-//req.body.project_name, req.body.project_text, req.files.foo, req.body.fileName, req.body.project_writeRights, req.body.project_statement, req.body.termin , req.body.projectid
+//Input: 
+//req.body.project_name, req.body.project_text, req.files.foo, req.body.fileName, 
+//req.body.project_writeRights, req.body.project_statement, req.body.termin , req.body.projectid
 
 //suche
 app.get('/project/stringsearch/:project_name', searchctrl.searchString);
-
+//Input: project_name
 //Rechtemanagement
 app.get('/governance/amIAuthor/:uhp_idproject/:uhp_iduser', governancectrl.amIAuthor);
 app.get('/governance/amIEditor/:uhp_idproject/:uhp_iduser', governancectrl.amIEditor);
-
+//Input: uhp_idproject, uhp_iduser
 
 app.use('/governance/addEditor', governancectrl.addEditorEvent1, governancectrl.addEditor1);
 app.post('/governance/addEditor', governancectrl.addEditorEvent2)
+//Input: req.body.uhp_idproject, req.body.uhp_iduser, req.body.authorid
 app.use('/governance/deleteEditor', governancectrl.deleteEditorEvent1,governancectrl.deleteEditor1)
 app.post('/governance/deleteEditor', governancectrl.deleteEditorEvent2)
-// req.body.uhp_idproject, req.body.uhp_iduser, req.body.authorid)
+//Input: req.body.uhp_idproject, req.body.uhp_iduser, req.body.authorid
 
 app.use('/useraddsproject/karma/add',karmactrl.addLike1, karmactrl.addLikeEvent1);
 app.post('/useraddsproject/karma/add',karmactrl.addLikeEvent2,karmactrl.addLike2);
-//req.body.uhp_iduser, req.body.uhp_idproject
+//Input: req.body.uhp_iduser, req.body.uhp_idproject
 app.use('/useraddsproject/karma/remove',karmactrl.deleteLike1, karmactrl.deleteLikeEvent1);
 app.delete('/useraddsproject/karma/remove',karmactrl.deleteLikeEvent2, karmactrl.deleteLike2);
-//req.body.uhp_iduser, req.body.uhp_idproject
+//Input: req.body.uhp_iduser, req.body.uhp_idproject
 app.get('/useraddsproject/karma/amILiker/:uhp_idproject/:uhp_iduser', karmactrl.amILiker);
+//Input: uhp_idproject, uhp_iduser
 //Schickt "response": 1 wenn liked; schickt "response": 0 wenn noch nicht geliked.
 
 //Schoolctrl
