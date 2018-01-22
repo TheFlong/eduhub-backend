@@ -149,7 +149,7 @@ image_idproject: 54
         { 
           imageid: 22, 
           src: 'http://backend-edu.azurewebsites.net/images/green4.jpeg',
-          thumbnail: 'http://backend-edu.azurewebsites.net/images/green.jpeg',
+          thumbnail: 'http://backend-edu.azurewebsites.net/images/green4.jpeg',
           image_idproject: 64
         },
 
