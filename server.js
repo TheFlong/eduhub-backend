@@ -190,6 +190,7 @@ app.put('/wizardctrl/newProject', wizardctrl.addProjectinformation);
 
 //Suche
 app.get('/project/stringsearch/:project_name', searchctrl.searchString);
+
 //Input: project_name
 
 //Rechtemanagement
