@@ -14,7 +14,7 @@ exports.seed = function(knex, Promise) {
           project_author: 3,    
           project_imagepath:"images/SLZ.jpg",
           project_membercount: 2,   
-          project_informationid: 1 
+          
          
           
         },
@@ -196,7 +196,7 @@ exports.seed = function(knex, Promise) {
           project_author: 2,    
           project_imagepath:"images/Digital_Klassenbuch.jpg",
           project_membercount: 1,   
-          project_informationid: 2 
+         
         },
 
         {
@@ -359,7 +359,7 @@ exports.seed = function(knex, Promise) {
           project_author: 1,    
           project_imagepath:"images/bib1.jpg",
           project_membercount: 1,   
-          project_informationid: 3 
+          
         },
        
         {
@@ -456,7 +456,7 @@ exports.seed = function(knex, Promise) {
           project_author: 2,    
           project_imagepath:"images/dk1.jpg",
           project_membercount: 1,   
-          project_informationid: 4 
+         
         },
         {
           projectid: 46, 
@@ -561,7 +561,7 @@ exports.seed = function(knex, Promise) {
           project_author: 1,    
           project_imagepath:"images/environmental-protection-683437_1280.jpg",
           project_membercount: 1,   
-          project_informationid: 5 
+         
         },
         {
           projectid: 56, 
@@ -659,7 +659,7 @@ exports.seed = function(knex, Promise) {
           project_author: 1,    
           project_imagepath:"images/Schule1.jpg",
           project_membercount: 1,   
-          project_informationid: 6 
+          
         },
 
         {
@@ -770,7 +770,7 @@ exports.seed = function(knex, Promise) {
           project_author: 5,    
           project_imagepath:"images/spende4.jpeg",
           project_membercount: 1,   
-          project_informationid: 7 
+          
         },
         {
           projectid: 76, 
@@ -870,7 +870,7 @@ exports.seed = function(knex, Promise) {
           project_author: 8,    
           project_imagepath:"images/sport1.jpeg",
           project_membercount: 1,   
-          project_informationid: 8
+          
         },
         {
           projectid: 86, 
@@ -994,7 +994,7 @@ exports.seed = function(knex, Promise) {
           project_author: 5,    
           project_imagepath:"images/Vernissage.jpeg",
           project_membercount: 1,   
-          project_informationid: 9
+        
         },
 
         {
