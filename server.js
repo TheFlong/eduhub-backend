@@ -188,9 +188,10 @@ app.put('/wizardctrl/newProject', wizardctrl.addProjectinformation);
 //req.body.project_name, req.body.project_text, req.files.foo, req.body.fileName, 
 //req.body.project_writeRights, req.body.project_statement, req.body.termin , req.body.projectid
 
-//suche
+//Suche
 app.get('/project/stringsearch/:project_name', searchctrl.searchString);
 //Input: project_name
+
 //Rechtemanagement
 app.get('/governance/amIAuthor/:uhp_idproject/:uhp_iduser', governancectrl.amIAuthor);
 app.get('/governance/amIEditor/:uhp_idproject/:uhp_iduser', governancectrl.amIEditor);
