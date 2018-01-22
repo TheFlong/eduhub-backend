@@ -140,7 +140,7 @@ function deleteLikeEvent2(req,res, next){
         return knex('Project')
         .transacting(t)
         .insert({
-            project_name: req.name.temp2 + ' ' + req.name.temp1 + ' ' + 'hat das Projekt' + ' "'+ req.projectname.temp3 + '" ' + 'verlassen!',
+            project_name: req.name.temp2 + ' ' + req.name.temp1 + ' ' + 'gefällt das Projekt' + ' "'+ req.projectname.temp3 + '" ' + 'nicht mehr.',
             project_text: "",
             project_karma: 0,
             project_projecttype: "cancelmembership",
