@@ -28,7 +28,11 @@ module.exports = {
 
 //Ausgabe aller Nutzer
 function getAll(req, res) {
-    knex.select().from('User').then( User => res.send(User) );
+    knex
+        .select()
+        .from('User')
+        .join('School', 'schoolid','user_schoolid')
+        .then( User => res.send(User) );
 }
 //Ausgabe eines bestimmten Users anhand der Emailadresse
 function getOne(req, res) {
