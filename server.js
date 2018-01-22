@@ -197,7 +197,7 @@ app.post('/governance/deleteEditor', governancectrl.deleteEditorEvent2)
 app.use('/useraddsproject/karma/add',karmactrl.addLike1, karmactrl.addLikeEvent1);
 app.post('/useraddsproject/karma/add',karmactrl.addLikeEvent2,karmactrl.addLike2);
 //req.body.uhp_iduser, req.body.uhp_idproject
-app.use('/useraddsproject/karma/remove',karmactrl.deleteLike1, karmactrl.deleteLikeEvent2);
+app.use('/useraddsproject/karma/remove',karmactrl.deleteLike1, karmactrl.deleteLikeEvent1,);
 app.delete('/useraddsproject/karma/remove',karmactrl.deleteLikeEvent2, karmactrl.deleteLike2);
 //req.body.uhp_iduser, req.body.uhp_idproject
 app.get('/useraddsproject/karma/amILiker/:uhp_idproject/:uhp_iduser', karmactrl.amILiker);
