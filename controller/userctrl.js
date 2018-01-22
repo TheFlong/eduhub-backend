@@ -135,6 +135,7 @@ function adduser2(req,res){
             email: req.body.email,
             street: req.body.street,
             city: req.body.city,
+            number: req.body.number,
             function: req.body.function,
             subject1: req.body.subject1,
             subject2: req.body.subject2,
@@ -143,7 +144,8 @@ function adduser2(req,res){
             user_karma: 0,
             user_description: req.body.user_description,
             user_privacy: req.body.user_privacy,
-            user_schoolid: req.schoolid.schoolid
+            user_schoolid: req.schoolid.schoolid,
+            postcode: req.body.postcode
         })
         .then(function(response) {
             knex.select().from('User').where('userid', response[0])
