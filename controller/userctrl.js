@@ -299,7 +299,7 @@ function changeOne2(req,res){
 }
 
 //Abfragen des Imagepath des vorhandenen Profilfotos
-//req.body.userid, req.file.foo
+//req.body.email, req.file.foo
 function changePicture1(req,res,next){
     knex.select('profilpic as temp1').from('User').where('email', req.body.email)
     .then(function(response, response1){
