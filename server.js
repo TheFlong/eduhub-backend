@@ -77,7 +77,7 @@ app.post('/user/update', userctrl.changeOne2);
 //req.body.user_description, req.body.user_privacy
 app.use('/user/changepicture',userctrl.changePicture1);
 app.put('/user/changepicture', userctrl.changePicture2);
-//Input: req.body.userid, req.file.foo
+//Input: req.body.email, req.file.foo
 app.delete('/user',userctrl.deleteOne);
 //Input: req.body.email
 
@@ -97,24 +97,6 @@ app.get('/project/documents/get/:projectid', projectctrl.getDocumentList);
 app.get('/project/images/get/:projectid', projectctrl.getImageList);
 //Input: projectid
 
-//Filterfunktionen
-app.get('/project/filter/documentsimage/:projectid', filterctrl.getUploadEvents);
-app.get('/project/filter/memberevents/:projectid', filterctrl.getMemberEvents);
-app.get('/project/filter/comments/:projectid', filterctrl.getCommentEvents);
-app.get('/project/filter/termin/:projectid', filterctrl.getTerminEvents);
-//Input: projectid
-app.post('/project/addComment', reactionctrl.addComment);
-//Input:
-//req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(KommentarText),
-//req.body.project_author(Nutzer id)
-app.post('/project/addImage', reactionctrl.addImage);
-//Input:
-//req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(Beschreibung),
-//req.body.project_author(Nutzer id),req.body.fileName,req.files.foo
-app.post('/project/addDocument', reactionctrl.addDocument);
-//Input: req.files.foo, req.body.fileName, req.body.Project_projectid, req.body.project_name, req.body.project_text, req.body.project_author
-app.post('/project/addTermin', reactionctrl.addTermin);
-//Input: req.files.foo, req.body.fileName, req.body.Project_projectid, req.body.project_name, req.body.project_text, req.body.project_author
 app.use('/project/update', projectctrl.changeProject1);
 app.put('/project/update', projectctrl.changeProject2);
 //Input: req.body.changeid, req.body.projectid, req.body.userid, req.body.projectid
@@ -126,6 +108,27 @@ app.put('/project/update', projectctrl.changeProject2);
 // changeid [6]: Schreibrechte ändern, req.body.newwriteRights
 app.delete('/project/delete', projectctrl.deleteProject)
 //Input: req.body.projectid
+
+app.post('/project/addComment', reactionctrl.addComment);
+//Input:
+//req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(KommentarText),
+//req.body.project_author(Nutzer id)
+app.post('/project/addImage', reactionctrl.addImage);
+//Input:
+//req.body.Project_projectid(aktuelle Projektid),req.body.project_name(Titel für Reaktion),req.body.project_text(Beschreibung),
+//req.body.project_author(Nutzer id),req.body.fileName,req.files.foo
+app.post('/project/addDocument', reactionctrl.addDocument);
+//Input: req.files.foo, req.body.fileName, req.body.Project_projectid, req.body.project_name, req.body.project_text, req.body.project_author
+app.post('/project/addTermin', reactionctrl.addTermin);
+//Input: req.body.project_termin, req.body.Project_projectid, req.body.project_name, req.body.project_text, req.body.project_author
+
+//wizardctrl Neues Projekt erstellen
+app.post('/wizardctrl/newProject', wizardctrl.newProject);
+//Input: req.body.project_author, req.body.project_activity
+app.put('/wizardctrl/newProject', wizardctrl.addProjectinformation);
+//Input: 
+//req.body.project_name, req.body.project_text, req.files.foo, req.body.fileName, 
+//req.body.project_writeRights, req.body.project_statement, req.body.termin , req.body.projectid
 
 //tagctrl Routes
 app.get('/tag/:projectid', tagctrl.getProjectsTags)
@@ -163,21 +166,20 @@ app.get('/useraddsproject/amIFavorite/:uhp_idproject/:uhp_iduser', favoritectrl.
 //Input: uhp_idproject, uhp_iduser
 //Schickt "response": 1 wenn Favorit; schickt "response": 0 wenn noch kein Favorit.
 
-//wizardctrl Neues Projekt erstellen
-app.post('/wizardctrl/newProject', wizardctrl.newProject);
-//Input: req.body.project_author, req.body.project_activity
-app.put('/wizardctrl/newProject', wizardctrl.addProjectinformation);
-//Input: 
-//req.body.project_name, req.body.project_text, req.files.foo, req.body.fileName, 
-//req.body.project_writeRights, req.body.project_statement, req.body.termin , req.body.projectid
 
 //Suche
 app.get('/project/stringsearch/:project_name', searchctrl.searchString);
 //Input: project_name
 app.get('/project/stringsearchwithcat/:project_name/:project_activity', searchctrl.searchStringwithCat);
-//Input: 
+//Input: /:project_name/:project_activity
 app.get('/project/catsearch/:project_activity', searchctrl.searchCat);
-//Input: project_name, project_activity
+//Input: project_activity
+
+//Filterfunktionen
+app.get('/project/filter/documentsimage/:projectid', filterctrl.getUploadEvents);
+app.get('/project/filter/memberevents/:projectid', filterctrl.getMemberEvents);
+app.get('/project/filter/comments/:projectid', filterctrl.getCommentEvents);
+app.get('/project/filter/termin/:projectid', filterctrl.getTerminEvents);
 
 //Rechtemanagement
 app.get('/governance/amIAuthor/:uhp_idproject/:uhp_iduser', governancectrl.amIAuthor);
