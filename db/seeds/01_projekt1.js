@@ -11,6 +11,7 @@ exports.seed = function(knex, Promise) {
           project_text: "Das SLZ kann von Schülern und Lehrern während der Unterrichtszeit und in Freistunden genutzt werden. Das SLZ bietet vielfältige Möglichkeiten, die sich bewusst vom üblichen Unterricht abgrenzen. So können im Team oder allein einzelne Unterrichtsaspekte erarbeitet oder vertieft, Referate vorbereitet oder Unterrichtsstoff gezielt nachbereitet werden. Den Oberstufenschülern bietet der Raum eine angenehme Arbeitsatmosphäre zur individuellen und eigenverantwortlichen Gestaltung der Freistunden. Das SLZ verbessert die Qualität des Unterrichts indem die Schüler durch selbständiges und eigenverantwortliches Lernen mehr Lernmotivation bekommen. Durch das individuelle Lerntempo wird das Förderangebot für sowohl lernschwächere als auch für besonders begabte Schüler verbessert. ", 
           project_karma: 1219,
           project_projecttype: "newProject",
+          project_activity: "lehrundlernProjekt",
           project_author: 3,    
           project_imagepath:"images/SLZ.jpg",
           project_membercount: 2,   
@@ -193,7 +194,8 @@ exports.seed = function(knex, Promise) {
           project_text: "Das digitale Klassenbuch verbindet die Vorteile einer webbasierten Anwendung mit den Fähigkeiten eines Klassenbuches aus Papier. Es verwaltet Fehlstunden, Fehltage und Entschuldigungen pro Schüler, Unterrichtsdokumentationen pro Fach und Hausaufgaben pro Klasse. Lehrer können die Anwesenheitsliste im Klassenraum führen und haben derweil bereits Einsicht auf die Entschuldigungen, die das Sekretariat telefonisch entgegen genommen hat. Das Projekt findet gemeinsam im Rahmen des Laboratory Course on Development der Universität zu Köln statt.", 
           project_karma: 101,
           project_projecttype: "newProject",
-          project_author: 2,    
+          project_author: 2,
+          project_activity: "managementProjekt",    
           project_imagepath:"images/Digital_Klassenbuch.jpg",
           project_membercount: 1,   
          
@@ -357,6 +359,7 @@ exports.seed = function(knex, Promise) {
           project_karma: 432,
           project_projecttype: "newProject",
           project_author: 1,    
+          project_activity: "unterstuetzendesProjekt",
           project_imagepath:"images/bib1.jpg",
           project_membercount: 1,   
           
@@ -453,7 +456,8 @@ exports.seed = function(knex, Promise) {
           project_text: "Informieren Sie Schüler, Studenten und Lehrkräfte rasch und unkompliziert über Vertretungen, Raumänderungen, wichtige Schulinterne Infos , Veranstaltungen, Fundsachen und das aktuelles Wetter für den Sportunterricht.", 
           project_karma: 101,
           project_projecttype: "newProject",
-          project_author: 2,    
+          project_author: 2,
+          project_activity: "managementProjekt",    
           project_imagepath:"images/dk1.jpg",
           project_membercount: 1,   
          
@@ -558,7 +562,8 @@ exports.seed = function(knex, Promise) {
           project_text: "Das Wörter “Klimawandel und Erderwärmung” tauchen in gewissen Abständen immer wieder in den Nachrichten auf. Doch was genau verbirgt sich eigentlich dahinter? Was können die Schüler als Einzelpersonen gegen diesen Prozess tun und was werden auf internationaler Ebene für Maßnahmen ergriffen? Die Schüler sollten sich in Projektgruppen einmal überlegen, wo sie im Alltag ohne viel Probleme Energie oder auch Wasser sparen könnten und diese zusammen tragen. Im zweiten Schritt dieses Schulprojektes geht es darum, sich auch wieder in Gruppen Gedanken zu machen, wie man nachhaltig den Wasser-,Energie und Müllverbrauch reduzieren kann. Dass können einfache Herstellungsoptimierungen sein, aber auch komplexere Erfindungen, animieren Sie Ihre Schüler zu Kreativität! Am Ende sollten alle Ideen vorgestellt und die Vor-und Nachteile jedes Vorschlages diskutiert werden. Wer weiß, vielleicht ist ja die alles verändernde Idee dabei!", 
           project_karma: 101,
           project_projecttype: "newProject",
-          project_author: 1,    
+          project_author: 1,  
+          project_activity: "lehrundlernProjekt",  
           project_imagepath:"images/environmental-protection-683437_1280.jpg",
           project_membercount: 1,   
          
@@ -656,7 +661,8 @@ exports.seed = function(knex, Promise) {
           project_text: "Die Schüler entwickeln in dieser Zeit selbständig ein Staatsgefüge.  Schule als Staat ist ein Projekt, welches am besten in einer Themenwoche durchgeführt werden kann, da es sich um ein sehr aufwendiges Projekt handelt.  Alle Teilnehmer können die Erfahrung machen, Teil eines selbst entwickelten Wirtschafts- und Rechtssystems zu sein und selbstständig zu handeln. Dabei sind Schüler und Lehrer gleichberechtigt. Die Schüler haben so die Möglichkeit sich intensiver mit dem doch sonst eher abstrakten Konzept Politik und Wirtschaft auseinander zu setzen. ", 
           project_karma: 101,
           project_projecttype: "newProject",
-          project_author: 1,    
+          project_author: 1,
+          project_activity: "lehrundlernProjekt",    
           project_imagepath:"images/Schule1.jpg",
           project_membercount: 1,   
           
@@ -767,7 +773,8 @@ exports.seed = function(knex, Promise) {
           project_text: "Ihr habt eine Partnerschule in einem anderen Land oder möchtet eine bestimmte Organisation unterstützen? Dann planen Sie doch einmal ein Schulprojekt im Rahmen einer Spendenaktion. Eine Gruppe müsste sich zu allererst mit dem Projekt, bzw. mit der Partnerschule beschäftigen. Stellt sie und das Leben der Schüler vor; was unterscheidet sie von deutschen Schülern, was ist aber auch identisch? Hier sollten Infostände vorbereitet werden, versuchen Sie, so viele mediale Formen zu nutzen, wie möglich, sodass es für alle abwechslungsreicher wird. Meistens wird es für die Schüler zugänglicher, wenn mit Beispielen gearbeitet wird, d.h. suchen Sie sich eine Kontaktperson der anderen Schule heraus und stellen Sie Ihr Leben und Ihren Alltag vor!", 
           project_karma: 101,
           project_projecttype: "newProject",
-          project_author: 5,    
+          project_author: 5,  
+          project_activity: "lehrundlernProjekt",  
           project_imagepath:"images/spende4.jpeg",
           project_membercount: 1,   
           
@@ -867,6 +874,7 @@ exports.seed = function(knex, Promise) {
           project_text: "Immer wieder hört man, dass sich Kinder sich nicht ausreichend bewegen und stattdessen nur noch vor dem PC hocken. Deshalb habe ich mich dazu entschlossen auf unserer Schule jedes Frühjahr eine Sportwoche zu organisieren.  Neben den klassischen Sportarten gibt es auch bei uns Aktivitäten außerhalb der Schule wie z. B. Wandern, Sponsored Walk, Klettern und Radfahren. Für die erbrachte Leistungen können z. B. beim Schwimmen Abzeichen erworben werden, und bei den Wettkämpfen zwischen den Klassen wird es eine Teilnehmer- und Siegerehrung geben.", 
           project_karma: 101,
           project_projecttype: "newProject",
+          project_activity: "lehrundlernProjekt",
           project_author: 8,    
           project_imagepath:"images/sport1.jpeg",
           project_membercount: 1,   
