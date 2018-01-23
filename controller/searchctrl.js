@@ -32,7 +32,7 @@ function searchString(req,res){
         knex.select('projectid','project_name','project_text','project_karma','project_projecttype','project_author','project_activity','project_statement','project_imagepath','project_writeRights','project_membercount','project_favcount','project_termin','project_change','Project_projectid','project_created_at','project_updated_at')
         .from('Project')
         .where('project_projecttype', "newProject")
-        .andWhere('project_activity', req.body.project_activity)
+        .andWhere('project_activity', req.params.project_activity)
         .andWhere('project_name', 'like', '%' + req.params.project_name + '%')
         .union (function(){
             this.select('projectid','project_name','project_text','project_karma','project_projecttype','project_author','project_activity','project_statement','project_imagepath','project_writeRights','project_membercount','project_favcount','project_termin','project_change','Project_projectid','project_created_at','project_updated_at')
@@ -49,7 +49,7 @@ function searchString(req,res){
                 .join('Resource', 'resourceid', 'phr_idresource')
                 .where('project_projecttype', "newProject")
                 .andWhere('resource_name', 'like', '%' + req.params.project_name + '%')
-                .andWhere('project_activity', req.body.project_activity)
+                .andWhere('project_activity', req.params.project_activity)
         })
         .then( User => res.send(User))
 

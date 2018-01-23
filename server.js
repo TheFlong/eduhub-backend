@@ -172,7 +172,7 @@ app.put('/wizardctrl/newProject', wizardctrl.addProjectinformation);
 //req.body.project_writeRights, req.body.project_statement, req.body.termin , req.body.projectid
 
 //Suche
-app.get('/project/stringsearch/:project_name', searchctrl.searchString);
+app.get('/project/stringsearch/:project_name/:project_activity', searchctrl.searchString);
 //Input: project_name
 
 //Rechtemanagement
