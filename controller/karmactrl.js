@@ -143,7 +143,7 @@ function deleteLikeEvent2(req,res, next){
             project_name: req.name.temp2 + ' ' + req.name.temp1 + ' ' + 'gefällt das Projekt' + ' "'+ req.projectname.temp3 + '" ' + 'nicht mehr.',
             project_text: "",
             project_karma: 0,
-            project_projecttype: "cancelmembership",
+            project_projecttype: "cancellike",
             project_author: req.body.uhp_iduser,
             project_membercount: 1,
             Project_projectid: req.body.uhp_idproject
