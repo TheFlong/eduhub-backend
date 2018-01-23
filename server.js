@@ -172,8 +172,12 @@ app.put('/wizardctrl/newProject', wizardctrl.addProjectinformation);
 //req.body.project_writeRights, req.body.project_statement, req.body.termin , req.body.projectid
 
 //Suche
-app.get('/project/stringsearch/:project_name/:project_activity', searchctrl.searchString);
+app.get('/project/stringsearch/:project_name', searchctrl.searchString);
 //Input: project_name
+app.get('/project/stringsearchwithcat/:project_name/:project_activity', searchctrl.searchStringwithCat);
+//Input: 
+app.get('/project/catsearch/:project_activity', searchctrl.searchCat);
+//Input: project_name, project_activity
 
 //Rechtemanagement
 app.get('/governance/amIAuthor/:uhp_idproject/:uhp_iduser', governancectrl.amIAuthor);
