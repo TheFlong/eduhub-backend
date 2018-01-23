@@ -134,7 +134,7 @@ function addDocument(req, res){
 
     });
 }
-//Dem Projekt ein kommentar hinzufügen
+//Dem Projekt ein Kommentar hinzufügen
 function addComment(req, res){
     return knex.transaction(function(t){
         return knex('Project')
