@@ -45,7 +45,11 @@ function getMemberEvents(req,res){
     knex('Project')
     .select('*')
     .where('Project_projectid', req.params.projectid)
-    .andWhere(function(){ this.where('project_projecttype', "bemember").orWhere('project_projecttype', "cancelmembership")})
+    .andWhere(function(){ 
+        this.where('project_projecttype', "bemember")
+        .orWhere('project_projecttype', "cancelmembership")
+        .orWhere('project_projecttype', "beeditor")
+        .orWhere('project_projecttype', "deleteeditor")})
     .orderBy('project_created_at', 'desc')
     .then(function(response){
         res.send(response);
