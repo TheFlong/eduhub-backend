@@ -5,7 +5,7 @@ const port = process.env.PORT || 8000;
 const multer = require('multer');
 const fileUpload = require('express-fileupload');
 
-//Import der Controler Klassen
+//Import der Controller Klassen
 var userctrl = require('./controller/userctrl');
 var projectctrl = require('./controller/projectctrl');
 var tagctrl = require('./controller/tagctrl');
